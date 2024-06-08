@@ -1,4 +1,8 @@
 <?php
+/**
+ * @author Gabrielli
+ * Arquivo referente ao processamento, responsável pelo cadastro dos Clientes.
+ */
 include_once '../bdConnection.php';
 
 if(isset($_POST['btnSalvar'])) {
