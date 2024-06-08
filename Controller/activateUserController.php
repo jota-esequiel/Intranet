@@ -31,4 +31,6 @@ if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['codcliente'])) {
     }
     header('Location: ../View/consultUser.php');
 }
+
+echo "teste";
 ?>
