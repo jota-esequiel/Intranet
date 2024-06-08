@@ -5,7 +5,6 @@
  * Ele recebe um código de produto via GET e verifica se o produto está marcado como ativo ('S') ou inativo ('N') no banco de dados.
  * Se o produto estiver inativo, ele é ativado ('S'). Caso contrário, uma mensagem informando que o produto já está ativo é exibida.
  * @author Gabrielli 
- * @author João
  * @param string $codproduto O código do produto que será ativado.
  * @param array $stmtCheck O statement PDO utilizado para verificar se o produto está ativo ou não.
  */

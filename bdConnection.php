@@ -1,7 +1,7 @@
 <?php
-function conectar(){ //Função para se conectar com o banco de dados e permitir CRUD 
+function conectar(){
     $host = 'localhost';
-    $db = 'tcc'; //Sempre criar a database com o nome que está aqui
+    $db = 'tcc';
     $user = 'root';
     $pass = '';
 
@@ -13,6 +13,4 @@ function conectar(){ //Função para se conectar com o banco de dados e permitir
         die("Erro na conexão: " . $e->getMessage());
     }
 }
-
-echo "teste";
 ?>

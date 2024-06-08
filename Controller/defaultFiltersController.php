@@ -1,7 +1,6 @@
 <?php 
 /**
- * @author Gabi
- * @author Alex
+ * @author Gabrielli
  * @param - Função padrão para filtragem de dados
  */
 ?>
