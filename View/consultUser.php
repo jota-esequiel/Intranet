@@ -1,11 +1,11 @@
 <?php
 //02.06.2024 - Teste de permissão à acesso a rotina administrativas concluída. Apenas melhorar o arquivo de log para capturar dados de acesso indevidos.
 
-// session_start();
-// if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'A') {
-//     header('Location: logError.php'); //Criar uma página de erros
-//     exit();
-// }
+session_start();
+if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'A') {
+    header('Location: logError.php'); //Criar uma página de erros
+    exit();
+}
 
 include_once '../bdConnection.php';
 include '../Controller/defaultFiltersController.php';
