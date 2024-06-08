@@ -1,4 +1,9 @@
 <?php
+/**
+ * @author MyPica
+ * @param string 
+ */
+
 include_once '../bdConnection.php';
 
 try {
