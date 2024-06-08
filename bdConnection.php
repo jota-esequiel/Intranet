@@ -13,4 +13,6 @@ function conectar(){ //Função para se conectar com o banco de dados e permitir
         die("Erro na conexão: " . $e->getMessage());
     }
 }
+
+echo "teste";
 ?>
