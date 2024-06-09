@@ -69,7 +69,7 @@ function fetchDataFromDatabase($pdo, $filters) {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function generateXLSX($data, $filename = 'exportacao_dados.xlsx') {
+function generateXLSX($data, $filename = 'usuários.xlsx') {
     require '../vendor/autoload.php';
 
     $spreadsheet = new Spreadsheet();
@@ -124,7 +124,7 @@ $data = fetchDataFromDatabase($pdo, $filters);
 $filePath = generateXLSX($data);
 
 header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment; filename="exportacao_dados.xlsx"');
+header('Content-Disposition: attachment; filename="usuários.xlsx"');
 header('Content-Length: ' . filesize($filePath));
 
 readfile($filePath);
