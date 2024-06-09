@@ -88,4 +88,8 @@ function formatDateTimeToBrazilian($dateTime) {
         return $date;
     }
 }
+
+function formatPrice($price) {
+    return 'R$ ' . number_format($price, 2, ',', '.');
+}
 ?>

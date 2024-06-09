@@ -1,12 +1,13 @@
 <?php
-session_start();
-if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'A') {
-    header('Location: logError.php'); //Criar uma página de erros
-    exit();
-}
+// session_start();
+// if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'A') {
+//     header('Location: logError.php'); //Criar uma página de erros
+//     exit();
+// }
 
 include_once '../bdConnection.php';
 include '../Controller/defaultFiltersController.php';
+include '../Controller/standardFunctionsController.php';
 
 try {
     $pdo = conectar();
@@ -75,8 +76,44 @@ try {
     <title>Consulta de Produtos | TCC</title>
 </head>
 <body>
-    <button onclick="toggleFilterForm('filterProductForm')">Filtros</button>
-    <?php filterProduct(); ?>
+    <?php 
+    include_once '../Controller/subMenuController.php';
+    
+    $subMenu = [
+        'Adicionar Produtos' => '../View/productRegistration.php'
+    ];
+
+    $additionalContent = '
+        <button class="nav-bar-item" onclick="toggleFilterForm(\'filterProductForm\')">Filtros</button>
+        <form id="exportForm" action="../Composer/xlsxProductComposer.php" method="get" style="display: none;">';
+
+    if (!empty($_POST['nomeproduto'])) {
+        $additionalContent .= '<input type = "hidden" name = "nomeproduto" value = "' . htmlspecialchars($_POST['nomeproduto']) . '">';
+    }
+    if (!empty($_POST['precoproduto'])) {
+        $additionalContent .= '<input type = "hidden" name = "precoproduto" value = "' . htmlspecialchars($_POST['precoproduto']) . '">';
+    }
+    if (!empty($_POST['qtdprod'])) {
+        $additionalContent .= '<input type = "hidden" name = "qtdprod" value = "' . htmlspecialchars($_POST['qtdprod']) . '">';
+    }
+    if (!empty($_POST['nomecategoria'])) {
+        $additionalContent .= '<input type = "hidden" name = "nomecategoria" value = "' . htmlspecialchars($_POST['nomecategoria']) . '">';
+    }
+    if (!empty($_POST['ativoproduct'])) {
+        $additionalContent .= '<input type = "hidden" name = "ativoproduct" value = "' . htmlspecialchars($_POST['ativoproduct']) . '">';
+    }
+
+    $additionalContent .= '</form>
+        <button class = "nav-bar-item" onclick = "document.getElementById(\'exportForm\').submit();">Exportar XLSX</button>';
+
+    if (function_exists('filterProduct')) {
+        $additionalContent .= filterProduct();
+    }
+
+    $additionalContent .= '</div>';
+    
+    renderSubMenu($subMenu, $additionalContent);
+    ?>    
 
     <h1>CONSULTA DE PRODUTOS</h1>
 
@@ -103,7 +140,7 @@ try {
                 <?php endif; ?>
             </td>
             <td><?php echo $product['nomeproduto']; ?></td>
-            <td>R$ <?php echo number_format($product['precoproduto'], 2, ',', '.'); ?></td>
+            <td><?php echo formatPrice($product['precoproduto']); ?></td>
             <td><?php echo $product['qtdprod']; ?></td>
             <td><?php echo $product['nomecategoria']; ?></td>
             <td>

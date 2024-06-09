@@ -93,18 +93,57 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     include_once '../Controller/subMenuController.php';
     
     $subMenu = [
-        'Adicionar Administrador' => '../View/userRegistrationAdmin.php',
-        'Apenas link teste'       => 'https://www.google.com/',
-        'Exportar XLSX'           => '../Controller/xlsxFunctionComposer.php'
-    ];
-
+      'Adicionar Administrador' => '../View/userRegistrationAdmin.php',
+  ];
+  
     $additionalContent = '
-        <button class="nav-bar-item" onclick="toggleFilterForm(\'filterUserForm\')">Filtros</button>';
-
+        <button class="nav-bar-item" onclick="toggleFilterForm(\'filterUserForm\')">Filtros</button>
+        <form id="exportForm" action="../Composer/xlsxUsersComposer.php" method="get" style="display: none;">';
+    
+    if (!empty($_POST['nome'])) {
+        $additionalContent .= '<input type="hidden" name="nome" value="' . htmlspecialchars($_POST['nome']) . '">';
+    }
+    if (!empty($_POST['email'])) {
+        $additionalContent .= '<input type="hidden" name="email" value="' . htmlspecialchars($_POST['email']) . '">';
+    }
+    if (!empty($_POST['cpf'])) {
+        $additionalContent .= '<input type="hidden" name="cpf" value="' . htmlspecialchars($_POST['cpf']) . '">';
+    }
+    if (!empty($_POST['fone'])) {
+        $additionalContent .= '<input type="hidden" name="fone" value="' . htmlspecialchars($_POST['fone']) . '">';
+    }
+    if (!empty($_POST['dtnasc'])) {
+        $additionalContent .= '<input type="hidden" name="dtnasc" value="' . htmlspecialchars($_POST['dtnasc']) . '">';
+    }
+    if (!empty($_POST['rua'])) {
+        $additionalContent .= '<input type="hidden" name="rua" value="' . htmlspecialchars($_POST['rua']) . '">';
+    }
+    if (!empty($_POST['complemento'])) {
+        $additionalContent .= '<input type="hidden" name="complemento" value="' . htmlspecialchars($_POST['complemento']) . '">';
+    }
+    if (!empty($_POST['ncasa'])) {
+        $additionalContent .= '<input type="hidden" name="ncasa" value="' . htmlspecialchars($_POST['ncasa']) . '">';
+    }
+    if (!empty($_POST['cep'])) {
+        $additionalContent .= '<input type="hidden" name="cep" value="' . htmlspecialchars($_POST['cep']) . '">';
+    }
+    if (!empty($_POST['ativo'])) {
+        $additionalContent .= '<input type="hidden" name="ativo" value="' . htmlspecialchars($_POST['ativo']) . '">';
+    }
+    if (!empty($_POST['tipo'])) {
+        $additionalContent .= '<input type="hidden" name="tipo" value="' . htmlspecialchars($_POST['tipo']) . '">';
+    }
+    if (!empty($_POST['cidade'])) {
+        $additionalContent .= '<input type="hidden" name="cidade" value="' . htmlspecialchars($_POST['cidade']) . '">';
+    }
+    
+    $additionalContent .= '</form>
+    <button class="nav-bar-item" onclick="document.getElementById(\'exportForm\').submit();">Exportar XLSX</button>';
+    
     if (function_exists('filterUser')) {
         $additionalContent .= filterUser();
     }
-
+    
     $additionalContent .= '</div>';
     
     renderSubMenu($subMenu, $additionalContent);
