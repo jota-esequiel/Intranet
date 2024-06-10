@@ -97,8 +97,8 @@ INSERT INTO tb_categorias (nomecategoria) VALUES ('Planta');
 INSERT INTO tb_produtos (nomeproduto, precoproduto, qtdprod, codcategoria) VALUES ('Rosa', 10.50, 10, 1);
 INSERT INTO tb_produtos (nomeproduto, precoproduto, qtdprod, codcategoria) VALUES ('Pinheiro', 150.00, 10, 2);
 
-INSERT INTO tb_imagens (img, codproduto) VALUES (LOAD_FILE('C:/xampp/htdocs/teste/img/imgtabela-nut-whey.jpg'), 1);
-INSERT INTO tb_imagens (img, codproduto) VALUES (LOAD_FILE('C:/xampp/htdocs/teste/img/imgtabela-nut-whey.jpg'), 2);
+INSERT INTO tb_imagens (img, codproduto) VALUES (LOAD_FILE('C:/xampp/htdocs/Intranet/img/bcaa.jpg'), 1);
+INSERT INTO tb_imagens (img, codproduto) VALUES (LOAD_FILE('C:/xampp/htdocs/Intranet/img/bcaa.jpg'), 2);
 
 INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
 VALUES ('REC001', 1, '2023-05-15', 'P', 1, 5.00);
