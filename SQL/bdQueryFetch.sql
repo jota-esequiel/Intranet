@@ -44,7 +44,9 @@ CREATE TABLE IF NOT EXISTS tb_produtos (
     nomeproduto VARCHAR(50) NOT NULL,
     precoproduto DECIMAL(5, 2) NOT NULL,
     ativo CHAR(1) NOT NULL DEFAULT 'S',
-    qtdprod INT NOT NULL,
+    qtdprod INT NOT NULL, -- Quantidade do produto disponível para compra, ou seja, em "estoque".
+    cor CHAR(1), -- Armazena a cor vindo de um array (1 = Vermelho, 2 = Azul, 3 = Amarelo)
+    tamanho CHAR(1), -- Armazena o tamanho vindo de um array (P = Pequeno, M = Médio, G = Grande)
     codcategoria INT,
     FOREIGN KEY (codcategoria) REFERENCES tb_categorias(codcategoria) ON DELETE CASCADE
 );
