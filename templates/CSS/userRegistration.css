@@ -1,0 +1,14 @@
+  .cadatrese h1 {
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    color: #4a7256; /* Adjust as needed */
+  }
+  .container {
+    width: 500px; /* Largura do container */
+    margin: 20px auto; /* Adicionar margem superior e inferior e centralizar horizontalmente */
+    padding: 10px; /* Adicionar espaçamento interno */
+    border: 1px solid #ccc; /* Borda preta sólida */
+    border-radius: 20px; /* Bordas arredondadas */
+    background-color: #eac7f1; /* Cor de fundo */
+  }

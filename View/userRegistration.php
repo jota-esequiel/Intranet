@@ -2,11 +2,15 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet "type="text/css" href="../templates/CSS/userRegistration.css">
     <title>Cadastro de Clientes</title>
 </head>
 <body>
+<div class="container">
+    <div class="cadatrese">
     <form method="post" action="../Controller/userRegistrationController.php">
         <h1>CADASTRE-SE</h1>
+</div>
         <label>Nome</label>
         <input type="text" name="nome" placeholder="Informe o seu nome..." required>
         <br><br>
@@ -40,6 +44,7 @@
         <label for="cidade">Cidade</label>
         <select id="cidade" name="codcid" required>
         <option value="">Selecione a cidade</option>
+</div>
             <?php
             include_once("../bdConnection.php");
 
@@ -63,5 +68,6 @@
     </form>
 
     <script src = "../templates/JS/mask.js"></script>
+    
 </body>
 </html>
