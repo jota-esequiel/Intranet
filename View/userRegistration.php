@@ -12,7 +12,7 @@
 </head>
 <body>
 <div class="bebas-neue-regular">
-<div class="container form-control">
+<div id ="container" class="container">
     <div class="cadatrese">
     <form method="post" action="../Controller/userRegistrationController.php">
         <h1>CADASTRE-SE</h1>
@@ -21,6 +21,7 @@
     <form method="post" action="../Controller/userRegistrationController.php">
         <h1>Ou faça login</h1>
 </div>
+<div class="input">
         <label class="form-label">Nome:</label>
         <input type="text" name="nome" placeholder="Informe o seu nome..." required>
         <br><br>
@@ -54,6 +55,7 @@
         <label class="form-label" for="cidade">Cidade</label>
         <select id="cidade" name="codcid" required>
         <option value="">Selecione a cidade</option>
+</div>
 </div>
             <?php
             include_once("../bdConnection.php");
