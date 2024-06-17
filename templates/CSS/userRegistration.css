@@ -5,12 +5,13 @@
     color: #4a7256;
   }
   .facalogin {
-    font-size: 09px;
+    font-size: 10px;
     margin: 0;
     padding: 0;
     color: #4a7256;
   }
-  #container {
+  
+  .container {
     width: 600px; /* Largura do container */
     margin: 20px auto; /* Adicionar margem superior e inferior e centralizar horizontalmente */
     padding: 10px; /* Adicionar espaçamento interno */ 
@@ -18,18 +19,28 @@
     border: 2px solid #4a7256;
     border-radius: 15px; /* Cor de fundo */
   }
-  
+
   input{
     border: 1px solid #4a7256;
     border-radius: 15px; /* Cor de fundo */
-    padding-right: 100px;
+    padding: 10px
     flex-direction: column; /* Organiza os elementos em coluna */
     display: inline-block;
-    width: 70%
+    width: 70%;
+  }
+
+  .bebas-neue-regular input {
+    font-size: 10px;
   }
   .bebas-neue-regular {
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
+    font-style: normal;
+  }
+  .playfair-display-uniquifier {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: weight;
     font-style: normal;
   }
   

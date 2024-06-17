@@ -6,21 +6,27 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <title>Cadastro de Clientes</title>
 </head>
 <body>
-<div class="bebas-neue-regular">
-<div id ="container" class="container">
+
+ <div class="bebas-neue-regular">
+ <div class="container">
     <div class="cadatrese">
     <form method="post" action="../Controller/userRegistrationController.php">
         <h1>CADASTRE-SE</h1>
 </div>
+
+<div class="playfair-display-uniquifier">
 <div class="facalogin">
     <form method="post" action="../Controller/userRegistrationController.php">
         <h1>Ou faça login</h1>
 </div>
+</div>
+
 <div class="input">
         <label class="form-label">Nome:</label>
         <input type="text" name="nome" placeholder="Informe o seu nome..." required>
@@ -82,8 +88,5 @@
     <script src = "../templates/JS/mask.js"></script>
 
         </div>
-
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js" integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
 </body>
 </html>
