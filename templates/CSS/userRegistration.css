@@ -1,3 +1,6 @@
+  body{
+    background-color: #89bb89;
+  }
   .cadatrese h1 {
     font-size: 40px;
     margin: 0;
@@ -18,7 +21,7 @@
     border-radius: 15px; /* Cor de fundo */
     padding: 10px;
     color: #4a7256;
-    box-shadow: 15px 10px #9c8fb6;;
+    box-shadow: 15px 10px #9c8fb6;
   }
   input{
     border: 1px;
@@ -42,4 +45,3 @@
     font-weight: bold 800;
     font-style: italic;
   }
-  
