@@ -36,12 +36,24 @@
   display: inline-block;
   padding: 10px 20px;
   border-radius: 20px; /* Arredondamento completo */
-  background-color: #e0e0e0; /* Roxo */
+  background-color: #d4d3d6; /* Roxo */
   color: #4a7256; /* Verde */
-  font-family: "Playfair Display", serif; /* Fonte normal */
+  font-family: "Playfair Display", serif; /* Fonte normal */ 
   text-decoration: none;
   cursor: pointer;
-  transition: all 0.3s ease; /* Efeito de transição */
+  transition: background-color 0.3s ease;
+  }
+  
+  select{
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 20px; /* Arredondamento completo */
+    background-color: #e0e0e0; /* Roxo */
+    color: #4a7256; /* Verde */
+    font-family: "Bebas Neue", sans-serif; /* Fonte normal */ 
+    text-decoration: none;
+    cursor: pointer;
+
   }
 
   .bebas-neue-regular {

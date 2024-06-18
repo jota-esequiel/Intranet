@@ -59,7 +59,9 @@
         <br><br>
         <label class="form-label" for="cidade">Cidade</label>
         <select id="cidade" name="codcid" required>
+        <div class="option">
         <option value="">Selecione a cidade</option>
+
 </div>
 </div>
             <?php
@@ -79,12 +81,11 @@
             }
 
             ?>
+            </div>
         </select>
         <br><br>
-        <div class="button">
         <button type="submit" class="buttoncad" name="btnSalvar">CADASTRE-SE</button>
         </form>
-        </div>
     <script src = "../templates/JS/mask.js"></script>
 
        

@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <div class="container">
+  <link rel="stylesheet "type="text/css" href="../templates/CSS/loginUser.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Login</title>
 </head>
 <body>
-  <h2>Login</h2>
+  <h2>LOGIN</h2>
   <form action="../Controller/loginUserController.php" method="POST">
     <label for="email">Email:</label><br>
     <input type="email" id="email" name="email" required><br>
@@ -15,5 +24,6 @@
     <input type="submit" value="Login">
   </form>
   <p>Não tem uma conta? <a href="../View/userRegistration.php">Crie uma aqui</a>.</p>
+</div>
 </body>
 </html>
