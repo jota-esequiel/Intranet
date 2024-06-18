@@ -81,9 +81,10 @@
             ?>
         </select>
         <br><br>
+        <div class="button">
         <button type="submit" class="buttoncad" name="btnSalvar">CADASTRE-SE</button>
-    </form>
-
+        </form>
+        </div>
     <script src = "../templates/JS/mask.js"></script>
 
        
