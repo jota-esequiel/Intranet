@@ -22,7 +22,7 @@
 
   input{
     border: 1px solid #4a7256;
-    border-radius: 15px; /* Cor de fundo */
+    border-radius: 15px; /* Cor de fundo */ 
     padding: 10px
     flex-direction: column; /* Organiza os elementos em coluna */
     display: inline-block;
