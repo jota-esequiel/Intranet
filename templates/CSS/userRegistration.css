@@ -5,42 +5,41 @@
     color: #4a7256;
   }
   .facalogin {
+    font-family: "Playfair Display", serif;
     font-size: 10px;
     margin: 0;
     padding: 0;
     color: #4a7256;
   }
-  
   .container {
-    width: 600px; /* Largura do container */
+    width: 500px; /* Largura do container */
     margin: 20px auto; /* Adicionar margem superior e inferior e centralizar horizontalmente */
-    padding: 10px; /* Adicionar espaçamento interno */ 
     background-color: #c3b2e2;
-    border: 2px solid #4a7256;
     border-radius: 15px; /* Cor de fundo */
+    padding: 10px;
+    color: #4a7256;
+    box-shadow: 15px 10px #9c8fb6;;
   }
-
   input{
-    border: 1px solid #4a7256;
-    border-radius: 15px; /* Cor de fundo */ 
-    padding: 10px
+    border: 1px;
+    font-size: 15px;
+    padding: 5px; /* Adicionar espaçamento interno */ 
+    border-radius: 10px; /* Cor de fundo */ 
     flex-direction: column; /* Organiza os elementos em coluna */
     display: inline-block;
     width: 70%;
   }
 
-  .bebas-neue-regular input {
-    font-size: 10px;
-  }
   .bebas-neue-regular {
     font-family: "Bebas Neue", sans-serif;
     font-weight: 400;
     font-style: normal;
+    font-size: 20px;
   }
   .playfair-display-uniquifier {
     font-family: "Playfair Display", serif;
     font-optical-sizing: auto;
-    font-weight: weight;
-    font-style: normal;
+    font-weight: bold 800;
+    font-style: italic;
   }
   

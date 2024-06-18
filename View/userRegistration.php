@@ -12,7 +12,7 @@
     <title>Cadastro de Clientes</title>
 </head>
 <body>
-
+<img src="C:/xampp/htdocs/Intranet/img/fundocadastro.jpg">
  <div class="bebas-neue-regular">
  <div class="container">
     <div class="cadatrese">
