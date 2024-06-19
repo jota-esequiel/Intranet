@@ -58,7 +58,7 @@ body {
   }
   
   input[type="submit"]:hover {
-    background-color: #b2a6ca;
+    background-color: #7dac88;
   }
   
   p {
@@ -74,7 +74,7 @@ body {
   }
   
   a:hover {
-    color: #b2a6ca;
+    color: #7dac88;
   }
   .bebas-neue-regular {
     font-family: "Bebas Neue", sans-serif;

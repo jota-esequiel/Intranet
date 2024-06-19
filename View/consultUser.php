@@ -81,6 +81,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet "type="text/css" href="../templates/CSS/consultUser.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="../fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="../templates/CSS/subMenu.css">

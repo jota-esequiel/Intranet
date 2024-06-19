@@ -32,28 +32,41 @@
     display: inline-block;
     width: 70%;
   }
-  button{
-  display: inline-block;
-  padding: 10px 20px;
-  border-radius: 20px; /* Arredondamento completo */
-  background-color: #d4d3d6; /* Roxo */
-  color: #4a7256; /* Verde */
-  font-family: "Playfair Display", serif; /* Fonte normal */ 
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+  button[type="submit"] {
+    font-family: "Playfair Display", serif;
+    background-color: #4a7256;
+    color:#e0e0e0 ;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #7dac88;
   }
   
   select{
     display: inline-block;
-    padding: 10px 20px;
-    border-radius: 20px; /* Arredondamento completo */
+    padding: 10px 10px 5px;
+    border-radius: 10px; /* Arredondamento completo */
     background-color: #e0e0e0; /* Roxo */
     color: #4a7256; /* Verde */
     font-family: "Bebas Neue", sans-serif; /* Fonte normal */ 
     text-decoration: none;
     cursor: pointer;
 
+  }
+  a {
+  color: #4a7256;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #7dac88;
   }
 
   .bebas-neue-regular {

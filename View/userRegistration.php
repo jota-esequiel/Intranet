@@ -21,8 +21,7 @@
 
 <div class="playfair-display-uniquifier">
 <div class="facalogin">
-    <form method="post" action="../Controller/userRegistrationController.php">
-        <h1>Ou faça login</h1>
+<h1>Ou faça <a href="../View/loginUser.php">login</a></h1>
 </div>
 </div>
 
