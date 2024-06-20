@@ -2,6 +2,7 @@ body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    display: flex
   }
   
   table {
@@ -21,28 +22,6 @@ body {
     background-color: #c4c4c4;
   }
   
-  /* Status column */
-  td:nth-child(12) {
-    text-align: center;
-  }
-  
-  /* Action buttons */
-  td:nth-child(13) a i {
-    margin-right: 10px;
-  }
-  
-  /* Disabled button style */
-  i[disabled] {
-    cursor: default;
-    opacity: 0.5;
-  }
-  
-  /* Green status */
-  td:nth-child(12) {
-    color: rgb(10, 161, 10);
-  }
-  
-  /* Red status */
-  td:nth-child(12).red {
-    color: red;
+  table tr:first-child {
+    background-color: #9c9c9c; /* Cor de fundo cinza claro */
   }
