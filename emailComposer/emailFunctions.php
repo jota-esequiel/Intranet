@@ -68,7 +68,7 @@ function usersToEmail($pdo) {
 
     foreach ($users as $user) {
         $html .= '<tr>';
-        $html .= '<td>' . htmlspecialchars($user['nome']) . '</td>';
+        $html .= '<td>' . tratarCaracteresEspeciais($user['nome']) . '</td>';
         $html .= '<td>' . htmlspecialchars($user['email']) . '</td>';
         $html .= '<td>' . formatPhoneNumber($user['fone']) . '</td>';
         $html .= '<td>' . formatDateToBrazilian($user['dtnasc']) . '</td>';

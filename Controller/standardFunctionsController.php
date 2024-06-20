@@ -123,4 +123,15 @@ function generateHash($data) {
     return hash('sha256', $data);
 }
 
+
+/**
+ * Converte uma string para evitar problemas com caracteres especiais em HTML.
+ *
+ * @param string $str String a ser convertida.
+ * @return string String convertida para evitar problemas com caracteres especiais em HTML.
+ */
+function tratarCaracteresEspeciais($str) {
+    return utf8_decode($str);
+}
+
 ?>
