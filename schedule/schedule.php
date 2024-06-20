@@ -4,7 +4,6 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 require '/xampp/htdocs/Intranet/vendor/autoload.php'; 
-require '/xampp/htdocs/Intranet/emailComposer/emailFunctions.php'; 
 
 function enviarEmail($emailDestino, $assunto, $corpo) {
     $mail = new PHPMailer(true); 
@@ -31,14 +30,5 @@ function enviarEmail($emailDestino, $assunto, $corpo) {
         echo 'Erro ao enviar e-mail: ' . $mail->ErrorInfo;
     }
 }
-
-$pdo = conectar();
-
-$htmlClientes = usersToEmail($pdo);
-$assunto = 'Dados dos Clientes Cadastrados';
-
-$emailDestino = 'joaovitoresequielvieira@gmail.com';
-
-enviarEmail($emailDestino, $assunto, $htmlClientes);
 
 ?>

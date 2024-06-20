@@ -114,6 +114,7 @@ function convertDate($date) {
 
 /**
  * Gera um hash para um texto ou número usando o algoritmo SHA-256.
+ * Poderá ser utilizado posteriormente na criptografia de QRCode
  *
  * @param string|int $data Texto ou número a ser criptografado.
  * @return string Hash gerado em formato hexadecimal.
