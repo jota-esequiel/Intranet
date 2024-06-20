@@ -92,4 +92,35 @@ function formatDateTimeToBrazilian($dateTime) {
 function formatPrice($price) {
     return 'R$ ' . number_format($price, 2, ',', '.');
 }
+
+/**
+ * Converte uma data no formato AAAAMMDD para DD/MM/AAAA.
+ *
+ * @param string $date Data no formato AAAAMMDD.
+ * @return string Data formatada no padrão DD/MM/AAAA.
+ * @author Gabrielli
+ */
+function convertDate($date) {
+    if (strlen($date) != 8) {
+        return "Formato de data inválido";
+    }
+
+    $ano = substr($date, 0, 4);
+    $mes = substr($date, 4, 2);
+    $dia = substr($date, 6, 2);
+
+    return "$dia/$mes/$ano";
+}
+
+/**
+ * Gera um hash para um texto ou número usando o algoritmo SHA-256.
+ *
+ * @param string|int $data Texto ou número a ser criptografado.
+ * @return string Hash gerado em formato hexadecimal.
+ * @author Gabrielli
+ */
+function generateHash($data) {
+    return hash('sha256', $data);
+}
+
 ?>
