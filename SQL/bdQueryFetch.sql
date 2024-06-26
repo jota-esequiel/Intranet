@@ -63,7 +63,8 @@ CREATE TABLE IF NOT EXISTS tb_compras (
     codcliente INT,
     ddcompra DATE NOT NULL,
     pagamento CHAR(1) NOT NULL, -- Tipo de Pagamento (P = Pix)
-    entrega CHAR(1) NOT NULL, -- Status da entrega (1 = Entregue, 2 = Separação)    taxaentrega DECIMAL(5, 2) NOT NULL,
+    entrega CHAR(1) NOT NULL, -- Status da entrega (1 = Entregue, 2 = Separação)   
+    taxaentrega DECIMAL(5, 2) NOT NULL,
     FOREIGN KEY (codcliente) REFERENCES tb_clientes(codcliente) ON DELETE CASCADE
 );
 
@@ -122,3 +123,4 @@ VALUES (1, 1, 2, 21.00);
 -- Foi necessário, pois, BIGINT leva em consideração que todo 0 a esquerda não é um caracter "usável" e ignora ele na inserção.
 
 ALTER TABLE tb_clientes MODIFY cpf VARCHAR(11);
+

@@ -15,11 +15,30 @@ try {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet "type="text/css" href="../templates/CSS/userRegistrationAdmin.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <title>Cadastro de Administradores</title>
 </head>
 <body>
+<div class="bebas-neue-regular">
+ <div class="container">
+    <div class="cadatrese">
     <form method="post" action="../Controller/userRegistrationAdminController.php">
         <h1>CADASTRE-SE</h1>
+        </div>
+
+<div class="playfair-display-uniquifier">
+<div class="facalogin">
+<h1>Ou faça <a href="../View/loginUser.php">login</a></h1>
+</div>
+</div>
+
+<div class="input">
         <label>Nome</label>
         <input type="text" name="nome" placeholder="Informe o seu nome..." required>
         <br><br>
@@ -53,15 +72,19 @@ try {
         <label for="cidade">Cidade</label>
         <select id="cidade" name="codcid" required>
             <option value="">Selecione a cidade</option>
+            </div>
+</div>
             <?php
             foreach ($cidades as $cidade) {
                 echo "<option value=\"{$cidade['codcid']}\">{$cidade['nomecidade']} - {$cidade['uf']}</option>";
             }
             ?>
+            </div>
         </select>
         <br><br>
         <input type="hidden" name="tipo" value="A"> 
         <button type="submit" class="buttoncad" name="btnSalvar">CADASTRE-SE</button>
     </form>
+    </div>
 </body>
 </html>

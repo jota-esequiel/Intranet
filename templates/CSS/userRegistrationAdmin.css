@@ -1,0 +1,83 @@
+body{
+    background-color: #89bb89;
+  }
+  .cadatrese h1 {
+    font-size: 40px;
+    margin: 0;
+    padding: 0;
+    color: #4a7256;
+  }
+  .facalogin {
+    font-family: "Playfair Display", serif;
+    font-size: 10px;
+    margin: 0;
+    padding: 0;
+    color: #4a7256;
+  }
+  .container {
+    width: 500px; /* Largura do container */
+    margin: 20px auto; /* Adicionar margem superior e inferior e centralizar horizontalmente */
+    background-color: #c3b2e2;
+    border-radius: 15px; /* Cor de fundo */
+    padding: 10px;
+    color: #4a7256;
+    box-shadow: 15px 10px #9c8fb6;
+  }
+  input{
+    border: 1px;
+    font-size: 15px;
+    padding: 5px; /* Adicionar espaçamento interno */ 
+    border-radius: 10px; /* Cor de fundo */ 
+    flex-direction: column; /* Organiza os elementos em coluna */
+    display: inline-block;
+    width: 70%;
+  }
+  button[type="submit"] {
+    font-family: "Playfair Display", serif;
+    background-color: #4a7256;
+    color:#e0e0e0 ;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+  }
+  
+  button[type="submit"]:hover {
+    background-color: #7dac88;
+  }
+  
+  select{
+    display: inline-block;
+    padding: 10px 10px 5px;
+    border-radius: 10px; /* Arredondamento completo */
+    background-color: #e0e0e0; /* Roxo */
+    color: #4a7256; /* Verde */
+    font-family: "Bebas Neue", sans-serif; /* Fonte normal */ 
+    text-decoration: none;
+    cursor: pointer;
+
+  }
+  a {
+  color: #4a7256;
+  text-decoration: underline;
+  transition: color 0.3s ease;
+  }
+
+  a:hover {
+    color: #7dac88;
+  }
+
+  .bebas-neue-regular {
+    font-family: "Bebas Neue", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 20px;
+  }
+  .playfair-display-uniquifier {
+    font-family: "Playfair Display", serif;
+    font-optical-sizing: auto;
+    font-weight: bold 800;
+    font-style: italic;
+  }
