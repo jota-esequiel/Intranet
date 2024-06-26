@@ -63,8 +63,7 @@ CREATE TABLE IF NOT EXISTS tb_compras (
     codcliente INT,
     ddcompra DATE NOT NULL,
     pagamento CHAR(1) NOT NULL, -- Tipo de Pagamento (P = Pix)
-    entrega CHAR(1) NOT NULL, -- Status da entrega (1 = Entregue, 2 = Separação... Vocês que decidem nesse campo)
-    taxaentrega DECIMAL(5, 2) NOT NULL,
+    entrega CHAR(1) NOT NULL, -- Status da entrega (1 = Entregue, 2 = Separação)    taxaentrega DECIMAL(5, 2) NOT NULL,
     FOREIGN KEY (codcliente) REFERENCES tb_clientes(codcliente) ON DELETE CASCADE
 );
 
@@ -87,30 +86,29 @@ INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Cascavel', 'PR');
 INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Toledo', 'PR');
 INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Foz do Iguaçu', 'PR');
 
-INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, codcid)
-VALUES ('João Silva', 12345678901, 11987654321, 'joao@example.com', MD5('senha123'), '1985-01-01', 'Rua A', 'Apto 1', 100, '12345-678', 1);
+INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
+VALUES ('João Silva', 12345678901, 11987654321, 'joao@example.com', MD5('senha123'), '1985-01-01', 'Rua A', 'Apto 1', 100, '12345-678', 'A', 1);
 
-INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, codcid)
-VALUES ('Maria Oliveira', 10987654321, 21987654321, 'maria@example.com', MD5('senha456'), '1990-02-02', 'Rua B', 'Casa', 200, '98765-432', 2);
+INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
+VALUES ('Maria Oliveira', 10987654321, 21987654321, 'maria@example.com', MD5('senha456'), '1990-02-02', 'Rua B', 'Casa', 200, '98765-432', 'A', 2);
 
-INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, codcid)
-VALUES ('Maria Oliveira', 10987654321, 21987654321, 'maria@example.com', MD5('senha456'), '1990-02-02', 'Rua B', 'Casa', 200, '98765-432',, 2);
+INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
+VALUES ('José Junior', 11111111111, 22222222222, 'josé@example.com', MD5('senha678'), '1990-03-03', 'Rua C', 'Casa', 300, '12345-678', 'C', 3);
 
 INSERT INTO tb_categorias (nomecategoria,codcategoria) VALUES ('Flores', '1');
 INSERT INTO tb_categorias (nomecategoria, codcategoria) VALUES ('Árvores', '2');
 INSERT INTO tb_categorias (nomecategoria, codcategoria) VALUES ('Ferramentas', '3');
 
-INSERT INTO tb_produtos (nomeproduto, precoproduto, qtdprod, codcategoria) VALUES ('Rosa', 10.50, 10, 1);
-INSERT INTO tb_produtos (nomeproduto, precoproduto, qtdprod, codcategoria) VALUES ('Pinheiro', 15.00, 10, 2);
-INSERT INTO tb_produtos (nomeproduto, precoproduto, qtdprod, codcategoria) VALUES ('Pá', 150.00, 10, 3);
+INSERT INTO tb_produtos (nomeproduto, precoproduto, codcategoria) VALUES ('Rosa', 10.50, 1);
+INSERT INTO tb_produtos (nomeproduto, precoproduto, codcategoria) VALUES ('Pinheiro', 15.00, 2);
+INSERT INTO tb_produtos (nomeproduto, precoproduto, codcategoria) VALUES ('Pá', 150.00, 3);
 
 INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
 VALUES ('REC001', 1, '2023-05-15', 'P', 1, 5.00);
 INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
 VALUES ('REC002', 2, '2023-05-16', 'P', 1, 10.00);
-NSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
+INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
 VALUES ('REC003', 3, '2023-05-15', 'P', 1, 5.00);
-
 
 INSERT INTO tb_compras_itens (codcompra, codproduto, qtd, valor)
 VALUES (1, 1, 2, 21.00);
