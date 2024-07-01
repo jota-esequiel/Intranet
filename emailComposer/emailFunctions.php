@@ -21,7 +21,8 @@ require_once '/xampp/htdocs/Intranet/schedule/schedule.php'; // Incluindo schedu
  *               Cada entrada do array contém 'nome', 'email', 'nomecidade' e 'uf'.
  */
 function queryUsers($pdo) {
-    $sql = "SELECT cli.nome,
+    $sql = "SELECT cli.codcliente
+                   cli.nome,
                    cli.email,
                    cli.fone,
                    cli.dtnasc,
@@ -93,33 +94,39 @@ function usersToEmail($pdo) {
  */
 function capturarEEnviarEmailSuporte($rotinaAcessada) {
     $ip = $_SERVER['REMOTE_ADDR']; 
+    $idCliente = isset($_SESSION['usuario']['id']) ? $_SESSION['usuario']['id'] : '(Não tem registro)';
     $nomeCliente = isset($_SESSION['usuario']['nome']) ? $_SESSION['usuario']['nome'] : 'Usuário não cadastrado';
-    date_default_timezone_set('America/Sao_Paulo'); // Definindo o fuso horário de São Paulo
-    $horarioAcesso = date('d/m/Y H:i:s'); // Formatando a data e hora de acesso
+    date_default_timezone_set('America/Sao_Paulo'); 
+    $horarioAcesso = date('d/m/Y H:i:s'); 
 
-    if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'A') {
+    if (!isset($_SESSION['usuario']) || ($_SESSION['usuario']['tipo'] !== 'A' && $_SESSION['usuario']['tipo'] !== 'C')) {
         $nomeCliente = 'Usuário não cadastrado';
+        $idCliente = '(Não tem registro)';
         $assunto = 'Tentativa de Acesso à Rotina Administrativa (Usuário não autorizado)';
-        
-        $assunto = tratarCaracteresEspeciais($assunto);
-        $corpo = '';
-        $corpo = tratarCaracteresEspeciais($corpo);
-
-        $corpo = '<h2>Tentativa de Acesso à Rotina Administrativa</h2>';
-        $corpo .= '<p>Detalhes do acesso:</p>';
-        $corpo .= '<table border="1">';
-        $corpo .= '<tr><th>IP do Usuário</th><td>' . $ip . '</td></tr>';
-        $corpo .= '<tr><th>Nome do Usuário</th><td>' . tratarCaracteresEspeciais($nomeCliente) . '</td></tr>';
-        $corpo .= '<tr><th>Horário de Acesso</th><td>' . $horarioAcesso . '</td></tr>'; // Utilizando o horário formatado corretamente
-        $corpo .= '<tr><th>Rotina Acessada</th><td>' . tratarCaracteresEspeciais($rotinaAcessada) . '</td></tr>';
-        $corpo .= '</table>';
-
-        $emailSuporte = 'joaovitoresequielvieira@gmail.com';
-
-        enviarEmail($emailSuporte, $assunto, $corpo);
+    } elseif ($_SESSION['usuario']['tipo'] === 'C') {
+        $nomeCliente = $_SESSION['usuario']['nome'];
+        $idCliente = isset($_SESSION['usuario']['id']) ? $_SESSION['usuario']['id'] : '(Não tem registro)';
+        $assunto = 'Tentativa de Acesso à Rotina Administrativa (Cliente)';
+    } else {
+        $nomeCliente = isset($_SESSION['usuario']['nome']) ? $_SESSION['usuario']['nome'] : 'Usuário não cadastrado';
+        $idCliente = isset($_SESSION['usuario']['id']) ? $_SESSION['usuario']['id'] : '(Não tem registro)';
+        $assunto = 'Tentativa de Acesso à Rotina Administrativa (Usuário não autorizado)';
     }
+
+    $assunto = tratarCaracteresEspeciais($assunto);
+
+    $corpo = '<h2>Tentativa de Acesso à Rotina Administrativa</h2>';
+    $corpo .= '<p>Detalhes do acesso:</p>';
+    $corpo .= '<table border="1">';
+    $corpo .= '<tr><th>IP do Usuário</th><td>' . $ip . '</td></tr>';
+    $corpo .= '<tr><th>ID do Usuário</th><td>' . tratarCaracteresEspeciais($idCliente) . '</td></tr>';
+    $corpo .= '<tr><th>Nome do Usuário</th><td>' . tratarCaracteresEspeciais($nomeCliente) . '</td></tr>';
+    $corpo .= '<tr><th>Horário de Acesso</th><td>' . $horarioAcesso . '</td></tr>'; // Utilizando o horário formatado corretamente
+    $corpo .= '<tr><th>Rotina Acessada</th><td>' . tratarCaracteresEspeciais($rotinaAcessada) . '</td></tr>';
+    $corpo .= '</table>';
+
+    $emailSuporte = 'joaovitoresequielvieira@gmail.com';
+
+    enviarEmail($emailSuporte, $assunto, $corpo);
 }
-
-
-
 ?>

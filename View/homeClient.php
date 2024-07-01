@@ -63,6 +63,7 @@
             echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
             echo "<input type='hidden' name='codproduto' value='{$produto['codproduto']}'>";
             echo "<button type='submit'>Adicionar ao Carrinho</button>";
+            echo "<a href =  '../View/consultCategory.php'>Consultar categoria</a>";
             echo "</form>";
         }
     } catch (PDOException $e) {
