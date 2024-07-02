@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('cep').addEventListener('input', function() {
         mascaraCEP(this);
     });
+    document.getElementById('precoProduto').addEventListener('elemento', function() {
+        formatarMoeda(this); 
+    });
 });
 
 /**
@@ -77,4 +80,22 @@ function mascaraCEP(input) {
     }
 
     input.value = input.value.substring(0, 9);
+}
+
+/**
+ * Aplica máscara para formato de moeda (R$ X.XXX,XX) limitando até 999,99.
+ * @param {*} elemento - O elemento de entrada onde a máscara será aplicada.
+ * @returns void
+ */
+function formatarMoeda(elemento) {
+    let valor = elemento.value.replace(/\D/g, '');
+
+    let valorNumerico = parseFloat(valor) / 100;
+    valorNumerico = parseFloat(valorNumerico.toFixed(2));
+
+    if (valorNumerico > 999.99) {
+        elemento.value = '';
+    } else {
+        elemento.value = "R$ " + valorNumerico.toLocaleString('pt-BR', { minimumFractionDigits: 2 });
+    }
 }

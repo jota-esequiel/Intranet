@@ -1,5 +1,6 @@
-<?php 
+<?php
 include_once '../bdConnection.php';
+include '../Controller/standardFunctionsController.php';
 
 try {
     $pdo = conectar();
@@ -18,6 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $precoproduto = $_POST['precoproduto'];
         $qtdprod = $_POST['qtdprod'];
         $codcategoria = $_POST['codcategoria'];
+        
+        if (floatval($precoproduto) > 999.99) {
+            showtoast("O limite de preço é R$ 999,99.", "warning", "glyphicon glyphicon-alert");
+            exit;
+        }
         
         try {
             $pdo = conectar();
@@ -65,33 +71,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cadastro de Produtos | TCC</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="../templates/JS/mask.js"></script> 
 </head>
 <body>
-    <h1>CADASTRO DE PRODUTOS</h1>
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
-        <label for="">Nome</label>
-        <input type="text" name="nomeproduto" placeholder="Informe o nome do produto...">
-        <br><br>
-        <label for="">Preço</label>
-        <input type="text" name="precoproduto" placeholder="R$:">
-        <br><br>
-        <label for="">Quantidade</label>
-        <input type="text" name="qtdprod" placeholder="Informe a quantidade do produto...">
-        <br><br>
-        <label for="">Categoria</label>
-        <select name="codcategoria" id="codcategoria">
-            <option value="">Selecione uma categoria</option>
-            <?php 
-            foreach($categories as $categoria) {
-                echo "<option value='{$categoria['codcategoria']}'>{$categoria['nomecategoria']}</option>";
-            }
-            ?>
-        </select>
-        <br><br>
-        <label for="">Imagens do Produto</label>
-        <input type="file" name="imagem_produto[]" accept="image/*" multiple>
-        <br><br>
-        <button type="submit">Cadastrar Produto</button>
-    </form>
+
+<h1>CADASTRO DE PRODUTOS</h1>
+<form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
+    <label for="">Nome</label>
+    <input type="text" name="nomeproduto" placeholder="Informe o nome do produto...">
+    <br><br>
+    <label for="">Preço</label>
+    <input type="text" name="precoproduto" id="precoProduto" oninput="formatarMoeda(this)" placeholder="R$:">
+    <br><br>
+    <label for="">Quantidade</label>
+    <input type="text" name="qtdprod" placeholder="Informe a quantidade do produto...">
+    <br><br>
+    <label for="">Categoria</label>
+    <select name="codcategoria" id="codcategoria">
+        <option value="">Selecione uma categoria</option>
+        <?php 
+        foreach($categories as $categoria) {
+            echo "<option value='{$categoria['codcategoria']}'>{$categoria['nomecategoria']}</option>";
+        }
+        ?>
+    </select>
+    <br><br>
+    <label for="">Imagens do Produto</label>
+    <input type="file" name="imagem_produto[]" accept="image/*" multiple>
+    <br><br>
+    <button type="submit">Cadastrar Produto</button>
+</form>
+
 </body>
 </html>
+

@@ -135,4 +135,23 @@ function tratarCaracteresEspeciais($str) {
     return utf8_decode($str);
 }
 
+
+function showtoast($message, $bgColor = 'success', $icon = '', $duration = '5000') {
+    echo "<script>";
+    echo "toastr.options = {
+            closeButton: true,
+            progressBar: true,
+            positionClass: 'toast-top-right',
+            showDuration: '300',
+            hideDuration: '1000',
+            timeOut: '$duration',
+            extendedTimeOut: '1000',
+            showEasing: 'swing',
+            hideEasing: 'linear',
+            showMethod: 'fadeIn',
+            hideMethod: 'fadeOut'
+        };";
+    echo "toastr.$bgColor('$message', '', {iconClass: '$icon'});";
+    echo "</script>";
+}
 ?>
