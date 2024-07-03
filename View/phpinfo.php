@@ -6,7 +6,7 @@ include_once '../Controller/standardFunctionsController.php';
 // echo "O primeiro dia do ano é: " . convertDate($dtIni);
 // echo "O última dia do ano é: " . convertDate($dtFim);
 
-$text = "Meu nome é João Vitor E";
+$text = 0.75;
 
-echo generateHash($text);
+echo formatPercentage($text);
 ?>

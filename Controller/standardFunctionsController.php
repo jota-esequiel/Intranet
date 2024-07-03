@@ -136,22 +136,19 @@ function tratarCaracteresEspeciais($str) {
 }
 
 
-function showtoast($message, $bgColor = 'success', $icon = '', $duration = '5000') {
-    echo "<script>";
-    echo "toastr.options = {
-            closeButton: true,
-            progressBar: true,
-            positionClass: 'toast-top-right',
-            showDuration: '300',
-            hideDuration: '1000',
-            timeOut: '$duration',
-            extendedTimeOut: '1000',
-            showEasing: 'swing',
-            hideEasing: 'linear',
-            showMethod: 'fadeIn',
-            hideMethod: 'fadeOut'
-        };";
-    echo "toastr.$bgColor('$message', '', {iconClass: '$icon'});";
-    echo "</script>";
+/**
+ * Formata um número como porcentagem.
+ *
+ * Esta função recebe um número inteiro ou float e formata-o como uma porcentagem.
+ *
+ * @param float $number Número a ser formatado como porcentagem.
+ * @return string Número formatado como porcentagem, com duas casas decimais seguidas do símbolo '%'.
+ * @author Gabrielli
+ */
+function formatPercentage($number) {
+    $percentage = $number * 100;
+    
+    $formatted = number_format($percentage, 2);
+    return $formatted . '%';
 }
 ?>

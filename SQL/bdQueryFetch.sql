@@ -10,11 +10,12 @@ DROP TABLE IF EXISTS tb_cidades;
 
 SET FOREIGN_KEY_CHECKS = 1;
 
-
 CREATE TABLE IF NOT EXISTS tb_cidades (
     codcid INT PRIMARY KEY AUTO_INCREMENT,
     nomecidade VARCHAR(50) NOT NULL,
-    uf CHAR(2) NOT NULL
+    uf CHAR(2) NOT NULL,
+    CHECK (nomecidade = 'Cascavel'),
+    CHECK (uf = 'PR')
 );
 
 CREATE TABLE IF NOT EXISTS tb_clientes (
@@ -88,43 +89,25 @@ CREATE TABLE IF NOT EXISTS tb_compras_itens (
     FOREIGN KEY (codproduto) REFERENCES tb_produtos(codproduto) ON DELETE CASCADE
 );	
 
--- Fim do SQL
 
 
--- Inserts
+
 
 INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Cascavel', 'PR');
-INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Toledo', 'PR');
-INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Foz do Iguaçu', 'PR');
 
 INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
 VALUES ('João Silva', 12345678901, 11987654321, 'joao@example.com', MD5('senha123'), '1985-01-01', 'Rua A', 'Apto 1', 100, '12345-678', 'A', 1);
 
-INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
-VALUES ('Maria Oliveira', 10987654321, 21987654321, 'maria@example.com', MD5('senha456'), '1990-02-02', 'Rua B', 'Casa', 200, '98765-432', 'A', 2);
+INSERT INTO tb_categorias (nomecategoria, ativo) VALUES ('Flores', 'S');
 
-INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
-VALUES ('José Junior', 11111111111, 22222222222, 'josé@example.com', MD5('senha678'), '1990-03-03', 'Rua C', 'Casa', 300, '12345-678', 'C', 3);
 
-INSERT INTO tb_categorias (nomecategoria,codcategoria) VALUES ('Flores', '1');
-INSERT INTO tb_categorias (nomecategoria, codcategoria) VALUES ('Árvores', '2');
-INSERT INTO tb_categorias (nomecategoria, codcategoria) VALUES ('Ferramentas', '3');
+INSERT INTO tb_imagens (img) VALUES ('C:\\xampp\\htdocs\\Intranet\\img\\fundocadastro.jpg');
 
-INSERT INTO tb_produtos (nomeproduto, precoproduto, codcategoria) VALUES ('Rosa', 10.50, 1);
-INSERT INTO tb_produtos (nomeproduto, precoproduto, codcategoria) VALUES ('Pinheiro', 15.00, 2);
-INSERT INTO tb_produtos (nomeproduto, precoproduto, codcategoria) VALUES ('Pá', 150.00, 3);
+INSERT INTO tb_produtos (nomeproduto, precoproduto, codcategoria, codimg) VALUES ('Rosa', 10.50, 1, 1);
+
 
 INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
 VALUES ('REC001', 1, '2023-05-15', 'P', 'S', 5.00);
-INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
-VALUES ('REC002', 2, '2023-05-16', 'P', 'E', 10.00);
-INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
-VALUES ('REC003', 3, '2023-05-15', 'P', 'E', 5.00);
 
 INSERT INTO tb_compras_itens (codcompra, codproduto, qtd, valor)
 VALUES (1, 1, 2, 21.00);
-INSERT INTO tb_compras_itens (codcompra, codproduto, qtd, valor)
-VALUES (2, 2, 1, 150.00);
-INSERT INTO tb_compras_itens (codcompra, codproduto, qtd, valor)
-VALUES (3, 3, 2, 21.00);
-

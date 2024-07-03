@@ -20,6 +20,11 @@ if (!empty($_POST['nomecategoria'])) {
     $params[':nomecategoria'] = '%' . $_POST['nomecategoria'] . '%';
 } 
 
+if (!empty($_POST['ativo'])) {
+    $sql .= " AND ativo LIKE :ativo ";
+    $params[':ativo'] = '%' . $_POST['ativo'] . '%';
+}
+
 $stmt = $pdo->prepare($sql);
 $stmt->execute($params); 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -59,11 +64,13 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <table border = "1px">
         <tr>
             <td>CATEGORIA</td>
+            <td>STATUS</td>
             <td>AÇÕES</td>
         </tr>
         <?php foreach ($result as $r) { ?>
             <tr>
                 <td><?= htmlspecialchars($r['nomecategoria']); ?></td>
+                <td style="color: <?= $r['ativo'] == 'S' ? 'green' : 'red'; ?>"><?= htmlspecialchars($r['ativo'] == 'S' ? 'Ativo' : 'Inativo'); ?></td> <!-- Colorindo o status -->
                 <td>
                     <a href="../View/editCategory.php?codcategoria=<?= $r['codcategoria']; ?>">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -71,7 +78,15 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <a href="../View/deleteCategory.php?codcategoria=<?= $r['codcategoria']; ?>" onclick = "return confirm('Tem certeza que deseja excluir a categoria? Isso também irá excluir todos os PRODUTOS associados a CATEGORIA!');  ">
                         <i class="fa-solid fa-trash"></i>
                     </a>
-                    <a href=""></a>
+                    <?php if ($r['ativo'] == 'S'): ?>
+                        <a href="../Controller/inactivateCategoryController.php?codcategoria=<?= $r['codcategoria']; ?>" onclick="return confirm('Tem certeza que deseja INATIVAR esta CATEGORIA?')">
+                        <i class="fa-regular fa-circle-xmark" style="color: red;"></i> 
+                        </a>
+                    <?php else: ?>
+                        <a href="../Controller/activateCategoryController.php?codcategoria=<?= $r['codcategoria']; ?>" onclick="return confirm('Tem certeza que deseja ATIVAR esta CATEGORIA?')">
+                        <i class="fa-regular fa-circle-check" style="color: green;"></i> 
+                        </a>
+                    <?php endif; ?>
                 </td>
             </tr>
         <?php } ?>

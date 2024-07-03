@@ -21,7 +21,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $codcategoria = $_POST['codcategoria'];
         
         if (floatval($precoproduto) > 999.99) {
-            showtoast("O limite de preço é R$ 999,99.", "warning", "glyphicon glyphicon-alert");
+            echo("O limite de preço é R$ 999,99.");
             exit;
         }
         

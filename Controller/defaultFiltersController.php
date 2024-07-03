@@ -1,11 +1,9 @@
-<?php 
+<?php
 /**
  * @author Gabrielli
  * @param - Função padrão para filtragem de dados
  */
-?>
 
-<?php
 include_once '../bdConnection.php';
 
 function getCidades() {
@@ -43,7 +41,12 @@ function getCategoriasProdutos() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
-
+function getAtivoCategory() {
+    $pdo = conectar();
+    $stmt = $pdo->prepare("SELECT DISTINCT ativo FROM tb_categorias");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
 
 function filterUser() {
     $cidades = getCidades();
@@ -112,10 +115,21 @@ function filterUser() {
 }
 
 function filterCategory() {
+    $ativoCategory = getAtivoCategory();
     echo '
     <form id="filterCategoryForm" style="display: none;" method="POST" action="../View/consultCategory.php">
         <label for="nomecategoria">Nome da Categoria:</label>
         <input type="text" id="nomecategoria" name="nomecategoria">
+
+        <label for="ativo">Status:</label>
+        <select id="ativo" name="ativo">
+            <option value="">- Selecione -</option>';
+            foreach ($ativoCategory as $status) {
+                $statusActivity = $status['ativo'] == 'S' ? 'Ativo' : 'Inativo';
+                echo '<option value="' . htmlspecialchars($status['ativo']) . '">' . htmlspecialchars($statusActivity) . '</option>';
+            }
+    echo '
+        </select>
         
         <button type="submit">Filtrar</button>
     </form>';
@@ -155,8 +169,8 @@ function filterProduct() {
         </select>
         
         <button type="submit">Filtrar</button>
-    </form>
-    <script src = "../templates/JS/mask.js"></script>
-    ';
+    </form>';
 }
+
+echo '<script src="../templates/JS/mask.js"></script>';
 ?>
