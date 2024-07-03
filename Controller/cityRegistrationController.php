@@ -17,7 +17,7 @@ if(isset($_POST['btnSalvar'])) {
         $stmt->execute();
 
         if($stmt->rowCount() > 0) {
-            $_SESSION['mensagem'] = "Cidade já cadastrada no sistema";
+            $_SESSION['mensagem'] = "Cascavel/PR já está cadastrada no sistema";
             header("Location: ../View/cityRegistration.php"); 
             exit();
         } else {

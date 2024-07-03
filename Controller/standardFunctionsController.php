@@ -151,4 +151,29 @@ function formatPercentage($number) {
     $formatted = number_format($percentage, 2);
     return $formatted . '%';
 }
+
+/**
+ * Exibe uma mensagem de ajuda com um ícone selecionado.
+ *
+ * Esta função gera um ícone de ajuda e uma mensagem de ajuda que pode ser exibida
+ * em qualquer parte da página. A mensagem e o tipo de ícone devem ser passados como parâmetros.
+ *
+ * @param string $message Mensagem a ser exibida ao lado do ícone de ajuda.
+ * @param string $iconType Tipo de ícone a ser exibido. Aceita os valores: 'alerta', 'exclamacao', 'interrogacao' passados em um array, se torna dinâmico.
+ * @return void
+ * @author Gabrielli
+ */
+function displayHelp($message, $iconType) {
+    $icons = [
+        'alerta'       => 'fa-triangle-exclamation',
+        'exclamacao'   => 'fa-exclamation',
+        'interrogacao' => 'fa-question'
+    ];
+
+    $iconClass = isset($icons[$iconType]) ? $icons[$iconType] : $icons['interrogacao'];
+
+    echo '<i class="fa-solid ' . htmlspecialchars($iconClass) . '"></i> ';
+    echo '<span>' . htmlspecialchars($message) . '</span>';
+}
+
 ?>
