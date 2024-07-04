@@ -157,13 +157,26 @@ function formatPercentage($number) {
  *
  * Esta função gera um ícone de ajuda e uma mensagem de ajuda que pode ser exibida
  * em qualquer parte da página. A mensagem e o tipo de ícone devem ser passados como parâmetros.
+ * O link dos ícones pode ser fornecido ou a função usará um link padrão.
  *
  * @param string $message Mensagem a ser exibida ao lado do ícone de ajuda.
- * @param string $iconType Tipo de ícone a ser exibido. Aceita os valores: 'alerta', 'exclamacao', 'interrogacao' passados em um array, se torna dinâmico.
+ * @param string $iconType Tipo de ícone a ser exibido. Aceita os valores: 'alerta', 'exclamacao', 'interrogacao'.
+ * @param string|null $fontLink Link para o arquivo CSS do FontAwesome. Se 'link', usa o link padrão. Se não fornecido ou se contiver o texto 'href', usa o link padrão.
+ *                               Se o valor for um link real, deve ser um URL válido para o arquivo CSS dos ícones.
  * @return void
  * @author Gabrielli
  */
-function displayHelp($message, $iconType) {
+function displayHelp($message, $iconType, $fontLink = null) {
+    $defaultFontLink = '<link href="../fontawesome/css/all.css" rel="stylesheet">';
+
+    if ($fontLink === 'link') {
+        $fontLink = $defaultFontLink;
+    } elseif ($fontLink !== null && strpos($fontLink, 'href') === false) {
+        $fontLink = '<link href="' . htmlspecialchars($fontLink) . '" rel="stylesheet">';
+    } else {
+        $fontLink = $defaultFontLink;
+    }
+
     $icons = [
         'alerta'       => 'fa-triangle-exclamation',
         'exclamacao'   => 'fa-exclamation',
@@ -172,8 +185,19 @@ function displayHelp($message, $iconType) {
 
     $iconClass = isset($icons[$iconType]) ? $icons[$iconType] : $icons['interrogacao'];
 
+    echo $fontLink . "\n";
+    
     echo '<i class="fa-solid ' . htmlspecialchars($iconClass) . '"></i> ';
     echo '<span>' . htmlspecialchars($message) . '</span>';
 }
 
+//Função em testes
+// function gerarCodigoVerificacao($tamanho = 8) {
+//     $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+//     $codigo = '';
+//     for ($i = 0; $i < $tamanho; $i++) {
+//         $codigo .= $caracteres[random_int(0, strlen($caracteres) - 1)];
+//     }
+//     return $codigo;
+// }
 ?>
