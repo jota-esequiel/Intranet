@@ -9,15 +9,26 @@ function fetchDataFromDatabase($pdo, $filters) {
                 prod.codproduto,
                 prod.nomeproduto,
                 prod.precoproduto,
-                prod.qtdprod,
                 prod.ativo AS ativoproduct,
                 cat.nomecategoria,
+                CASE prod.cor
+                    WHEN '1' THEN 'Vermelho'
+                    WHEN '2' THEN 'Azul'
+                    WHEN '3' THEN 'Amarelo'
+                    ELSE 'Desconhecido'
+                END AS corProd,
+                CASE prod.tamanho
+                    WHEN 'P' THEN 'Pequeno'
+                    WHEN 'M' THEN 'Médio'
+                    WHEN 'G' THEN 'Grande'
+                    ELSE 'Desconhecido'
+                END AS tamanhoProd,
                 img.img
             FROM tb_produtos prod
             INNER JOIN tb_categorias cat 
                 ON prod.codcategoria = cat.codcategoria
             LEFT JOIN tb_imagens img 
-                ON prod.codproduto = img.codproduto
+                ON prod.codimg = img.codimg
             WHERE 1=1";
 
     $params = [];
@@ -29,9 +40,13 @@ function fetchDataFromDatabase($pdo, $filters) {
         $sql .= " AND prod.precoproduto LIKE :precoproduto";
         $params[':precoproduto'] = '%' . $filters['precoproduto'] . '%';
     }
-    if (!empty($filters['qtdprod'])) {
-        $sql .= " AND prod.qtdprod LIKE :qtdprod";
-        $params[':qtdprod'] = '%' . $filters['qtdprod'] . '%';
+    if (!empty($_POST['cor'])) {
+        $sql .= " AND prod.cor = :cor";
+        $params[':cor'] = $_POST['cor'];
+    }
+    if (!empty($_POST['tamanho'])) {
+        $sql .= " AND prod.tamanho = :tamanho";
+        $params[':tamanho'] = $_POST['tamanho'];
     }
     if (!empty($filters['nomecategoria'])) {
         $sql .= " AND cat.nomecategoria LIKE :nomecategoria";
@@ -53,16 +68,18 @@ function generateXLSX($data, $filename = 'produtos.xlsx') {
     $spreadsheet = new Spreadsheet();
     $sheet = $spreadsheet->getActiveSheet();
 
-    $header = ['Produto', 'Preço', 'Quantidade', 'Categoria', 'Status'];
+    $header = ['Produto', 'Preço', 'Categoria', 'Status', 'Cor', 'Tamanho'];
     $sheet->fromArray([$header], null, 'A1');
 
     $row = 2;
     foreach ($data as $r) {
         $sheet->setCellValue('A' . $row, htmlspecialchars($r['nomeproduto']));
-        $sheet->setCellValue('B' . $row, formatPrice($r['precoproduto']));
-        $sheet->setCellValue('C' . $row, htmlspecialchars($r['qtdprod'])); 
-        $sheet->setCellValue('D' . $row, htmlspecialchars($r['nomecategoria']));
-        $sheet->setCellValue('E' . $row, htmlspecialchars($r['ativoproduct'] == 'S' ? 'Ativo' : 'Inativo'));
+        $sheet->setCellValue('B' . $row, formatarPrice($r['precoproduto']));
+        $sheet->setCellValue('C' . $row, htmlspecialchars($r['nomecategoria'])); 
+        $sheet->setCellValue('D' . $row, htmlspecialchars($r['ativoproduct'] == 'S' ? 'Ativo' : 'Inativo'));
+        $sheet->setCellValue('E' . $row, htmlspecialchars($r['corProd']));
+        $sheet->setCellValue('F' . $row, htmlspecialchars($r['tamanhoProd']));
+
         $row++;
     }
 
@@ -78,9 +95,10 @@ $pdo = conectar();
 $filters = [
     'nomeproduto'   => $_GET['nomeproduto'] ?? '',
     'precoproduto'  => $_GET['precoproduto'] ?? '',
-    'qtdprod'       => $_GET['qtdprod'] ?? '',
     'nomecategoria' => $_GET['nomecategoria'] ?? '',
-    'ativoproduct'  => $_GET['ativoproduct'] ?? ''
+    'ativoproduct'  => $_GET['ativoproduct'] ?? '',
+    'corProd'       => $_GET['corProd'] ?? '',
+    'tamanhoProd'   => $_GET['tamanhoProd'] ?? '',
 ];
 
 $data = fetchDataFromDatabase($pdo, $filters);

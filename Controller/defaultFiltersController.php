@@ -34,6 +34,42 @@ function getAtivoProdutos() {
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
 
+function getColorProduct() {
+    $pdo = conectar();
+    $stmt = $pdo->prepare("
+        SELECT DISTINCT 
+            cor,
+            CASE cor
+                WHEN '1' THEN 'Vermelho'
+                WHEN '2' THEN 'Azul'
+                WHEN '3' THEN 'Amarelo'
+                ELSE 'Desconhecido'
+            END AS corProd
+        FROM tb_produtos
+    ");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+function getSizeProduct() {
+    $pdo = conectar();
+    $stmt = $pdo->prepare("
+        SELECT DISTINCT 
+            tamanho,
+            CASE tamanho
+                WHEN 'P' THEN 'Pequeno'
+                WHEN 'M' THEN 'Médio'
+                WHEN 'G' THEN 'Grande'
+                ELSE 'Desconhecido'
+            END AS tamanhoDesc
+        FROM tb_produtos
+    ");
+    $stmt->execute();
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
 function getCategoriasProdutos() {
     $pdo = conectar();
     $stmt = $pdo->prepare("SELECT codcategoria, nomecategoria FROM tb_categorias");
@@ -138,6 +174,9 @@ function filterCategory() {
 function filterProduct() {
     $ativosProdutos = getAtivoProdutos();
     $categoriasProdutos = getCategoriasProdutos();
+    $colors = getColorProduct();
+    $sizes = getSizeProduct();   
+    
     echo '
     <form id="filterProductForm" style="display: none;" method="POST" action="../View/consultProduct.php">
         <label for="nomeproduto">Nome do Produto:</label>
@@ -145,9 +184,6 @@ function filterProduct() {
         
         <label for="precoproduto">Preço do Produto:</label>
         <input type="text" id="precoproduto" name="precoproduto">
-        
-        <label for="qtdprod">Quantidade do Produto:</label>
-        <input type="text" id="qtdprod" name="qtdprod">
         
         <label for="ativo">Status do Produto:</label>
         <select id="ativo" name="ativo">
@@ -167,10 +203,29 @@ function filterProduct() {
             }
     echo '
         </select>
+
+        <label for="cor">Cor do Produto:</label>
+        <select id="cor" name="cor">
+            <option value="">- Selecione -</option>';
+            foreach ($colors as $color) {
+                echo '<option value="' . htmlspecialchars($color['cor']) . '">' . htmlspecialchars($color['corProd']) . '</option>';
+            }
+    echo '
+        </select>
+        
+        <label for="tamanho">Tamanho do Produto:</label>
+        <select id="tamanho" name="tamanho">
+            <option value="">- Selecione -</option>';
+            foreach ($sizes as $size) {
+                echo '<option value="' . htmlspecialchars($size['tamanho']) . '">' . htmlspecialchars($size['tamanhoDesc']) . '</option>';
+            }
+    echo '
+        </select>
         
         <button type="submit">Filtrar</button>
     </form>';
 }
+
 
 echo '<script src="../templates/JS/mask.js"></script>';
 ?>

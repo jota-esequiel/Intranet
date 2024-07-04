@@ -1,7 +1,7 @@
 <?php
 // session_start();
 // if (!isset($_SESSION['usuario']) || $_SESSION['usuario']['tipo'] !== 'A') {
-//     header('Location: logError.php'); //Criar uma página de erros
+//     header('Location: logError.php'); // Criar uma página de erros
 //     exit();
 // }
 
@@ -12,19 +12,32 @@ include '../Controller/standardFunctionsController.php';
 try {
     $pdo = conectar();
 
-    $sql = "SELECT prod.codproduto,
-                   prod.nomeproduto,
-                   prod.precoproduto,
-                   prod.qtdprod,
-                   prod.ativo AS ativoproduct,
-                   cat.nomecategoria,
-                   img.img
+    $sql = "SELECT 
+                prod.codproduto,
+                prod.nomeproduto,
+                prod.precoproduto,
+                prod.ativo AS ativoproduct,
+                cat.nomecategoria,
+                CASE prod.cor
+                    WHEN '1' THEN 'Vermelho'
+                    WHEN '2' THEN 'Azul'
+                    WHEN '3' THEN 'Amarelo'
+                    ELSE 'Desconhecido'
+                END AS corProd,
+                CASE prod.tamanho
+                    WHEN 'P' THEN 'Pequeno'
+                    WHEN 'M' THEN 'Médio'
+                    WHEN 'G' THEN 'Grande'
+                    ELSE 'Desconhecido'
+                END AS tamanhoProd,
+                img.img
             FROM tb_produtos prod
             INNER JOIN tb_categorias cat 
                 ON prod.codcategoria = cat.codcategoria
             LEFT JOIN tb_imagens img 
-                ON prod.codproduto = img.codproduto
-            WHERE 1=1";
+                ON prod.codimg = img.codimg
+            WHERE 1=1
+";
 
     $params = [];
     if (!empty($_POST['nomeproduto'])) {
@@ -35,13 +48,17 @@ try {
         $sql .= " AND prod.precoproduto LIKE :precoproduto";
         $params[':precoproduto'] = '%' . $_POST['precoproduto'] . '%';
     }
-    if (!empty($_POST['qtdprod'])) {
-        $sql .= " AND prod.qtdprod LIKE :qtdprod";
-        $params[':qtdprod'] = '%' . $_POST['qtdprod'] . '%';
-    }
     if (!empty($_POST['codcategoria'])) {
-        $sql .= " AND prod.codcategoria LIKE :codcategoria";
-        $params[':codcategoria'] = '%' . $_POST['codcategoria'] . '%';
+        $sql .= " AND prod.codcategoria = :codcategoria";
+        $params[':codcategoria'] = $_POST['codcategoria'];
+    }
+    if (!empty($_POST['cor'])) {
+        $sql .= " AND prod.cor = :cor";
+        $params[':cor'] = $_POST['cor'];
+    }
+    if (!empty($_POST['tamanho'])) {
+        $sql .= " AND prod.tamanho = :tamanho";
+        $params[':tamanho'] = $_POST['tamanho'];
     }
 
     $stmt = $pdo->prepare($sql);
@@ -66,7 +83,7 @@ try {
 ?>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -88,23 +105,23 @@ try {
         <form id="exportForm" action="../Composer/xlsxProductComposer.php" method="get" style="display: none;">';
 
     if (!empty($_POST['nomeproduto'])) {
-        $additionalContent .= '<input type = "hidden" name = "nomeproduto" value = "' . htmlspecialchars($_POST['nomeproduto']) . '">';
+        $additionalContent .= '<input type="hidden" name="nomeproduto" value="' . htmlspecialchars($_POST['nomeproduto'], ENT_QUOTES, 'UTF-8') . '">';
     }
     if (!empty($_POST['precoproduto'])) {
-        $additionalContent .= '<input type = "hidden" name = "precoproduto" value = "' . htmlspecialchars($_POST['precoproduto']) . '">';
+        $additionalContent .= '<input type="hidden" name="precoproduto" value="' . htmlspecialchars($_POST['precoproduto'], ENT_QUOTES, 'UTF-8') . '">';
     }
-    if (!empty($_POST['qtdprod'])) {
-        $additionalContent .= '<input type = "hidden" name = "qtdprod" value = "' . htmlspecialchars($_POST['qtdprod']) . '">';
+    if (!empty($_POST['codcategoria'])) {
+        $additionalContent .= '<input type="hidden" name="codcategoria" value="' . htmlspecialchars($_POST['codcategoria'], ENT_QUOTES, 'UTF-8') . '">';
     }
-    if (!empty($_POST['nomecategoria'])) {
-        $additionalContent .= '<input type = "hidden" name = "nomecategoria" value = "' . htmlspecialchars($_POST['nomecategoria']) . '">';
+    if (!empty($_POST['cor'])) {
+        $additionalContent .= '<input type="hidden" name="cor" value="' . htmlspecialchars($_POST['cor'], ENT_QUOTES, 'UTF-8') . '">';
     }
-    if (!empty($_POST['ativoproduct'])) {
-        $additionalContent .= '<input type = "hidden" name = "ativoproduct" value = "' . htmlspecialchars($_POST['ativoproduct']) . '">';
+    if (!empty($_POST['tamanho'])) {
+        $additionalContent .= '<input type="hidden" name="tamanho" value="' . htmlspecialchars($_POST['tamanho'], ENT_QUOTES, 'UTF-8') . '">';
     }
 
     $additionalContent .= '</form>
-        <button class = "nav-bar-item" onclick = "document.getElementById(\'exportForm\').submit();">Exportar XLSX</button>';
+        <button class="nav-bar-item" onclick="document.getElementById(\'exportForm\').submit();">Exportar XLSX</button>';
 
     if (function_exists('filterProduct')) {
         $additionalContent .= filterProduct();
@@ -120,11 +137,12 @@ try {
     <?php if (!empty($productsImages)): ?>
     <table border="1px">
         <tr>
-            <th>Imagem</th>
-            <th>Nome do Produto</th>
+            <th>Imagens</th>
+            <th>Nome</th>
             <th>Preço</th>
-            <th>Quantidade</th>
             <th>Categoria</th>
+            <th>Cor</th>
+            <th>Tamanho</th>
             <th>Status</th> 
             <th>Ações</th>
         </tr>
@@ -133,16 +151,17 @@ try {
             <td>
                 <?php if(!empty($product['images'])): ?>
                     <?php foreach($product['images'] as $image): ?>
-                        <img src="data:image/jpeg;base64,<?php echo base64_encode($image); ?>" alt="Imagem do Produto">
+                        <img src="../imagens/Produtos/<?php echo htmlspecialchars(basename($image), ENT_QUOTES, 'UTF-8'); ?>" alt="Imagem do Produto" style="width: 100px; height: auto;">
                     <?php endforeach; ?>
                 <?php else: ?>
                     <em>Nenhuma imagem disponível</em>
                 <?php endif; ?>
             </td>
-            <td><?php echo $product['nomeproduto']; ?></td>
-            <td><?php echo formatPrice($product['precoproduto']); ?></td>
-            <td><?php echo $product['qtdprod']; ?></td>
-            <td><?php echo $product['nomecategoria']; ?></td>
+            <td><?php echo htmlspecialchars($product['nomeproduto'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo formatarPrice($product['precoproduto']); ?></td>
+            <td><?php echo htmlspecialchars($product['nomecategoria'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo htmlspecialchars($product['corProd'], ENT_QUOTES, 'UTF-8'); ?></td>
+            <td><?php echo htmlspecialchars($product['tamanhoProd'], ENT_QUOTES, 'UTF-8'); ?></td>
             <td>
                 <?php if ($product['ativoproduct'] == 'S'): ?>
                     <span style="color: green;">Ativo</span>
