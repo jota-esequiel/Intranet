@@ -137,8 +137,8 @@ try {
     <?php if (!empty($productsImages)): ?>
     <table border="1px">
         <tr>
-            <th>Imagens</th>
-            <th>Nome</th>
+            <th>Produto</th>
+            <th>Nome produto</th>
             <th>Preço</th>
             <th>Categoria</th>
             <th>Cor</th>
