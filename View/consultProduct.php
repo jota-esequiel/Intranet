@@ -60,6 +60,10 @@ try {
         $sql .= " AND prod.tamanho = :tamanho";
         $params[':tamanho'] = $_POST['tamanho'];
     }
+    if (!empty($_POST['ativoproduct'])) {
+        $sql .= " AND prod.ativoproduct = :ativoproduct ";
+        $params[':ativoproduct'] = $_POST['ativoproduct'];
+    }
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params);
