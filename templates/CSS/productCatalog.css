@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.produtos {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+}
+
+.produto {
+    width: 190px;
+    height: 254px;
+    background: rgba(255,255,255,.05);
+    box-shadow: 0 0 10px rgba(0,0,0,0.25);
+    border-radius: 8px;
+    transition: all 0.2s;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+    margin-bottom: 20px;
+}
+
+.produto:hover {
+    transform: scale(1.04) rotate(1deg);
+}
+
+.produto img {
+    width: 100%;
+    height: auto;
+    max-height: 140px;
+    object-fit: cover;
+}
+
+.produto .info {
+    padding: 10px;
+    text-align: center;
+}
+
+.produto h2 {
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.produto p {
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    .produtos {
+        justify-content: flex-start;
+    }
+
+    .produto {
+        width: 220px;
+        height: 280px;
+    }
+
+    .produto h2 {
+        font-size: 20px;
+    }
+
+    .produto p {
+        font-size: 16px;
+    }
+}

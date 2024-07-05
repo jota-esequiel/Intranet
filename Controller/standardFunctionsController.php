@@ -324,8 +324,11 @@ function saudar() {
  * */
 function getLink($keyLinks) {
     $links = array(
+
+        //Links HTML 
         'link'   => '<link href="../fontawesome/css/all.css" rel="stylesheet">',
         'mask'   => '<script src = "../templates/JS/mask.js"></script>',
+        'main'   => '<script src="../templates/JS/main.js"></script>',
 
         //Ícones FontAwesome
         'email'  => '<i class="fa-solid fa-envelope"></i>',
@@ -334,7 +337,8 @@ function getLink($keyLinks) {
         'edit'   => '<i class="fa-solid fa-pen-to-square"></i>',
         'save'   => '<i class="fa-solid fa-floppy-disk"></i>',
         'excel'  => '<i class="fa-sharp fa-solid fa-file-excel"></i>',
-        'pdf'    => '<i class="fa-solid fa-file-pdf"></i>'
+        'pdf'    => '<i class="fa-solid fa-file-pdf"></i>',
+        'box'    => '<i class="fa-solid fa-box-open"></i>',
     );
 
     if (array_key_exists($keyLinks, $links)) {

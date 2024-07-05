@@ -227,5 +227,54 @@ function filterProduct() {
 }
 
 
+
+
+
+function filterProductClient() {
+    $ativosProdutos = getAtivoProdutos();
+    $categoriasProdutos = getCategoriasProdutos();
+    $colors = getColorProduct();
+    $sizes = getSizeProduct();   
+    
+    echo '
+    <form id="filterProductClientForm" style="display: none;" method="POST" action="../View/productCatalog.php">
+        <label for="nomeproduto">Nome do Produto:</label>
+        <input type="text" id="nomeproduto" name="nomeproduto">
+        
+        <label for="precoproduto">Preço do Produto:</label>
+        <input type="text" id="precoproduto" name="precoproduto">
+        
+        <label for="codcategoria">Categoria do Produto:</label>
+        <select id="codcategoria" name="codcategoria">
+            <option value="">- Selecione -</option>';
+            foreach ($categoriasProdutos as $categoriaProduto) {
+                echo '<option value="' . htmlspecialchars($categoriaProduto['codcategoria']) . '">' . htmlspecialchars($categoriaProduto['nomecategoria']) . '</option>';
+            }
+    echo '
+        </select>
+
+        <label for="cor">Cor do Produto:</label>
+        <select id="cor" name="cor">
+            <option value="">- Selecione -</option>';
+            foreach ($colors as $color) {
+                echo '<option value="' . htmlspecialchars($color['cor']) . '">' . htmlspecialchars($color['corProd']) . '</option>';
+            }
+    echo '
+        </select>
+        
+        <label for="tamanho">Tamanho do Produto:</label>
+        <select id="tamanho" name="tamanho">
+            <option value="">- Selecione -</option>';
+            foreach ($sizes as $size) {
+                echo '<option value="' . htmlspecialchars($size['tamanho']) . '">' . htmlspecialchars($size['tamanhoDesc']) . '</option>';
+            }
+    echo '
+        </select>
+        
+        <button type="submit">Filtrar</button>
+    </form>';
+}
+
+
 echo '<script src="../templates/JS/mask.js"></script>';
 ?>
