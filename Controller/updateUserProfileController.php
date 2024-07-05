@@ -36,7 +36,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':codcliente', $codcliente);
 
     if ($stmt->execute()) {
-        // Atualizar os dados da sessão
         $_SESSION['usuario']['nome'] = $nome;
         $_SESSION['usuario']['email'] = $email;
         $_SESSION['usuario']['cep'] = $cep;
@@ -45,7 +44,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['usuario']['complemento'] = $complemento;
         $_SESSION['usuario']['fone'] = $fone;
 
-        // Redirecionar para a página de perfil ou home
         header('Location: ../View/homeClient.php');
         exit();
     } else {
