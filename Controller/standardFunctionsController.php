@@ -307,4 +307,110 @@ function saudar() {
         return "Boa noite, ";
     }
 }
+
+
+/**
+ * Retorna um link HTML ou um script com base na chave fornecida.
+ *
+ * Esta função busca um array de links e scripts pré-definidos e retorna o valor correspondente
+ * à chave fornecida. Se a chave não for encontrada, a função retorna `null`.
+ *
+ * @param string $keyLinks A chave que identifica o link ou script desejado. Pode ser:
+ *                         - 'link': retorna o link para o arquivo CSS do FontAwesome.
+ *                         - 'mask': retorna o link para o arquivo JavaScript de máscaras.
+ * 
+ * @return string|null O link HTML ou o script correspondente à chave fornecida. Se a chave
+ *                     não for encontrada, retorna `null`.
+ * @author Gabrielli
+ * 
+ * */
+function getLink($keyLinks) {
+    $links = array(
+        'link'  => '<link href="../fontawesome/css/all.css" rel="stylesheet">',
+        'mask'  => '<script src = "../templates/JS/mask.js"></script>',
+        'email' => '<i class="fa-solid fa-envelope"></i>'
+    );
+
+    if (array_key_exists($keyLinks, $links)) {
+        return $links[$keyLinks];
+    } else {
+        return null;
+    }
+}
+
+/**
+ * Retorna o ícone FontAwesome correspondente à chave fornecida.
+ *
+ * @param string $keyIcons A chave para identificar o ícone desejado.
+ * @return string|null O ícone FontAwesome em HTML, ou null se a chave não for encontrada.
+ */
+function getIcon($keyIcons) {
+    $icons = array(
+        'email'  => '<i class="fa-solid fa-envelope"></i>',
+        'user'   => '<i class="fa-solid fa-user"></i>',
+        'logout' => '<i class="fa-solid fa-right-from-bracket"></i>',
+        'edit'   => '<i class="fa-solid fa-pen-to-square"></i>',
+        'save'   => '<i class="fa-solid fa-floppy-disk"></i>',
+    );
+
+    if (array_key_exists($keyIcons, $icons)) {
+        return $icons[$keyIcons];
+    } else {
+        return null;
+    }
+}
+
+/**
+ * Converte uma data no formato brasileiro para o formato americano.
+ *
+ * Esta função recebe uma data no formato brasileiro (dd/mm/aaaa) e a converte para o formato americano (aaaa-mm-dd).
+ * Se a data fornecida não estiver no formato esperado, a função retorna a data original sem alterações.
+ *
+ * @param string $dateBrazilian A data no formato brasileiro (dd/mm/aaaa).
+ * 
+ * @return string A data convertida para o formato americano (aaaa-mm-dd) se a entrada estiver no formato esperado,
+ *                ou a data original se o formato não for reconhecido.
+ * 
+ * @author Gabrielli
+ * */
+function convertDateSQL($dateBrazilian) {
+    if (preg_match('/\d{2}\/\d{2}\/\d{4}/', $dateBrazilian)) {
+        $dateAmerican = date('Y-m-d', strtotime(str_replace('/', '-', $dateBrazilian)));
+        return $dateAmerican;
+    } else {
+        return $dateBrazilian;
+    }
+}
+
+
+/**
+ * Remove a formatação de um CPF e retorna apenas os números.
+ *
+ * @param string $cpfFormatado O CPF formatado (ex: 123.456.789-00).
+ * @return string O CPF sem formatação (ex: 12345678900).
+ */
+function formatarCPFSQL($cpfFormatado) {
+    return preg_replace('/\D/', '', $cpfFormatado);
+}
+
+/**
+ * Remove a formatação de um número de telefone e retorna apenas os números.
+ *
+ * @param string $telefoneFormatado O telefone formatado (ex: (12) 34567-8901).
+ * @return string O telefone sem formatação (ex: 12345678901).
+ */
+function formatarTelefoneSQL($telefoneFormatado) {
+    return preg_replace('/\D/', '', $telefoneFormatado);
+}
+
+
+/**
+ * Remove a formatação de um CEP e retorna apenas os números.
+ *
+ * @param string $cepFormatado O CEP formatado (ex: 12345-678).
+ * @return string O CEP sem formatação (ex: 12345678).
+ */
+function formatarCEPSQL($cepFormatado) {
+    return preg_replace('/\D/', '', $cepFormatado);
+}
 ?>
