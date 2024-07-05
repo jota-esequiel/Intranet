@@ -222,6 +222,23 @@ function logoutUser($iconKey) {
     }
 }
 
+
+/**
+ * Verifica o status do usuário na sessão e realiza ações apropriadas com base no tipo de usuário.
+ * Se o usuário não for do tipo 'A', envia um email de suporte, destrói a sessão e retorna uma mensagem de alerta.
+ * Se o usuário for do tipo 'C', a mensagem de alerta incluirá o nome do usuário.
+ * Caso o usuário não esteja identificado ou seja um invasor, a mensagem de alerta será genérica.
+ *
+ * @param PDO $pdo Instância da conexão com o banco de dados para enviar o email de suporte.
+ * @param string $rotinaAcessada Nome da rotina ou página acessada pelo usuário, para inclusão no email de suporte.
+ * 
+ * @return string|null A mensagem de alerta a ser exibida ao usuário, ou null se o usuário for do tipo 'A'.
+ * 
+ * @throws Exception Se ocorrer algum erro durante o processo de envio de email ou manipulação da sessão.
+ * 
+ * @see capturarEEnviarEmailSuporte
+ * @author Gabrielli
+ */
 function checkUserStatusAndLogout($pdo, $rotinaAcessada) {
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
@@ -255,22 +272,29 @@ function checkUserStatusAndLogout($pdo, $rotinaAcessada) {
     return null; 
 }
 
+/**
+ * Retorna uma saudação adequada com base na hora atual do servidor.
+ * A saudação varia conforme o horário do dia:
+ * - "Bom dia, " para horários entre 00:00 e 11:59.
+ * - "Boa tarde, " para horários entre 12:00 e 17:59.
+ * - "Boa noite, " para horários entre 18:00 e 23:59.
+ * 
+ * A função considera o fuso horário de São Paulo (America/Sao_Paulo).
+ * 
+ * @return string A saudação apropriada com base na hora atual do servidor.
+ * @author Gabrielli
+ */
+function saudar() {
+    date_default_timezone_set('America/Sao_Paulo');
 
+    $horaAtual = (int)date('H');
 
-
-
-
-
-
-
-
-//Função em testes
-// function gerarCodigoVerificacao($tamanho = 8) {
-//     $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-//     $codigo = '';
-//     for ($i = 0; $i < $tamanho; $i++) {
-//         $codigo .= $caracteres[random_int(0, strlen($caracteres) - 1)];
-//     }
-//     return $codigo;
-// }
+    if ($horaAtual >= 0 && $horaAtual < 12) {
+        return "Bom dia, ";
+    } elseif ($horaAtual >= 12 && $horaAtual < 18) {
+        return "Boa tarde, ";
+    } else {
+        return "Boa noite, ";
+    }
+}
 ?>

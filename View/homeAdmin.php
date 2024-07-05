@@ -25,9 +25,9 @@
                 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if($usuario) {
-                    echo "<p>Olá, {$usuario['nome']}!</p>";
+                    echo saudar() . "<p>{$usuario['nome']}!</p>";
                 } else {
-                    echo "<p>Olá, usuário!</p>";
+                    echo saudar() . "<p>usuário!</p>";
                 }
             } catch (PDOException $e) {
                 echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
