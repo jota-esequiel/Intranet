@@ -139,7 +139,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
     
     $additionalContent .= '</form>
-    <button class="nav-bar-item" onclick="document.getElementById(\'exportForm\').submit();">Exportar XLSX</button>';
+    <button class="nav-bar-item" onclick="document.getElementById(\'exportForm\').submit();">' . getLink('excel') . '</button>';
     
     if (function_exists('filterUser')) {
         $additionalContent .= filterUser();
@@ -169,18 +169,18 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   <?php foreach ($result as $r) { ?>
   <tr>
-    <td><?= htmlspecialchars($r['nome']); ?></td>
+    <td><?= ucfirst($r['nome']); ?></td>
     <td><?= htmlspecialchars($r['email']); ?></td>
     <td><?= formatDateToBrazilian($r['dtnasc']); ?></td>
     <td><?= formatPhoneNumber($r['fone']); ?></td>
     <td><?= formatCPF($r['cpf']); ?></td>
-    <td><?= htmlspecialchars($r['rua']); ?></td>
-    <td><?= htmlspecialchars($r['complemento']); ?></td>
+    <td><?= ucfirst($r['rua']); ?></td>
+    <td><?= ucfirst($r['complemento']); ?></td>
     <td><?= htmlspecialchars($r['ncasa']); ?></td>
     <td><?= formatCEP($r['cep']); ?></td>
     <td><?= htmlspecialchars($r['tipo'] == 'C' ? 'Cliente' : 'Administrador'); ?></td>
-    <td style="color: <?= $r['ativo'] == 'S' ? 'green' : 'red'; ?>"><?= htmlspecialchars($r['ativo'] == 'S' ? 'Ativo' : 'Inativo'); ?></td> <!-- Colorindo o status -->
-    <td><?= htmlspecialchars($r['nomecidade']); ?></td>
+    <td style="color: <?= $r['ativo'] == 'S' ? 'green' : 'red'; ?>"><?= htmlspecialchars($r['ativo'] == 'S' ? 'Ativo' : 'Inativo'); ?></td>
+    <td><?= ucfirst($r['nomecidade']); ?></td>
     <td>
       <?php if ($r['ativo'] == 'S'): ?>
         <a href="../View/editUser.php?codcliente=<?= $r['codcliente']; ?>">
