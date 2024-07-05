@@ -223,11 +223,21 @@ function logoutUser($iconKey) {
 }
 
 function checkUserStatusAndLogout($pdo, $rotinaAcessada) {
-    session_start();
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start();
+    }
 
-    if (isset($_SESSION['usuario'])) {
+    $message = '';
+
+    if (isset($_SESSION['usuario']['tipo'])) {
         if ($_SESSION['usuario']['tipo'] !== 'A') {
             capturarEEnviarEmailSuporte($pdo, $rotinaAcessada);
+            
+            if ($_SESSION['usuario']['tipo'] === 'C') {
+                $message = $_SESSION['usuario']['nome'] . " está sendo redirecionado para a tela de login! Você não tem acesso a rotinas administrativas!";
+            } else {
+                $message = "Você não foi identificado como um usuário cadastrado em nossa base de dados!";
+            }
 
             session_unset();
             session_destroy();
@@ -236,17 +246,15 @@ function checkUserStatusAndLogout($pdo, $rotinaAcessada) {
             header('Cache-Control: post-check=0, pre-check=0', false);
             header('Pragma: no-cache');
 
-            header('Location: ../Controller/logoutNotificationController.php');
-            exit();
+            return $message;
         }
     } else {
-        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
-        header('Cache-Control: post-check=0, pre-check=0', false);
-        header('Pragma: no-cache');
-        header('Location: ../View/loginUser.php');
-        exit();
+        return "Você não foi identificado como um usuário cadastrado em nossa base de dados!";
     }
+
+    return null; 
 }
+
 
 
 

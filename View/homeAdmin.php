@@ -12,6 +12,7 @@
         <?php
         session_start();
         include_once '../bdConnection.php';
+        include_once '../Controller/standardFunctionsController.php';
 
         if(isset($_SESSION['usuario'])) {
 
@@ -35,6 +36,8 @@
         ?>
         <a href="userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a> 
+        <a href="consultCategory.php"><i class="fa-solid fa-vials"></i></a>
+        <?php logoutUser('logout') ?>
     </header>
     <h1>Produtos Disponíveis</h1>
     <?php

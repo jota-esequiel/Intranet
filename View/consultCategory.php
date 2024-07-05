@@ -3,16 +3,21 @@ session_start();
 
 include_once '../bdConnection.php';
 include '../Controller/defaultFiltersController.php';
-require_once '../Controller/standardFunctionsController.php'; 
 require_once '/xampp/htdocs/Intranet/emailComposer/emailFunctions.php'; 
 
 $pdo = conectar();
+
 $rotinaAcessada = 'consultCategory'; 
 
-checkUserStatusAndLogout($pdo, $rotinaAcessada);
+$message = checkUserStatusAndLogout($pdo, $rotinaAcessada);
 
-if (headers_sent()) {
-    echo "<script>alert('Você está sendo redirecionado para a tela de login!'); window.location.href = '../Controller/logoutNotificationController.php';</script>";
+if ($message !== null) {
+    echo "<script>
+        alert('$message');
+        setTimeout(function() {
+            window.location.href = '../View/loginUser.php';
+        }, 0); // Redirecionamento imediato
+    </script>";
     exit();
 }
 
@@ -35,7 +40,6 @@ $stmt = $pdo->prepare($sql);
 $stmt->execute($params); 
 $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
