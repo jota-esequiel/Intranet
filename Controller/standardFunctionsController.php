@@ -89,6 +89,16 @@ function formatDateTimeToBrazilian($dateTime) {
     }
 }
 
+/**
+ * Formata um valor numérico como preço no formato brasileiro (R$).
+ * A função converte o valor numérico passado como parâmetro em uma string formatada com o prefixo "R$",
+ * usando a vírgula (`,`) como separador decimal e o ponto (`.`) como separador de milhar.
+ * 
+ * @param float $formPrice O valor numérico a ser formatado. Deve ser um número positivo ou zero.
+ * 
+ * @return string O valor formatado como uma string no formato de preço brasileiro.
+ * @author Gabrielli
+ */
 function formatarPrice($formPrice) {
     return 'R$ ' . number_format($formPrice, 2, ',', '.');
 }
