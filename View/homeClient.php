@@ -12,6 +12,7 @@
         <?php
         session_start();
         include_once '../bdConnection.php';
+        include '../Controller/standardFunctionsController.php';
 
         if(isset($_SESSION['usuario'])) {
 
@@ -35,7 +36,9 @@
         ?>
         <a href="userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <a href="shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
-        <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a> 
+        <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a>
+        <a href="consultCategory.php"><i class="fa-solid fa-vials"></i></a>
+        <?php logoutUser('logout') ?>
     </header>
     <h1>Produtos Disponíveis</h1>
     <?php
@@ -64,6 +67,7 @@
             echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
             echo "<input type='hidden' name='codproduto' value='{$produto['codproduto']}'>";
             echo "<button type='submit'>Adicionar ao Carrinho</button>";
+            echo "<a href='../View/consultCategory.php>Consulta de categoria</a>'";
             echo "<a href =  '../View/consultCategory.php'>Consultar categoria</a>";
             echo "</form>";
         }

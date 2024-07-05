@@ -3,12 +3,18 @@ session_start();
 
 include_once '../bdConnection.php';
 include '../Controller/defaultFiltersController.php';
+require_once '../Controller/standardFunctionsController.php'; 
 require_once '/xampp/htdocs/Intranet/emailComposer/emailFunctions.php'; 
 
 $pdo = conectar();
-
 $rotinaAcessada = 'consultCategory'; 
-capturarEEnviarEmailSuporte($rotinaAcessada);
+
+checkUserStatusAndLogout($pdo, $rotinaAcessada);
+
+if (headers_sent()) {
+    echo "<script>alert('Você está sendo redirecionado para a tela de login!'); window.location.href = '../Controller/logoutNotificationController.php';</script>";
+    exit();
+}
 
 $sql = "SELECT *
             FROM tb_categorias 
@@ -70,7 +76,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         <?php foreach ($result as $r) { ?>
             <tr>
                 <td><?= htmlspecialchars($r['nomecategoria']); ?></td>
-                <td style="color: <?= $r['ativo'] == 'S' ? 'green' : 'red'; ?>"><?= htmlspecialchars($r['ativo'] == 'S' ? 'Ativo' : 'Inativo'); ?></td> <!-- Colorindo o status -->
+                <td style="color: <?= $r['ativo'] == 'S' ? 'green' : 'red'; ?>"><?= htmlspecialchars($r['ativo'] == 'S' ? 'Ativo' : 'Inativo'); ?></td>
                 <td>
                     <a href="../View/editCategory.php?codcategoria=<?= $r['codcategoria']; ?>">
                         <i class="fa-solid fa-pen-to-square"></i>

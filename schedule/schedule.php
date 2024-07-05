@@ -1,5 +1,9 @@
 <?php
 
+/**
+ * Arquivo de configuração do SMTP email (Envio de email através deste)
+ */
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 

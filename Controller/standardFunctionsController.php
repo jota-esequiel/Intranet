@@ -191,6 +191,71 @@ function displayHelp($message, $iconType, $fontLink = null) {
     echo '<span>' . htmlspecialchars($message) . '</span>';
 }
 
+/**
+ * Exibe um ícone de logout e processa o logout do usuário.
+ *
+ * @param string $iconKey A chave do ícone a ser exibido (por exemplo, 'logout').
+ * 
+ * @return void
+ */
+function logoutUser($iconKey) {
+    $icons = array(
+        'logout' => '<i class="fa-solid fa-right-to-bracket"></i>'
+    );
+
+    if (!array_key_exists($iconKey, $icons)) {
+        return 'Ícone não encontrado';
+    }
+
+    $icon = $icons[$iconKey];
+    echo '<a href="?logout=true">' . $icon . '</a>';
+
+    if (isset($_GET['logout']) && $_GET['logout'] == 'true') {
+        session_unset();
+        session_destroy();
+
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Cache-Control: post-check=0, pre-check=0', false);
+        header('Pragma: no-cache');
+        header('Location: ../View/loginUser.php');
+        exit();
+    }
+}
+
+function checkUserStatusAndLogout($pdo, $rotinaAcessada) {
+    session_start();
+
+    if (isset($_SESSION['usuario'])) {
+        if ($_SESSION['usuario']['tipo'] !== 'A') {
+            capturarEEnviarEmailSuporte($pdo, $rotinaAcessada);
+
+            session_unset();
+            session_destroy();
+
+            header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+            header('Cache-Control: post-check=0, pre-check=0', false);
+            header('Pragma: no-cache');
+
+            header('Location: ../Controller/logoutNotificationController.php');
+            exit();
+        }
+    } else {
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Cache-Control: post-check=0, pre-check=0', false);
+        header('Pragma: no-cache');
+        header('Location: ../View/loginUser.php');
+        exit();
+    }
+}
+
+
+
+
+
+
+
+
+
 //Função em testes
 // function gerarCodigoVerificacao($tamanho = 8) {
 //     $caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';

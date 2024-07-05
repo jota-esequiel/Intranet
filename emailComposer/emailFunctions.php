@@ -21,7 +21,7 @@ require_once '/xampp/htdocs/Intranet/schedule/schedule.php'; // Incluindo schedu
  *               Cada entrada do array contém 'nome', 'email', 'nomecidade' e 'uf'.
  */
 function queryUsers($pdo) {
-    $sql = "SELECT cli.codcliente
+    $sql = "SELECT cli.codcliente,
                    cli.nome,
                    cli.email,
                    cli.fone,
@@ -88,45 +88,59 @@ function usersToEmail($pdo) {
 }
 
 /**
+ * Busca o email do usuário logado no banco de dados.
+ *
+ * @param PDO $pdo Objeto PDO para conexão com o banco de dados.
+ * @param int $userId ID do usuário logado.
+ * @return string Email do usuário logado.
+ */
+function getUserEmailById($pdo, $userId) {
+    $sql = "SELECT email FROM tb_clientes WHERE codcliente = :id";
+    
+    try {
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':id', $userId, PDO::PARAM_INT);
+        $stmt->execute();
+        
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $user ? $user['email'] : null;
+    } catch (PDOException $e) {
+        die('Erro ao buscar email do usuário: ' . $e->getMessage());
+    }
+}
+
+/**
  * Captura informações de acesso e envia um e-mail para o suporte se não for um administrador autenticado.
  *
+ * @param PDO $pdo Objeto PDO para conexão com o banco de dados.
  * @param string $rotinaAcessada Nome da rotina do sistema que foi acessada.
  */
-function capturarEEnviarEmailSuporte($rotinaAcessada) {
-    $ip = $_SERVER['REMOTE_ADDR']; 
-    $idCliente = isset($_SESSION['usuario']['id']) ? $_SESSION['usuario']['id'] : '(Não tem registro)';
+function capturarEEnviarEmailSuporte($pdo, $rotinaAcessada) {
+    $ip = $_SERVER['REMOTE_ADDR'];
+    $idCliente = isset($_SESSION['usuario']['codcliente']) ? $_SESSION['usuario']['codcliente'] : '(Não tem registro)';
     $nomeCliente = isset($_SESSION['usuario']['nome']) ? $_SESSION['usuario']['nome'] : 'Usuário não cadastrado';
-    date_default_timezone_set('America/Sao_Paulo'); 
-    $horarioAcesso = date('d/m/Y H:i:s'); 
+    date_default_timezone_set('America/Sao_Paulo');
+    $horarioAcesso = date('d/m/Y H:i:s');
 
-    if (!isset($_SESSION['usuario']) || ($_SESSION['usuario']['tipo'] !== 'A' && $_SESSION['usuario']['tipo'] !== 'C')) {
-        $nomeCliente = 'Usuário não cadastrado';
-        $idCliente = '(Não tem registro)';
-        $assunto = 'Tentativa de Acesso à Rotina Administrativa (Usuário não autorizado)';
-    } elseif ($_SESSION['usuario']['tipo'] === 'C') {
-        $nomeCliente = $_SESSION['usuario']['nome'];
-        $idCliente = isset($_SESSION['usuario']['id']) ? $_SESSION['usuario']['id'] : '(Não tem registro)';
-        $assunto = 'Tentativa de Acesso à Rotina Administrativa (Cliente)';
-    } else {
-        $nomeCliente = isset($_SESSION['usuario']['nome']) ? $_SESSION['usuario']['nome'] : 'Usuário não cadastrado';
-        $idCliente = isset($_SESSION['usuario']['id']) ? $_SESSION['usuario']['id'] : '(Não tem registro)';
-        $assunto = 'Tentativa de Acesso à Rotina Administrativa (Usuário não autorizado)';
-    }
-
-    $assunto = tratarCaracteresEspeciais($assunto);
+    $assunto = 'Tentativa de Acesso à Rotina Administrativa';
 
     $corpo = '<h2>Tentativa de Acesso à Rotina Administrativa</h2>';
     $corpo .= '<p>Detalhes do acesso:</p>';
     $corpo .= '<table border="1">';
-    $corpo .= '<tr><th>IP do Usuário</th><td>' . $ip . '</td></tr>';
-    $corpo .= '<tr><th>ID do Usuário</th><td>' . tratarCaracteresEspeciais($idCliente) . '</td></tr>';
-    $corpo .= '<tr><th>Nome do Usuário</th><td>' . tratarCaracteresEspeciais($nomeCliente) . '</td></tr>';
-    $corpo .= '<tr><th>Horário de Acesso</th><td>' . $horarioAcesso . '</td></tr>'; // Utilizando o horário formatado corretamente
-    $corpo .= '<tr><th>Rotina Acessada</th><td>' . tratarCaracteresEspeciais($rotinaAcessada) . '</td></tr>';
+    $corpo .= '<tr><th>IP do Usuário</th><td>' . htmlspecialchars($ip, ENT_QUOTES, 'UTF-8') . '</td></tr>';
+    $corpo .= '<tr><th>ID do Usuário</th><td>' . htmlspecialchars($idCliente, ENT_QUOTES, 'UTF-8') . '</td></tr>';
+    $corpo .= '<tr><th>Nome do Usuário</th><td>' . htmlspecialchars($nomeCliente, ENT_QUOTES, 'UTF-8') . '</td></tr>';
+    $corpo .= '<tr><th>Horário de Acesso</th><td>' . htmlspecialchars($horarioAcesso, ENT_QUOTES, 'UTF-8') . '</td></tr>';
+    $corpo .= '<tr><th>Rotina Acessada</th><td>' . htmlspecialchars($rotinaAcessada, ENT_QUOTES, 'UTF-8') . '</td></tr>';
     $corpo .= '</table>';
 
-    $emailSuporte = 'joaovitoresequielvieira@gmail.com';
+    $emailSuporte = getUserEmailById($pdo, $idCliente);
+    if ($emailSuporte) {
+        enviarEmail($emailSuporte, $assunto, $corpo);
+    } else {
+        echo "Erro: Não foi possível encontrar o email do suporte.";
+    }
+    return false;
+}   
 
-    enviarEmail($emailSuporte, $assunto, $corpo);
-}
 ?>
