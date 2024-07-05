@@ -16,7 +16,7 @@ if ($message !== null) {
         alert('$message');
         setTimeout(function() {
             window.location.href = '../View/loginUser.php';
-        }, 0); // Redirecionamento imediato
+        }, 0); 
     </script>";
     exit();
 }
