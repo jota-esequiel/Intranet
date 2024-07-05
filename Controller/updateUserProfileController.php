@@ -36,7 +36,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt->bindParam(':codcliente', $codcliente);
 
     if ($stmt->execute()) {
-        echo "<script>alert('Perfil atualizado com sucesso!'); window.location.href='../View/homeClient.php';</script>";
+        // Atualizar os dados da sessão
+        $_SESSION['usuario']['nome'] = $nome;
+        $_SESSION['usuario']['email'] = $email;
+        $_SESSION['usuario']['cep'] = $cep;
+        $_SESSION['usuario']['rua'] = $rua;
+        $_SESSION['usuario']['ncasa'] = $ncasa;
+        $_SESSION['usuario']['complemento'] = $complemento;
+        $_SESSION['usuario']['fone'] = $fone;
+
+        // Redirecionar para a página de perfil ou home
+        header('Location: ../View/homeClient.php');
+        exit();
     } else {
         echo "<script>alert('Erro ao atualizar perfil!'); window.history.back();</script>";
     }

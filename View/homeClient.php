@@ -25,7 +25,7 @@
                 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
                 if($usuario) {
-                    echo "<p>Olá, {$usuario['nome']}!</p>";
+                    echo saudar() . ucfirst($usuario['nome']) . "!";
                 } else {
                     echo "<p>Olá, usuário!</p>";
                 }

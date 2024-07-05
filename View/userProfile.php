@@ -22,7 +22,9 @@ if ($_SESSION['usuario']['codcliente']) {
     $strResult = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($strResult) {
-        echo displayHelp('Prezado ' . ucfirst($_SESSION['usuario']['nome']) . ', o CPF e DATA DE NASCIMENTO são dados que não podem ser alterados! Caso tenha digitado errado ao se cadastrar, aperte ', 'alerta', 'link') . '<a href="mailto:gabrielli.dotto@escola.pr.gov.br">' . getIcon('email') . '</a>' . ' e solicite a alteração de seus dados, com justificativa plausível!';
+        $_SESSION['usuario']['nome'] = $strResult['nome'];
+
+        echo displayHelp('Prezado ' . ucfirst($_SESSION['usuario']['nome']) . ', o CPF e DATA DE NASCIMENTO são dados que NÃO podem ser alterados! Caso tenha digitado serrado ao se cadastrar, aperte ', 'alerta', 'link') . '<a href="mailto:gabrielli.dotto@escola.pr.gov.br">' . getLink('email') . '</a>' . ' e solicite a alteração de seus dados, com justificativa plausível!';
 
         echo '<form action="../Controller/updateUserProfileController.php" method="POST">';
         echo "<input type='hidden' name='codcliente' value='" . htmlspecialchars($strResult['codcliente']) . "'>";

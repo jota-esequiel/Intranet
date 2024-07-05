@@ -315,9 +315,7 @@ function saudar() {
  * Esta função busca um array de links e scripts pré-definidos e retorna o valor correspondente
  * à chave fornecida. Se a chave não for encontrada, a função retorna `null`.
  *
- * @param string $keyLinks A chave que identifica o link ou script desejado. Pode ser:
- *                         - 'link': retorna o link para o arquivo CSS do FontAwesome.
- *                         - 'mask': retorna o link para o arquivo JavaScript de máscaras.
+ * @param string $keyLinks A chave que identifica o link ou script desejado.
  * 
  * @return string|null O link HTML ou o script correspondente à chave fornecida. Se a chave
  *                     não for encontrada, retorna `null`.
@@ -328,24 +326,6 @@ function getLink($keyLinks) {
     $links = array(
         'link'  => '<link href="../fontawesome/css/all.css" rel="stylesheet">',
         'mask'  => '<script src = "../templates/JS/mask.js"></script>',
-        'email' => '<i class="fa-solid fa-envelope"></i>'
-    );
-
-    if (array_key_exists($keyLinks, $links)) {
-        return $links[$keyLinks];
-    } else {
-        return null;
-    }
-}
-
-/**
- * Retorna o ícone FontAwesome correspondente à chave fornecida.
- *
- * @param string $keyIcons A chave para identificar o ícone desejado.
- * @return string|null O ícone FontAwesome em HTML, ou null se a chave não for encontrada.
- */
-function getIcon($keyIcons) {
-    $icons = array(
         'email'  => '<i class="fa-solid fa-envelope"></i>',
         'user'   => '<i class="fa-solid fa-user"></i>',
         'logout' => '<i class="fa-solid fa-right-from-bracket"></i>',
@@ -353,8 +333,8 @@ function getIcon($keyIcons) {
         'save'   => '<i class="fa-solid fa-floppy-disk"></i>',
     );
 
-    if (array_key_exists($keyIcons, $icons)) {
-        return $icons[$keyIcons];
+    if (array_key_exists($keyLinks, $links)) {
+        return $links[$keyLinks];
     } else {
         return null;
     }
