@@ -7,15 +7,15 @@ include_once '../bdConnection.php';
 
 if(isset($_POST['btnSalvar'])) {
     $nome = $_POST['nome'];
-    $cpf = $_POST['cpf'];
-    $fone = $_POST['fone'];
+    $cpf = formatarCPFSQL($_POST['cpf']);
+    $fone = formatarTelefoneSQL($_POST['fone']);
     $email = $_POST['email'];
     $senha = md5($_POST['senha']);
-    $dtnasc = $_POST['dtnasc'];
+    $dtnasc = convertDateSQL($_POST['dtnasc']);
     $rua = $_POST['rua'];
     $complemento = $_POST['complemento'];
     $ncasa = $_POST['ncasa'];
-    $cep = $_POST['cep'];
+    $cep = formatarCEPSQL($_POST['cep']);
     $codcid = $_POST['codcid']; 
     $tipo = 'C';
     $ativo = 'S';

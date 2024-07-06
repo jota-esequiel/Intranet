@@ -233,6 +233,7 @@ function logoutUser($iconKey) {
 }
 
 
+
 /**
  * Verifica o status do usuário na sessão e realiza ações apropriadas com base no tipo de usuário.
  * Se o usuário não for do tipo 'A', envia um email de suporte, destrói a sessão e retorna uma mensagem de alerta.
@@ -329,6 +330,7 @@ function getLink($keyLinks) {
         'link'   => '<link href="../fontawesome/css/all.css" rel="stylesheet">',
         'mask'   => '<script src = "../templates/JS/mask.js"></script>',
         'main'   => '<script src="../templates/JS/main.js"></script>',
+        'cart'   => '<a href = "../View/shoppingCart.php">Carrinho de compras</a>',
 
         //Ícones FontAwesome
         'email'  => '<i class="fa-solid fa-envelope"></i>',

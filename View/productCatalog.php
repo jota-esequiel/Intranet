@@ -1,4 +1,5 @@
 <?php
+session_start();
 include '../bdConnection.php';
 include '../Controller/standardFunctionsController.php';
 
@@ -93,8 +94,6 @@ $strResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
             $additionalContent .= '<input type="hidden" name="tamanho" value="' . htmlspecialchars($_POST['tamanho'], ENT_QUOTES, 'UTF-8') . '">';
         }
 
-        $additionalContent .= null;
-
         if (function_exists('filterProductClient')) {
             $additionalContent .= filterProductClient();
         }
@@ -103,8 +102,6 @@ $strResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
         renderSubMenu($subMenu, $additionalContent);
     ?>
-
-
 
     <div class="produtos">
         <?php foreach ($strResult as $produto): ?>
@@ -116,11 +113,18 @@ $strResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <div class="circle"></div>
                 <?php endif; ?>
                 <div class="info">
-                    <h2>          <?php echo htmlspecialchars(ucfirst($produto['nomeproduto']), ENT_QUOTES, 'UTF-8'); ?></h2>
-                    <p>Preço:     <?php echo formatarPrice($produto['precoproduto']); ?></p>
+                    <h2><?php echo htmlspecialchars(ucfirst($produto['nomeproduto']), ENT_QUOTES, 'UTF-8'); ?></h2>
+                    <p>Preço: <?php echo formatarPrice($produto['precoproduto']); ?></p>
                     <p>Categoria: <?php echo htmlspecialchars($produto['nomecategoria'], ENT_QUOTES, 'UTF-8'); ?></p>
-                    <p>Cor:       <?php echo htmlspecialchars($produto['corProd'], ENT_QUOTES, 'UTF-8'); ?></p>
-                    <p>Tamanho:   <?php echo htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p>Cor: <?php echo htmlspecialchars($produto['corProd'], ENT_QUOTES, 'UTF-8'); ?></p>
+                    <p>Tamanho: <?php echo htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8'); ?></p>
+
+                    <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == true): ?>
+                        <form action="../Controller/addToShoppingCartController.php" method="POST">
+                            <input type="hidden" name="codproduto" value="<?php echo htmlspecialchars($produto['codproduto'], ENT_QUOTES, 'UTF-8'); ?>">
+                            <button type="submit">Adicionar ao Carrinho</button>
+                        </form>
+                    <?php endif; ?>
                 </div>
             </div>
         <?php endforeach; ?>
