@@ -403,4 +403,25 @@ function formatarTelefoneSQL($telefoneFormatado) {
 function formatarCEPSQL($cepFormatado) {
     return preg_replace('/\D/', '', $cepFormatado);
 }
+
+
+
+/**
+ * Verifica se o usuário na sessão é do tipo especificado.
+ *
+ * @param string $userType O tipo de usuário esperado ('A' para administrador, 'C' para cliente).
+ * @return bool Retorna true se o usuário for do tipo especificado, caso contrário, retorna false.
+ */
+function checkUserType($userType) {
+
+    if (session_status() === PHP_SESSION_NONE) {
+        session_start(); 
+    }
+
+    if (isset($_SESSION['usuario']['tipo'])) {
+        return $_SESSION['tipo'] === $userType;
+    }
+
+    return false;
+}
 ?>
