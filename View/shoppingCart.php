@@ -28,8 +28,9 @@ $total = 0;
 <body>
 
     <?php
+    include '../Controller/standardFunctionsController.php';
     $nomeCliente = $_SESSION['usuario']['nome']; 
-    echo "<h1>Olá, $nomeCliente!</h1>"; ?>
+    echo saudar() . $nomeCliente . '!'; ?>
     <table border="1">
         <thead>
             <tr>
@@ -47,9 +48,9 @@ $total = 0;
             ?>
                 <tr>
                     <td><?php echo htmlspecialchars($produto['nomeproduto']); ?></td>
-                    <td><?php echo number_format($produto['precoproduto'], 2, ',', '.'); ?></td>
+                    <td><?php echo formatarPrice($produto['precoproduto'], 2, ',', '.'); ?></td>
                     <td><?php echo $produto['quantidade']; ?></td>
-                    <td><?php echo number_format($subtotal, 2, ',', '.'); ?></td>
+                    <td><?php echo formatarPrice($subtotal, 2, ',', '.'); ?></td>
                     <td>
                         <a href="../Controller/updateCartController.php?action=add&codproduto=<?php echo $codProduto; ?>"><i class="fas fa-plus"></i></a>
                         <a href="../Controller/updateCartController.php?action=remove&codproduto=<?php echo $codProduto; ?>"><i class="fas fa-minus"></i></a>

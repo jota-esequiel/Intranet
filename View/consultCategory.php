@@ -5,7 +5,8 @@ include_once '../bdConnection.php';
 include '../Controller/defaultFiltersController.php';
 require_once '/xampp/htdocs/Intranet/emailComposer/emailFunctions.php'; 
 
-$pdo = conectar();
+if(checkUserType('A')) {
+    $pdo = conectar();
 
 $rotinaAcessada = 'consultCategory'; 
 
@@ -103,3 +104,9 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </table>
 </body>
 </html>
+
+<?php 
+    } else {
+        destroySession('../View/loginUser.php');
+    }
+?>

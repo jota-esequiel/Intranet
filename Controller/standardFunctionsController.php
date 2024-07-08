@@ -419,9 +419,31 @@ function checkUserType($userType) {
     }
 
     if (isset($_SESSION['usuario']['tipo'])) {
-        return $_SESSION['tipo'] === $userType;
+        return $_SESSION['usuario']['tipo'] === $userType;
     }
-
     return false;
 }
+
+
+/**
+ * Esta função encerra a sessão atual do usuário, limpando todas as variáveis de sessão
+ * e destruindo a sessão. Após a destruição da sessão, redireciona o usuário para a página
+ * de login.
+ *
+ * @param string $redirectURL URL para redirecionar após a destruição da sessão (padrão: '../View/loginUser.php')
+ * @author Gabrielli
+ */
+function destroySession($redirectURL = '../View/loginUser.php') {
+    if (session_status() == PHP_SESSION_NONE) {
+        session_start();
+    }
+
+    $_SESSION = array();
+
+    session_destroy();
+
+    header("Location: $redirectURL");
+    exit();
+}
+
 ?>

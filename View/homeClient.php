@@ -14,8 +14,6 @@
         include_once '../bdConnection.php';
         include '../Controller/standardFunctionsController.php';
 
-        // echo "<pre>"; print_r($_SESSION['usuario']['tipo']); die("bck");
-
         if(isset($_SESSION['usuario'])) {
 
             try {
@@ -40,7 +38,8 @@
         <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
         <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a>
         <a href="../View/productCatalog.php"><i class="fa-solid fa-box-open"></i></a>
-        <a href="../View/teste.php"><i class="fa-solid fa-book"></i></a>
+        <a href="../View/productRegistration.php"><i class="fa-solid fa-tag"></i></a>
+        <a href="../View/consultCategory.php">Consulta de Categoria</a>
         <?php logoutUser('logout') ?>
 
     </header>
