@@ -19,6 +19,7 @@ if(isset($_POST['btnSalvar'])) {
     $codcid = $_POST['codcid']; 
     $tipo = 'C';
     $ativo = 'S';
+    //Apenas um teste
 
     $dtnasc = DateTime::createFromFormat('d/m/Y', $dtnasc);
     if(!$dtnasc) {

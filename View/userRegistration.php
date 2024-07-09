@@ -65,6 +65,7 @@
 </div>
             <?php
             include_once("../bdConnection.php");
+            include '../Controller/standardFunctionsController.php';
 
             try {
                 $pdo = conectar();
