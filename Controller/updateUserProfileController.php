@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $codcliente  = $_POST['codcliente'];
     $nome        = $_POST['nome'];
     $email       = $_POST['email'];
+    $dtnasc      = convertDateSQL($_POST['dtnasc']);
+    $cpf         = formatarCPFSQL($_POST['cpf']);
     $cep         = formatarCEPSQL($_POST['cep']);
     $rua         = $_POST['rua'];
     $ncasa       = $_POST['ncasa'];
@@ -18,6 +20,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $strQuery = "UPDATE tb_clientes SET 
                     nome          = :nome, 
                     email         = :email, 
+                    dtnasc        = :dtnasc,
+                    cpf           = :cpf,
                     cep           = :cep, 
                     rua           = :rua, 
                     ncasa         = :ncasa, 
@@ -28,6 +32,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $stmt = $strPdo->prepare($strQuery);
     $stmt->bindParam(':nome', $nome);
     $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':dtnasc', $dtnasc);
+    $stmt->bindParam(':cpf', $cpf);
     $stmt->bindParam(':cep', $cep);
     $stmt->bindParam(':rua', $rua);
     $stmt->bindParam(':ncasa', $ncasa);
@@ -38,14 +44,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($stmt->execute()) {
         $_SESSION['usuario']['nome'] = $nome;
         $_SESSION['usuario']['email'] = $email;
+        $_SESSION['usuario']['dtnasc'] = $dtnasc;
+        $_SESSION['usuario']['cpf'] = $cpf;
         $_SESSION['usuario']['cep'] = $cep;
         $_SESSION['usuario']['rua'] = $rua;
         $_SESSION['usuario']['ncasa'] = $ncasa;
         $_SESSION['usuario']['complemento'] = $complemento;
         $_SESSION['usuario']['fone'] = $fone;
 
-        header('Location: ../View/homeClient.php');
-        exit();
+        if (checkUserType('A')) {
+            header('Location: ../View/homeAdmin.php');
+            exit();
+        } else {
+            header('Location: ../View/homeClient.php');
+            exit();
+        }
+
     } else {
         echo "<script>alert('Erro ao atualizar perfil!'); window.history.back();</script>";
     }

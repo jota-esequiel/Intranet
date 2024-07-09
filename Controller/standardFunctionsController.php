@@ -411,6 +411,7 @@ function formatarCEPSQL($cepFormatado) {
  *
  * @param string $userType O tipo de usuário esperado ('A' para administrador, 'C' para cliente).
  * @return bool Retorna true se o usuário for do tipo especificado, caso contrário, retorna false.
+ * @author Gabrielli
  */
 function checkUserType($userType) {
 
@@ -445,5 +446,4 @@ function destroySession($redirectURL = '../View/loginUser.php') {
     header("Location: $redirectURL");
     exit();
 }
-
 ?>

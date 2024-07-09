@@ -38,40 +38,7 @@
         <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a> 
         <a href="consultCategory.php"><i class="fa-solid fa-vials"></i></a>
         <a href="../View/productRegistration.php"><i class="fa-solid fa-tag"></i></a>
+        <a href="../View/consultCategory.php">Consulta de categoria</a>
         <?php logoutUser('logout') ?>
-    </header>
-    <h1>Produtos Disponíveis</h1>
-    <?php
-    try {
-        $pdo = conectar();
-        $stmt = $pdo->prepare("SELECT prod.codproduto,
-                                        prod.nomeproduto,
-                                        prod.precoproduto,
-                                        img.img
-                                FROM tb_produtos prod
-                                LEFT JOIN tb_imagens img 
-                                    ON prod.codproduto = img.codproduto
-                                WHERE prod.ativo = 'S';");
-
-        $stmt->execute();
-        $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-        foreach ($produtos as $produto) {
-            echo "<h2>{$produto['nomeproduto']}</h2>";
-            if (!empty($produto['img'])) {
-                echo "<img src='data:image/jpeg;base64," . base64_encode($produto['img']) . "' alt='{$produto['nomeproduto']}'>";
-            } else {
-                echo "<p>Imagem Indisponível</p>";
-            }
-            echo "<p>Preço: R$ {$produto['precoproduto']}</p>";
-            echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
-            echo "<input type='hidden' name='codproduto' value='{$produto['codproduto']}'>";
-            echo "<button type='submit'>Adicionar ao Carrinho</button>";
-            echo "</form>";
-        }
-    } catch (PDOException $e) {
-        echo 'Erro: ' . $e->getMessage();
-    }
-    ?>
 </body>
 </html>

@@ -1,133 +1,106 @@
-<?php
-session_start();
-include '../bdConnection.php';
-include '../Controller/standardFunctionsController.php';
-
-$strPdo = conectar();
-
-$strQuery = "SELECT 
-                prod.codproduto,
-                prod.nomeproduto,
-                prod.precoproduto,
-                prod.ativo AS ativoproduct,
-                cat.nomecategoria,
-                CASE prod.cor
-                    WHEN '1' THEN 'Vermelho'
-                    WHEN '2' THEN 'Azul'
-                    WHEN '3' THEN 'Amarelo'
-                    ELSE 'Desconhecido'
-                END AS corProd,
-                CASE prod.tamanho
-                    WHEN 'P' THEN 'Pequeno'
-                    WHEN 'M' THEN 'Médio'
-                    WHEN 'G' THEN 'Grande'
-                    ELSE 'Desconhecido'
-                END AS tamanhoProd,
-                img.img
-            FROM tb_produtos prod
-            INNER JOIN tb_categorias cat 
-                ON prod.codcategoria = cat.codcategoria
-            LEFT JOIN tb_imagens img 
-                ON prod.codimg = img.codimg
-            WHERE prod.ativo = 'S' ";
-
-$params = [];
-
-if (!empty($_POST['nomeproduto'])) {
-    $strQuery .= " AND prod.nomeproduto LIKE :nomeproduto";
-    $params[':nomeproduto'] = '%' . $_POST['nomeproduto'] . '%';
-}
-if (!empty($_POST['precoproduto'])) {
-    $strQuery .= " AND prod.precoproduto LIKE :precoproduto";
-    $params[':precoproduto'] = '%' . $_POST['precoproduto'] . '%';
-}
-if (!empty($_POST['codcategoria'])) {
-    $strQuery .= " AND prod.codcategoria = :codcategoria";
-    $params[':codcategoria'] = $_POST['codcategoria'];
-}
-if (!empty($_POST['cor'])) {
-    $strQuery .= " AND prod.cor = :cor";
-    $params[':cor'] = $_POST['cor'];
-}
-if (!empty($_POST['tamanho'])) {
-    $strQuery .= " AND prod.tamanho = :tamanho";
-    $params[':tamanho'] = $_POST['tamanho'];
-}
-
-$stmt = $strPdo->prepare($strQuery);
-$stmt->execute($params);
-$strResult = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
-
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="../templates/CSS/homeClient.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consulta de Produtos | TCC</title>
-    <link rel="stylesheet" href="../templates/CSS/productCatalog.css">
+    <title>Home | Cliente</title>
+    <link href="../fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>
-    <?php 
-        include_once '../Controller/subMenuController.php';
-        include '../Controller/defaultFiltersController.php';
-        echo getLink('main');
-        
-        $subMenu = [];
+    <header>
+        <?php
+        session_start();
+        include_once '../bdConnection.php';
+        include '../Controller/standardFunctionsController.php';
 
-        $additionalContent = '
-            <button class="nav-bar-item" onclick="toggleFilterForm(\'filterProductClientForm\')">Filtros</button>';
+        if (isset($_SESSION['usuario'])) {
+            try {
+                $pdo = conectar();
+                $stmt = $pdo->prepare("SELECT nome FROM tb_clientes WHERE codcliente = :codcliente");
+                $stmt->bindParam(':codcliente', $_SESSION['usuario']['codcliente']);
+                $stmt->execute();
+                $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        if (!empty($_POST['nomeproduto'])) {
-            $additionalContent .= '<input type="hidden" name="nomeproduto" value="' . htmlspecialchars($_POST['nomeproduto'], ENT_QUOTES, 'UTF-8') . '">';
+                if ($usuario) {
+                    echo saudar() . ucfirst($usuario['nome']) . "!";
+                } else {
+                    echo "<p>Olá, usuário!</p>";
+                }
+            } catch (PDOException $e) {
+                echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
+            }
         }
-        if (!empty($_POST['precoproduto'])) {
-            $additionalContent .= '<input type="hidden" name="precoproduto" value="' . htmlspecialchars($_POST['precoproduto'], ENT_QUOTES, 'UTF-8') . '">';
-        }
-        if (!empty($_POST['codcategoria'])) {
-            $additionalContent .= '<input type="hidden" name="codcategoria" value="' . htmlspecialchars($_POST['codcategoria'], ENT_QUOTES, 'UTF-8') . '">';
-        }
-        if (!empty($_POST['cor'])) {
-            $additionalContent .= '<input type="hidden" name="cor" value="' . htmlspecialchars($_POST['cor'], ENT_QUOTES, 'UTF-8') . '">';
-        }
-        if (!empty($_POST['tamanho'])) {
-            $additionalContent .= '<input type="hidden" name="tamanho" value="' . htmlspecialchars($_POST['tamanho'], ENT_QUOTES, 'UTF-8') . '">';
-        }
-
-        if (function_exists('filterProductClient')) {
-            $additionalContent .= filterProductClient();
-        }
-
-        $additionalContent .= '</div>';
-        
-        renderSubMenu($subMenu, $additionalContent);
-    ?>
-
+        ?>
+        <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
+        <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
+        <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a>
+        <a href="../View/productCatalog.php"><i class="fa-solid fa-box-open"></i></a>
+        <?php logoutUser('logout') ?>
+    </header>
+    <h1>Produtos Disponíveis</h1>
     <div class="produtos">
-        <?php foreach ($strResult as $produto): ?>
-            <div class="produto">
-                <?php if (!empty($produto['img'])): ?>
-                    <img src="../imagens/Produtos/<?php echo htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8'); ?>" alt="Imagem do Produto">
-                <?php else: ?>
-                    <div class="circle"></div>
-                    <div class="circle"></div>
-                <?php endif; ?>
-                <div class="info">
-                    <h2><?php echo htmlspecialchars(ucfirst($produto['nomeproduto']), ENT_QUOTES, 'UTF-8'); ?></h2>
-                    <p>Preço: <?php echo formatarPrice($produto['precoproduto']); ?></p>
-                    <p>Categoria: <?php echo htmlspecialchars($produto['nomecategoria'], ENT_QUOTES, 'UTF-8'); ?></p>
-                    <p>Cor: <?php echo htmlspecialchars($produto['corProd'], ENT_QUOTES, 'UTF-8'); ?></p>
-                    <p>Tamanho: <?php echo htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8'); ?></p>
+        <?php
+        try {
+            $pdo = conectar();
+            $stmt = $pdo->prepare("SELECT 
+                                    prod.codproduto,
+                                    prod.nomeproduto,
+                                    prod.precoproduto,
+                                    prod.ativo AS ativoproduct,
+                                    cat.nomecategoria,
+                                    CASE prod.cor
+                                        WHEN '1' THEN 'Vermelho'
+                                        WHEN '2' THEN 'Azul'
+                                        WHEN '3' THEN 'Amarelo'
+                                        ELSE 'Desconhecido'
+                                    END AS corProd,
+                                    CASE prod.tamanho
+                                        WHEN 'P' THEN 'Pequeno'
+                                        WHEN 'M' THEN 'Médio'
+                                        WHEN 'G' THEN 'Grande'
+                                        ELSE 'Desconhecido'
+                                    END AS tamanhoProd,
+                                    img.img
+                                FROM tb_produtos prod
+                                INNER JOIN tb_categorias cat 
+                                    ON prod.codcategoria = cat.codcategoria
+                                LEFT JOIN tb_imagens img 
+                                    ON prod.codimg = img.codimg
+                                WHERE prod.ativo = 'S'");
 
-                    <?php if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == true): ?>
-                        <form action="../Controller/addToShoppingCartController.php" method="POST">
-                            <input type="hidden" name="codproduto" value="<?php echo htmlspecialchars($produto['codproduto'], ENT_QUOTES, 'UTF-8'); ?>">
-                            <button type="submit">Adicionar ao Carrinho</button>
-                        </form>
-                    <?php endif; ?>
-                </div>
-            </div>
-        <?php endforeach; ?>
+            $stmt->execute();
+            $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            foreach ($produtos as $produto) {
+                echo "<div class='produto'>";
+                if (!empty($produto['img'])) {
+                    $imgPath = "../imagens/Produtos/" . htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8');
+                    echo "<img src='{$imgPath}' alt='Imagem do Produto'>";
+                } else {
+                    echo "<div class='circle'></div>";
+                    echo "<div class='circle'></div>";
+                }
+                echo "<div class='info'>";
+                echo "<h2>" . htmlspecialchars(ucfirst($produto['nomeproduto']), ENT_QUOTES, 'UTF-8') . "</h2>";
+                echo "<p>Preço: " . formatarPrice($produto['precoproduto']) . "</p>";
+                echo "<p>Categoria: " . htmlspecialchars($produto['nomecategoria'], ENT_QUOTES, 'UTF-8') . "</p>";
+                echo "<p>Cor: " . htmlspecialchars($produto['corProd'], ENT_QUOTES, 'UTF-8') . "</p>";
+                echo "<p>Tamanho: " . htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8') . "</p>";
+
+                if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == true) {
+                    echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
+                    echo "<input type='hidden' name='codproduto' value='" . htmlspecialchars($produto['codproduto'], ENT_QUOTES, 'UTF-8') . "'>";
+                    echo "<button type='submit'>Adicionar ao Carrinho</button>";
+                    echo "</form>";
+                }
+                echo "</div>";
+                echo "</div>";
+            }
+        } catch (PDOException $e) {
+            echo 'Erro: ' . $e->getMessage();
+        }
+        ?>
     </div>
 </body>
 </html>
