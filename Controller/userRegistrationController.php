@@ -4,6 +4,7 @@
  * Arquivo referente ao processamento, responsável pelo cadastro dos Clientes.
  */
 include_once '../bdConnection.php';
+include '../Controller/standardFunctionsController.php';
 
 if(isset($_POST['btnSalvar'])) {
     $nome = $_POST['nome'];
@@ -11,7 +12,7 @@ if(isset($_POST['btnSalvar'])) {
     $fone = formatarTelefoneSQL($_POST['fone']);
     $email = $_POST['email'];
     $senha = md5($_POST['senha']);
-    $dtnasc = convertDateSQL($_POST['dtnasc']);
+    $dtnasc = $_POST['dtnasc'];
     $rua = $_POST['rua'];
     $complemento = $_POST['complemento'];
     $ncasa = $_POST['ncasa'];
@@ -19,7 +20,6 @@ if(isset($_POST['btnSalvar'])) {
     $codcid = $_POST['codcid']; 
     $tipo = 'C';
     $ativo = 'S';
-    //Apenas um teste
 
     $dtnasc = DateTime::createFromFormat('d/m/Y', $dtnasc);
     if(!$dtnasc) {
@@ -75,7 +75,7 @@ if(isset($_POST['btnSalvar'])) {
                             if($stmt->execute()) {
                                 session_start();
                                 $_SESSION['nome'] = $nome;
-                                header('Location: ../View/homePage.php');
+                                header('Location: ../View/homeClient.php');
                                 exit();
                             } else {
                                 echo "<script>alert('Erro ao se cadastrar! Tente novamente!');</script>";
