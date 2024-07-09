@@ -37,7 +37,6 @@
         <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
         <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a>
         <a href="../View/productCatalog.php"><i class="fa-solid fa-box-open"></i></a>
-        <a href="../View/consultCategory.php">Consulta de categoria</a>
         <?php logoutUser('logout') ?>
     </header>
     <h1>Produtos Disponíveis</h1>
