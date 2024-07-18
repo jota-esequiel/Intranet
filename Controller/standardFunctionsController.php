@@ -331,6 +331,7 @@ function getLink($keyLinks) {
         'mask'   => '<script src = "../templates/JS/mask.js"></script>',
         'main'   => '<script src="../templates/JS/main.js"></script>',
         'cart'   => '<a href = "../View/shoppingCart.php">Carrinho de compras</a>',
+        'show'   => '<script src="../templates/JS/showToast.js"></script>',
 
         //Ícones FontAwesome
         'email'  => '<i class="fa-solid fa-envelope"></i>',
@@ -445,5 +446,39 @@ function destroySession($redirectURL = '../View/loginUser.php') {
 
     header("Location: $redirectURL");
     exit();
+}
+
+
+/**
+ * Monta o cabeçalho HTML básico com links dinâmicos para CSS e JS.
+ *
+ * Esta função gera o início padrão de um documento HTML e os links para arquivos CSS e JavaScript especificados pelos parâmetros.
+ *
+ * @param string $linkCSS O caminho ou URL do arquivo CSS a ser incluído.
+ * @param string $linkJS  O caminho ou URL do arquivo JavaScript a ser incluído.
+ * 
+ * @return string O cabeçalho HTML completo como uma string.
+ * @author Gabrielli
+ */
+
+function montarCabecalhoHTML($linkCSS, $linkJS) {
+    ob_start();
+
+    ?>
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="<?php echo $linkCSS; ?>">
+        <script src="<?php echo $linkJS; ?>"></script>
+        <title>Document</title>
+    </head>
+    <body>
+    <?php
+
+    $html = ob_get_clean();
+
+    return $html;
 }
 ?>
