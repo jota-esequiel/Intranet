@@ -481,4 +481,20 @@ function montarCabecalhoHTML($linkCSS, $linkJS) {
 
     return $html;
 }
+
+
+/**
+ * Redireciona o usuário para uma URL especificada após 3 segundos.
+ *
+ * @param string $url A URL para a qual o usuário será redirecionado.
+ */
+function redirect($url) {
+    echo '<script>
+            setTimeout(function() {
+                window.location.href = "' . $url . '";
+            }, 3000);
+          </script>';
+    exit();
+}
+
 ?>
