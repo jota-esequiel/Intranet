@@ -332,6 +332,7 @@ function getLink($keyLinks) {
         'main'   => '<script src="../templates/JS/main.js"></script>',
         'cart'   => '<a href = "../View/shoppingCart.php">Carrinho de compras</a>',
         'show'   => '<script src="../templates/JS/showToast.js"></script>',
+        'chart'  => '<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>',
 
         //Ícones FontAwesome
         'email'  => '<i class="fa-solid fa-envelope"></i>',
@@ -497,4 +498,56 @@ function redirect($url) {
     exit();
 }
 
+
+
+/**
+ * Função para obter os dados de vendas por mês do banco de dados e renderizar o gráfico.
+ *
+ * @param PDO $pdo Objeto PDO para conexão com o banco de dados.
+ */
+
+function getVendas($pdo) {
+    try {
+        $query = "SELECT MONTH(data) AS mes, COUNT(*) AS total_vendas FROM vendas GROUP BY MONTH(data)";
+        $stmt = $pdo->prepare($query);
+        $stmt->execute();
+
+        $data = array();
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $data[$row['mes']] = $row['total_vendas'];
+        }
+
+        echo "<script>";
+        echo "var ctx = document.getElementById('myChart').getContext('2d');";
+        echo "var months = ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'];";
+        echo "var chartData = {";
+        echo "    labels: months,";
+        echo "    datasets: [{";
+        echo "        label: 'Vendas por Mês',";
+        echo "        backgroundColor: 'rgba(54, 162, 235, 0.2)',";
+        echo "        borderColor: 'rgba(54, 162, 235, 1)',";
+        echo "        borderWidth: 1,";
+        echo "        data: " . json_encode(array_values($data));
+        echo "    }]";
+        echo "};";
+
+        echo "var myChart = new Chart(ctx, {";
+        echo "    type: 'bar',";
+        echo "    data: chartData,";
+        echo "    options: {";
+        echo "        scales: {";
+        echo "            yAxes: [{";
+        echo "                ticks: {";
+        echo "                    beginAtZero: true";
+        echo "                }";
+        echo "            }]";
+        echo "        }";
+        echo "    }";
+        echo "});";
+        echo "</script>";
+
+    } catch (PDOException $e) {
+        die("Erro ao executar a consulta: " . $e->getMessage());
+    }
+}
 ?>

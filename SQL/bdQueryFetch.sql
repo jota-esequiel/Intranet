@@ -92,22 +92,20 @@ CREATE TABLE IF NOT EXISTS tb_compras_itens (
 
 
 
-
 INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Cascavel', 'PR');
 
-INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
-VALUES ('João Silva', 12345678901, 11987654321, 'joao@example.com', MD5('senha123'), '1985-01-01', 'Rua A', 'Apto 1', 100, '12345-678', 'A', 1);
+INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, ativo, codcid)
+VALUES ('Fulano de Tal', 12345678901, 44999998888, 'fulano@email.com', MD5('123'), '1990-01-01', 'Rua das Flores', 'Apto 101', 123, 85850000, 'C', 'S', 1);
 
-INSERT INTO tb_categorias (nomecategoria, ativo) VALUES ('Flores', 'S');
+INSERT INTO tb_categorias (nomecategoria, ativo) VALUES ('Eletrônicos', 'S');
 
+INSERT INTO tb_imagens (img) VALUES ('caminho/para/imagem1.jpg');
 
-INSERT INTO tb_imagens (img) VALUES ('C:\\xampp\\htdocs\\Intranet\\img\\fundocadastro.jpg');
-
-INSERT INTO tb_produtos (nomeproduto, precoproduto, codcategoria, codimg) VALUES ('Rosa', 10.50, 1, 1);
-
+INSERT INTO tb_produtos (nomeproduto, precoproduto, ativo, cor, tamanho, codimg, codcategoria)
+VALUES ('Smartphone', 1500.00, 'S', 1, 'P', 1, 1);
 
 INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
-VALUES ('REC001', 1, '2023-05-15', 'P', 'S', 5.00);
+VALUES ('REC123456789', 1, '2024-07-19', 'P', 'S', 10.00);
 
 INSERT INTO tb_compras_itens (codcompra, codproduto, qtd, valor)
-VALUES (1, 1, 2, 21.00);
+VALUES (1, 1, 2, 3000.00);
