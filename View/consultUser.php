@@ -132,9 +132,6 @@ if (checkUserType('A')) {
             $additionalContent .= '<input type="hidden" name="cidade" value="' . htmlspecialchars($_POST['cidade']) . '">';
         }
         
-        $additionalContent .= '</form>
-        <button class="nav-bar-item" onclick="document.getElementById(\'exportForm\').submit();">' . getLink('excel') . '</button>';
-        
         if (function_exists('filterUser')) {
             $additionalContent .= filterUser();
         }

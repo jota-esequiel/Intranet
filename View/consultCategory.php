@@ -3,24 +3,10 @@ session_start();
 
 include_once '../bdConnection.php';
 include '../Controller/defaultFiltersController.php';
-require_once '/xampp/htdocs/Intranet/emailComposer/emailFunctions.php'; 
+include '../Controller/standardFunctionsController.php';
 
 if(checkUserType('A')) {
     $pdo = conectar();
-
-$rotinaAcessada = 'consultCategory'; 
-
-$message = checkUserStatusAndLogout($pdo, $rotinaAcessada);
-
-if ($message !== null) {
-    echo "<script>
-        alert('$message');
-        setTimeout(function() {
-            window.location.href = '../View/loginUser.php';
-        }, 0); 
-    </script>";
-    exit();
-}
 
 $sql = "SELECT *
             FROM tb_categorias 

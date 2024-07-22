@@ -101,8 +101,7 @@ if (checkUserType('A')) {
         ];
     
         $additionalContent = '
-            <button class="nav-bar-item" onclick="toggleFilterForm(\'filterProductForm\')">Filtros</button>
-            <form id="exportForm" action="../Composer/xlsxProductComposer.php" method="get" style="display: none;">';
+            <button class="nav-bar-item" onclick="toggleFilterForm(\'filterProductForm\')">Filtros</button>';
     
         if (!empty($_POST['nomeproduto'])) {
             $additionalContent .= '<input type="hidden" name="nomeproduto" value="' . htmlspecialchars($_POST['nomeproduto'], ENT_QUOTES, 'UTF-8') . '">';
@@ -119,9 +118,6 @@ if (checkUserType('A')) {
         if (!empty($_POST['tamanho'])) {
             $additionalContent .= '<input type="hidden" name="tamanho" value="' . htmlspecialchars($_POST['tamanho'], ENT_QUOTES, 'UTF-8') . '">';
         }
-    
-        $additionalContent .= '</form>
-            <button class="nav-bar-item" onclick="document.getElementById(\'exportForm\').submit();">Exportar XLSX</button>';
     
         if (function_exists('filterProduct')) {
             $additionalContent .= filterProduct();
