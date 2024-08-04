@@ -73,3 +73,24 @@ h1 {
         font-size: 16px;
     }
 }
+
+#searchBar {
+    display: none;
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    z-index: 1000;
+}
+
+#searchBoxInput {
+    width: 200px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

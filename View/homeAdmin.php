@@ -24,7 +24,7 @@
                 $stmt->execute();
                 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if($usuario) {
+                if($usuario) { 
                     echo saudar() . ucfirst($usuario['nome']) . "!";
                 } else {
                     echo saudar() . "<p>usuário!</p>";
@@ -38,7 +38,6 @@
         <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a> 
         <a href="consultCategory.php"><i class="fa-solid fa-vials"></i></a>
         <a href="../View/productRegistration.php"><i class="fa-solid fa-tag"></i></a>
-        <a href="../View/getDados.php"><i class="fa-solid fa-chart-simple"></i></a>
         <?php logoutUser('logout') ?>
 </body>
 </html>

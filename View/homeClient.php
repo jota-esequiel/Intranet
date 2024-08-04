@@ -35,7 +35,10 @@
         ?>
         <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
-        <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a>
+        <a href="#" id="searchIcon"><i class="fas fa-magnifying-glass"></i></a>
+        <div id="searchBar">
+            <input type="text" id="searchBoxInput" placeholder="Digite sua pesquisa">
+        </div>
         <a href="../View/productCatalog.php"><i class="fa-solid fa-box-open"></i></a>
         <?php logoutUser('logout') ?>
     </header>
@@ -102,5 +105,7 @@
         }
         ?>
     </div>
+
+    <script src="../templates/JS/main.js"></script>
 </body>
 </html>
