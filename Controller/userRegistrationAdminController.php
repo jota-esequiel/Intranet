@@ -1,5 +1,6 @@
 <?php 
 include_once '../bdConnection.php';
+include '../Controller/standardFunctionsController.php';
 
 if(isset($_POST['btnSalvar'])) {
     $nome = $_POST['nome'];
@@ -7,7 +8,7 @@ if(isset($_POST['btnSalvar'])) {
     $fone = formatarTelefoneSQL($_POST['fone']);
     $email = $_POST['email'];
     $senha = md5($_POST['senha']);
-    $dtnasc = convertDateSQL($_POST['dtnasc']);
+    $dtnasc = ($_POST['dtnasc']);
     $rua = $_POST['rua'];
     $complemento = $_POST['complemento'];
     $ncasa = $_POST['ncasa'];
