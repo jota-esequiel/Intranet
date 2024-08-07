@@ -38,6 +38,7 @@
         <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a> 
         <a href="consultCategory.php"><i class="fa-solid fa-vials"></i></a>
         <a href="../View/productRegistration.php"><i class="fa-solid fa-tag"></i></a>
+        <a href="../View/consultUser.php"><i class="fa-solid fa-book"></i></a>
         <?php logoutUser('logout') ?>
 </body>
 </html>
