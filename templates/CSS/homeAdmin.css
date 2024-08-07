@@ -9,14 +9,13 @@ header {
   background-color: #c3b2e2;
   padding: 20px;
   display: flex;
-  
-  align-items: center;
+  align-items: right;
 }
 
 img {
   width: 70px; /* Ajuste o valor para o tamanho desejado */
   height: auto;
-  justify-content: flex-start; /* Alinha os itens para o início (esquerda) */
+  align-items: left;
 }
 
 header a {
