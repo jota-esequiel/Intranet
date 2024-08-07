@@ -20,6 +20,7 @@ $total = 0;
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet "type="text/css" href="../templates/CSS/userRegistration.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho de Compras</title>
     <link href="../fontawesome/css/all.css" rel="stylesheet">
