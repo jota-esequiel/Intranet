@@ -9,8 +9,14 @@ header {
   background-color: #c3b2e2;
   padding: 20px;
   display: flex;
-  justify-content: flex-end; /* Alinha os elementos para a direita */
+  
   align-items: center;
+}
+
+img {
+  width: 70px; /* Ajuste o valor para o tamanho desejado */
+  height: auto;
+  justify-content: flex-start; /* Alinha os itens para o início (esquerda) */
 }
 
 header a {

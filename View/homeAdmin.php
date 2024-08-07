@@ -15,6 +15,8 @@
 </head>
 <body>
     <header>
+    <img src="intranet/img/logo.png">
+
         <?php
         session_start();
         include_once '../bdConnection.php';
