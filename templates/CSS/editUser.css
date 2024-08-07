@@ -1,21 +1,16 @@
 body{
     background-color: #89bb89;
   }
-  .cadatrese h1 {
-    font-size: 40px;
-    margin: 0;
-    padding: 0;
+  .edit{
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 60px;
     color: #4a7256;
   }
-  .facalogin {
-    font-family: "Playfair Display", serif;
-    font-size: 10px;
-    margin: 0;
-    padding: 0;
-    color: #4a7256;
-  }
+  
   .container {
     width: 500px; /* Largura do container */
+    font-family: "Bebas Neue", sans-serif;
+    font-size: 20px;
     margin: 20px auto; /* Adicionar margem superior e inferior e centralizar horizontalmente */
     background-color: #c3b2e2;
     border-radius: 15px; /* Cor de fundo */

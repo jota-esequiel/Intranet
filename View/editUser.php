@@ -24,11 +24,20 @@ if(isset($_GET['codcliente'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet "type="text/css" href="../templates/CSS/editUser.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
     <title>Edição de Usuário</title>
 </head>
 <body>
+<div class="container">
     <form method = "POST">
-        <label for = "">EDIÇÃO DE USUÁRIOS</label>
+    <div class="edit"><label for = "">EDIÇÃO DE USUÁRIOS</label></div>
         <br><br>
         <label for = "">Nome</label>
         <input type="text" name="nome" placeholder="Atualizar nome..." value="<?php echo isset($result) ? $result['nome'] : ''; ?>">
@@ -59,6 +68,7 @@ if(isset($_GET['codcliente'])) {
         <br><br>
         <button type="submit" name="btnAlterar">ALTERAR E SALVAR</button>
     </form>
+    </div>
 
 <?php 
 if(isset($_POST['btnAlterar'])) {
