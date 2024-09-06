@@ -75,7 +75,7 @@
             foreach ($produtos as $produto) {
                 echo "<div class='produto'>";
                 if (!empty($produto['img'])) {
-                    $imgPath = "../imagens/Produtos/" . htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8');
+                    $imgPath = "../intranet/img/logo.png" . htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8');
                     echo "<img src='{$imgPath}' alt='Imagem do Produto'>";
                 } else {
                     echo "<div class='circle'></div>";

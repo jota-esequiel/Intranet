@@ -2,7 +2,7 @@
     background-color: #89bb89;
   }
   .cadatrese h1 {
-    font-size: 40px;
+    font-size: 50px;
     margin: 0;
     padding: 0;
     color: #4a7256;
@@ -29,8 +29,8 @@
     padding: 5px; /* Adicionar espaçamento interno */ 
     border-radius: 10px; /* Cor de fundo */ 
     flex-direction: column; /* Organiza os elementos em coluna */
-    display: inline-block;
-    width: 70%;
+    display: inline;
+    width: 95%;
   }
   button[type="submit"] {
     font-family: "Playfair Display", serif;

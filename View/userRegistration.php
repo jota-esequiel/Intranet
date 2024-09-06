@@ -26,34 +26,34 @@
 </div>
 
 <div class="input">
-        <label class="form-label">Nome:</label>
+        <label class="form-label"></label>
         <input type="text" name="nome" placeholder="Informe o seu nome..." required>
         <br><br>
-        <label class="form-label" for="email">E-mail:</label>
+        <label class="form-label" for="email"></label>
         <input id="email" type="email" name="email" placeholder="Informe o seu e-mail..." required>
         <br><br>
-        <label class="form-label" for="dtnasc">Data de nascimento:</label>
+        <label class="form-label" for="dtnasc"></label>
         <input id="dtnasc" class="date" type="text" name="dtnasc" placeholder="Informe a sua data de nascimento..." required oninput="mascaraData(this)">
         <br><br>
-        <label class="form-label" for="fone">Contato:</label>
+        <label class="form-label" for="fone"></label>
         <input id="fone" class="phone_with_ddd" type="text" name="fone" placeholder="Informe o seu número de telefone..." required oninput="mascaraTelefone(this)"> 
         <br><br>
-        <label class="form-label" for="cpf">CPF:</label>
+        <label class="form-label" for="cpf"></label>
         <input id="cpf" class="cpf" type="text" name="cpf" placeholder="Informe o seu CPF" required oninput="mascaraCPF(this)">
         <br><br>
-        <label class="form-label" for="senha">Senha:</label>
+        <label class="form-label" for="senha"></label>
         <input id="senha" type="password" name="senha" placeholder="Informe a sua senha..." maxlength="32" required>
         <br><br>
-        <label class="form-label" for="rua">Rua:</label>
+        <label class="form-label" for="rua"></label>
         <input id="rua" type="text" name="rua" placeholder="Informe o nome da sua rua...">
         <br><br>
-        <label class="form-label" for="complemento">Complemento:</label>
+        <label class="form-label" for="complemento"></label>
         <input id="complemento" type="text" name="complemento" placeholder="Informe o complemento...">
         <br><br>
-        <label class="form-label" for="ncasa">Número da Casa:</label>
+        <label class="form-label" for="ncasa"></label>
         <input id="ncasa" type="text" name="ncasa" placeholder="Informe o número da casa..." required>
         <br><br>
-        <label class="form-label" for="cep">CEP:</label>
+        <label class="form-label" for="cep"></label>
         <input id="cep" type="text" name="cep" placeholder="Informe o CEP..." required oninput="mascaraCEP(this)">
         <br><br>
         <label class="form-label" for="cidade">Cidade</label>
