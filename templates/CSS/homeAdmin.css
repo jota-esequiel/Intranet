@@ -9,13 +9,7 @@ header {
   background-color: #c3b2e2;
   padding: 20px;
   display: flex;
-  align-items: right;
-}
-
-img {
-  width: 70px; /* Ajuste o valor para o tamanho desejado */
-  height: auto;
-  align-items: left;
+  justify-content: flex-end; /* Alinha os elementos para a direita */
 }
 
 header a {
@@ -35,58 +29,86 @@ header a:hover {
   padding: 20px;
 }
 
-.product-list {
+.organizacao{
+;
+
+}
+
+.Rotinas1 {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.product {
-  border: 1px solid #ddd;
+  justify-content: center;
+  gap: 20px;
   padding: 20px;
-  width: calc(33.33% - 20px); /* Cálculo para espaçamento */
-  box-sizing: border-box;
 }
 
-.product-image {
-  width: 100%;
-  max-height: 200px;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-.product-title {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.product-price {
-  margin-bottom: 10px;
-}
-
-.product-button {
-  background-color: #4CAF50;
-  border: none;
-  color: white;
-  padding: 10px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
+.Rotinas1 {
+  width: 190px;
+  height: 254px;
+  background: #c3b2e2;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  border-radius: 8px;
+  transition: all 0.2s;
+  position: relative;
   cursor: pointer;
-  border-radius: 5px;
+  overflow: hidden;
+  margin-bottom: 20px;
 }
 
-.product-button:hover {
-  opacity: 0.8;
+.Rotinas1:hover {
+  transform: scale(1.04) rotate(1deg);
 }
 
-/* Responsive styles */
-@media (max-width: 768px) {
-  .product {
-      width: 100%;
-  }
+.Rotinas2 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
 }
+
+.Rotinas2 {
+  width: 190px;
+  height: 254px;
+  background: #c3b2e2;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  border-radius: 8px;
+  transition: all 0.2s;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.Rotinas2:hover {
+  transform: scale(1.04) rotate(1deg);
+}
+
+.Rotinas3 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.Rotinas3 {
+  width: 190px;
+  height: 254px;
+  background: #c3b2e2;
+  box-shadow: 0 0 10px rgba(0,0,0,0.25);
+  border-radius: 8px;
+  transition: all 0.2s;
+  position: relative;
+  cursor: pointer;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+
+.Rotinas3:hover {
+  transform: scale(1.04) rotate(1deg);
+}
+
 .bebas-neue-regular {
   font-family: "Bebas Neue", sans-serif;
   font-weight: 400;

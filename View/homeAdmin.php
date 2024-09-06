@@ -41,11 +41,22 @@
             }
         }
         ?>
-        <a href="userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a> 
-        <a href="consultCategory.php"><i class="fa-solid fa-vials"></i></a>
-        <a href="../View/productRegistration.php"><i class="fa-solid fa-tag"></i></a>
-        <a href="../View/consultUser.php"><i class="fa-solid fa-book"></i></a>
+        <a href="userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <?php logoutUser('logout') ?>
+    </header>
+        <body>
+        <div class="organizacao">
+        <div class="Rotinas1">
+        <a href="consultCategory.php"><i class="fa-solid fa-vials"> Rotinas Categorias </i></a>
+        </div>
+        <div class="Rotinas2">
+        <a href="../View/productRegistration.php"><i class="fa-solid fa-tag">Rotinas Produtos </i></a>
+        </div>
+        <div class="Rotinas3">
+        <a href="../View/consultUser.php"><i class="fa-solid fa-book">Rotinas Usuários</i></a>
+        </div>
+        </div>
+    </body>
 </body>
 </html>
