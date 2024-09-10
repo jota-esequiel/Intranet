@@ -38,6 +38,8 @@
             } catch (PDOException $e) {
                 echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
             }
+
+            
         }
         ?>
 
@@ -100,6 +102,7 @@
 
             $stmt->execute();
             $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
 
             foreach ($produtos as $produto) {
                 echo "<div class='produto'>";
