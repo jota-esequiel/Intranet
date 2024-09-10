@@ -42,7 +42,8 @@
             
         }
         ?>
-
+        
+  <div class="categorias">
         <?php 
         include_once '../bdConnection.php';
         $pdo = conectar();
@@ -50,6 +51,7 @@
         $stmt = $pdo->prepare($sql);
         $stmt->execute();
 
+      
         $categoria = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
         echo '<nav>';
@@ -60,6 +62,7 @@
             echo '</ul>';
         echo '</nav>';
         ?>
+        </div>
         <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
         <a href="#" id="searchIcon"><i class="fas fa-magnifying-glass"></i></a>
