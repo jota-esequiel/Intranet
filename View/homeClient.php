@@ -40,6 +40,24 @@
             }
         }
         ?>
+
+        <?php 
+        include_once '../bdConnection.php';
+        $pdo = conectar();
+        $sql =  'SELECT DISTINCT nomecategoria FROM tb_categorias';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
+
+        $categoria = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+        echo '<nav>';
+            echo '<ul>';
+            foreach ($categoria as $categorias) {
+                echo '<li><a href="productCatalog.php?categoria=' . urlencode($categorias['nomecategoria']) . '">' . ucfirst($categorias['nomecategoria']) . '</a></li>';
+            }
+            echo '</ul>';
+        echo '</nav>';
+        ?>
         <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
         <a href="#" id="searchIcon"><i class="fas fa-magnifying-glass"></i></a>
