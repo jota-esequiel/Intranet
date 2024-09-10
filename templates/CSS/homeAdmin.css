@@ -1,113 +1,59 @@
+/* Estilos gerais */
 body {
   font-family: "Bebas Neue", sans-serif;
   margin: 0;
   padding: 0;
   font-size: 25px;
 }
-
+/* Estilos para o header */
 header {
   background-color: #c3b2e2;
   padding: 20px;
   display: flex;
   justify-content: flex-end; /* Alinha os elementos para a direita */
-}
-
-header a {
+  align-items: center;
+  font-style: "Bebas Neue", sans-serif;
   color: #41634b;
-  text-decoration: none;
-  margin-left: 15px;
-  font-size: 30px;
 }
 
 header a:hover {
-  opacity: 0.7;
+opacity: 0.7;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-.organizacao{
-;
+.cabecalho{
+  color: #41634b;
 
 }
-
-.Rotinas1 {
+/* Estilos para a seção de organização */
+.organizacao {
   display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 50px;
+  font-family: "Bebas Neue", sans-serif;
+  font-weight: 400;
+  text-decoration: none;
+  font-size: 70px;
 }
 
-.Rotinas1 {
-  width: 190px;
-  height: 254px;
-  background: #c3b2e2;
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
-  border-radius: 8px;
-  transition: all 0.2s;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
+.organizacao a {
+  display: block;
+  text-align: center;
+  padding: 30px;
+  background-color: #ddd;
+  margin-bottom: 10px;
+  color: #41634b;
+  font-family: "Bebas Neue", sans-serif;
+  font-style: normal;
+  font-weight: bold 400;
+  text-decoration: none;
+  transition: background-color 0.3s ease-in-out;
+  }
 
-.Rotinas1:hover {
-  transform: scale(1.04) rotate(1deg);
-}
-
-.Rotinas2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.Rotinas2 {
-  width: 190px;
-  height: 254px;
-  background: #c3b2e2;
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
-  border-radius: 8px;
-  transition: all 0.2s;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.Rotinas2:hover {
-  transform: scale(1.04) rotate(1deg);
-}
-
-.Rotinas3 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding: 20px;
-}
-
-.Rotinas3 {
-  width: 190px;
-  height: 254px;
-  background: #c3b2e2;
-  box-shadow: 0 0 10px rgba(0,0,0,0.25);
-  border-radius: 8px;
-  transition: all 0.2s;
-  position: relative;
-  cursor: pointer;
-  overflow: hidden;
-  margin-bottom: 20px;
-}
-
-.Rotinas3:hover {
-  transform: scale(1.04) rotate(1deg);
-}
+  .organizacao a:hover {
+    background-color: #e0e0e0; /* Cor de fundo ao passar o mouse */
+    transform: scale(1.05); /* Aumenta ligeiramente o tamanho do botão */
+  }
 
 .bebas-neue-regular {
   font-family: "Bebas Neue", sans-serif;
@@ -119,5 +65,4 @@ header a:hover {
   font-family: "Playfair Display", serif;
   font-optical-sizing: auto;
   font-weight: bold 800;
-  font-style: italic;
 }

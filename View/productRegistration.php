@@ -89,9 +89,19 @@ if (checkUserType('A')) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Cadastro de Produtos | TCC</title>
         <script src="../templates/JS/mask.js"></script>
+        <link rel="stylesheet "type="text/css" href="../templates/CSS/productRegistration.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>Home | Administrador</title>
+    <link href="../fontawesome/css/all.css" rel="stylesheet">
     </head>
     <body>
-    
+    <div class="container">
     <h1>CADASTRO DE PRODUTOS</h1>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
         <label for="nomeproduto">Nome</label>
@@ -103,10 +113,12 @@ if (checkUserType('A')) {
         <label for="codcategoria">Categoria</label>
         <select name="codcategoria" id="codcategoria" required>
             <option value="">Selecione uma categoria</option>
+</div>
             <?php 
             foreach ($categories as $categoria) {
                 echo "<option value='{$categoria['codcategoria']}'>{$categoria['nomecategoria']}</option>";
             }
+            
             ?>
         </select>
         <br><br>
@@ -129,6 +141,7 @@ if (checkUserType('A')) {
         <label for="tamanho">Tamanho</label>
         <select id="tamanho" name="tamanho" required>
             <option value="">Selecione um tamanho</option>
+            
             <?php 
                 $tamanhos = [
                     'P' => 'Pequeno',
@@ -139,6 +152,7 @@ if (checkUserType('A')) {
                 foreach($tamanhos as $value => $size) {
                     echo "<option value='{$value}'>{$size}</option>";
                 }
+                   
             ?>
         </select>
         <br><br>
@@ -151,7 +165,10 @@ if (checkUserType('A')) {
     </body>
     </html>
 
+    
+
     <?php 
+    
     } else {
         destroySession('../View/loginUser.php');
     }

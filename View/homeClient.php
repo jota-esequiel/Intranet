@@ -38,6 +38,8 @@
             } catch (PDOException $e) {
                 echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
             }
+
+            
         }
         ?>
         <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
@@ -82,6 +84,7 @@
 
             $stmt->execute();
             $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            
 
             foreach ($produtos as $produto) {
                 echo "<div class='produto'>";
