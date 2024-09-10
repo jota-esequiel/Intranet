@@ -43,59 +43,67 @@
         <?php
         try {
             $pdo = conectar();
-            $stmt = $pdo->prepare("SELECT 
-                                    prod.codproduto,
-                                    prod.nomeproduto,
-                                    prod.precoproduto,
-                                    prod.ativo AS ativoproduct,
-                                    cat.nomecategoria,
-                                    CASE prod.cor
-                                        WHEN '1' THEN 'Vermelho'
-                                        WHEN '2' THEN 'Azul'
-                                        WHEN '3' THEN 'Amarelo'
-                                        ELSE 'Desconhecido'
-                                    END AS corProd,
-                                    CASE prod.tamanho
-                                        WHEN 'P' THEN 'Pequeno'
-                                        WHEN 'M' THEN 'Médio'
-                                        WHEN 'G' THEN 'Grande'
-                                        ELSE 'Desconhecido'
-                                    END AS tamanhoProd,
-                                    img.img
-                                FROM tb_produtos prod
-                                INNER JOIN tb_categorias cat 
-                                    ON prod.codcategoria = cat.codcategoria
-                                LEFT JOIN tb_imagens img 
-                                    ON prod.codimg = img.codimg
-                                WHERE prod.ativo = 'S'");
+            
+            $codcategoria = !empty($_GET['categoria']) ? $_GET['categoria'] : null;
 
+            $sql = "SELECT 
+                        prod.codproduto,
+                        prod.nomeproduto,
+                        prod.precoproduto,
+                        prod.ativo AS ativoproduct,
+                        cat.nomecategoria,
+                        CASE prod.cor
+                            WHEN '1' THEN 'Vermelho'
+                            WHEN '2' THEN 'Azul'
+                            WHEN '3' THEN 'Amarelo'
+                            ELSE 'Desconhecido'
+                        END AS corProd,
+                        CASE prod.tamanho
+                            WHEN 'P' THEN 'Pequeno'
+                            WHEN 'M' THEN 'Médio'
+                            WHEN 'G' THEN 'Grande'
+                            ELSE 'Desconhecido'
+                        END AS tamanhoProd,
+                        img.img
+                    FROM tb_produtos prod
+                    INNER JOIN tb_categorias cat ON prod.codcategoria = cat.codcategoria
+                    LEFT JOIN tb_imagens img ON prod.codimg = img.codimg
+                    WHERE prod.ativo = 'S'
+                    AND (:codcategoria IS NULL OR prod.codcategoria = :codcategoria)";
+
+            $stmt = $pdo->prepare($sql);
+            $stmt->bindParam(':codcategoria', $codcategoria, PDO::PARAM_INT);
             $stmt->execute();
             $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            foreach ($produtos as $produto) {
-                echo "<div class='produto'>";
-                if (!empty($produto['img'])) {
-                    $imgPath = "../imagens/Produtos/" . htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8');
-                    echo "<img src='{$imgPath}' alt='Imagem do Produto'>";
-                } else {
-                    echo "<div class='circle'></div>";
-                    echo "<div class='circle'></div>";
-                }
-                echo "<div class='info'>";
-                echo "<h2>" . htmlspecialchars(ucfirst($produto['nomeproduto']), ENT_QUOTES, 'UTF-8') . "</h2>";
-                echo "<p>Preço: " . formatarPrice($produto['precoproduto']) . "</p>";
-                echo "<p>Categoria: " . htmlspecialchars($produto['nomecategoria'], ENT_QUOTES, 'UTF-8') . "</p>";
-                echo "<p>Cor: " . htmlspecialchars($produto['corProd'], ENT_QUOTES, 'UTF-8') . "</p>";
-                echo "<p>Tamanho: " . htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8') . "</p>";
+            if ($produtos) {
+                foreach ($produtos as $produto) {
+                    echo "<div class='produto'>";
+                    if (!empty($produto['img'])) {
+                        $imgPath = "../imagens/Produtos/" . htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8');
+                        echo "<img src='{$imgPath}' alt='Imagem do Produto'>";
+                    } else {
+                        echo "<div class='circle'></div>";
+                        echo "<div class='circle'></div>";
+                    }
+                    echo "<div class='info'>";
+                    echo "<h2>" . htmlspecialchars(ucfirst($produto['nomeproduto']), ENT_QUOTES, 'UTF-8') . "</h2>";
+                    echo "<p>Preço: " . formatarPrice($produto['precoproduto']) . "</p>";
+                    echo "<p>Categoria: " . htmlspecialchars($produto['nomecategoria'], ENT_QUOTES, 'UTF-8') . "</p>";
+                    echo "<p>Cor: " . htmlspecialchars($produto['corProd'], ENT_QUOTES, 'UTF-8') . "</p>";
+                    echo "<p>Tamanho: " . htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8') . "</p>";
 
-                if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == true) {
-                    echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
-                    echo "<input type='hidden' name='codproduto' value='" . htmlspecialchars($produto['codproduto'], ENT_QUOTES, 'UTF-8') . "'>";
-                    echo "<button type='submit'>Adicionar ao Carrinho</button>";
-                    echo "</form>";
+                    if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == true) {
+                        echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
+                        echo "<input type='hidden' name='codproduto' value='" . htmlspecialchars($produto['codproduto'], ENT_QUOTES, 'UTF-8') . "'>";
+                        echo "<button type='submit'>Adicionar ao Carrinho</button>";
+                        echo "</form>";
+                    }
+                    echo "</div>";
+                    echo "</div>";
                 }
-                echo "</div>";
-                echo "</div>";
+            } else {
+                echo 'Nenhum produto encontrado para esta categoria';
             }
         } catch (PDOException $e) {
             echo 'Erro: ' . $e->getMessage();

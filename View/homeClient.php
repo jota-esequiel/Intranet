@@ -45,23 +45,31 @@
         
   <div class="categorias">
         <?php 
-        include_once '../bdConnection.php';
-        $pdo = conectar();
-        $sql =  'SELECT DISTINCT nomecategoria FROM tb_categorias';
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute();
+            include_once '../bdConnection.php';
+            $pdo = conectar();
 
-      
-        $categoria = $stmt->fetchAll(PDO::FETCH_ASSOC);
+            $sql = 'SELECT codcategoria, nomecategoria FROM tb_categorias';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
 
-        echo '<nav>';
-            echo '<ul>';
-            foreach ($categoria as $categorias) {
-                echo '<li><a href="productCatalog.php?categoria=' . urlencode($categorias['nomecategoria']) . '">' . ucfirst($categorias['nomecategoria']) . '</a></li>';
+            $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($categorias) {
+                echo '<nav>';
+                echo '<ul>';
+                
+                foreach ($categorias as $categoria) {
+                    echo '<li><a href="productCatalog.php?categoria=' . urlencode($categoria['codcategoria']) . '">' . ucfirst($categoria['nomecategoria']) . '</a></li>';
+                }
+
+                echo '</ul>';
+                echo '</nav>';
+            } else {
+                echo 'Nenhuma categoria encontrada';
             }
-            echo '</ul>';
-        echo '</nav>';
         ?>
+
+
         </div>
         <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
