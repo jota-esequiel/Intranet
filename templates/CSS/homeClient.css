@@ -1,62 +1,51 @@
-body {
-  font-family: "Bebas Neue", sans-serif;
-  margin: 0;
-  padding: 0;
-  font-size: 25px;
-}
-
 header {
-  background-color: #c3b2e2;
-  padding: 20px;
+  background-color: #41634b;
+  padding: 10px; /* Reduza o padding para torná-lo mais fino */
   display: flex;
-  justify-content: flex-end; /* Alinha os elementos para a direita */
+  justify-content: space-between; /* Distribui os elementos uniformemente */
   align-items: center;
+  font-family: "Bebas Neue", sans-serif;
+  width: 100%; /* Faz o header ocupar 100% da largura */
+  height: 60px; /* Define a altura do header */
+  position: fixed; /* Fixar o header no topo */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
 }
 
 header a {
-  color: #41634b;
+  color: #c3b2e2;
   text-decoration: none;
   margin-left: 15px;
   font-size: 30px;
+  font-family: "Bebas Neue", sans-serif;
+
 }
 
 header a:hover {
   opacity: 0.7;
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+body {
+  margin-top: 0,1px; /* Ajuste o valor de acordo com a altura do header */
+  font-family: "Bebas Neue", sans-serif;
+  margin: 0;
+  padding: 0;
+  font-size: 25px;
 }
 
 .product-list {
-  display: flex;
+  margin-top: 60px; /* Ajuste o valor de acordo com a altura do header */
+  display: inline-block;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-top: 80px; /* Espaço abaixo do header */
 }
 
-.product {
-  border: 1px solid #ddd;
-  padding: 20px;
-  width: calc(33.33% - 20px); /* Cálculo para espaçamento */
-  box-sizing: border-box;
-}
-
-.product-image {
-  width: 100%;
-  max-height: 200px;
-  object-fit: cover;
-  margin-bottom: 10px;
-}
-
-.product-title {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.product-price {
-  margin-bottom: 10px;
+h1{
+  font-family: "Playfair Display", serif;
+  margin-top: 60px; /* Ajuste o valor de acordo com a altura do header */
 }
 
 .product-button {
@@ -82,6 +71,42 @@ header a:hover {
       width: 100%;
   }
 }
+
+.produtos {
+  padding: 20px;
+  width: 300x300; /* Cálculo para espaçamento */
+  font-family: "Bebas Neue", sans-serif;
+  display: inline-block;
+  justify-content: space-between;
+  margin-top: 60px; /* Espaço abaixo do header */
+  width: 100%; /* Aumenta a largura dos produtos */
+  margin: 20px; /* Adiciona margem para espaçamento */
+}
+
+.categorias {
+  justify-content: center;
+  align-items: center; /* Centraliza os itens verticalmente (opcional) */
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  margin-top: 0,1px; /* Ajuste o valor de acordo com a altura do header */
+}
+
+.categorias li {
+  display: inline-block;
+  margin: 0 1rem; /* Espaçamento entre as categorias */
+  padding: 0.5rem 1rem; /* Padding interno para cada categoria */
+  background-color: #c3b2e2; /* Cor de fundo das categorias */
+  border-radius: 5px; /* Bordas arredondadas */
+  list-style-type: none;
+}
+
+.categorias a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
 
 .bebas-neue-regular {
   font-family: "Bebas Neue", sans-serif;

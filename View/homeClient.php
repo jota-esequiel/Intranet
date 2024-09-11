@@ -55,9 +55,9 @@
             $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             if ($categorias) {
-                echo '<nav>';
+                echo '<nav>';  
                 echo '<ul>';
-                
+            
                 foreach ($categorias as $categoria) {
                     echo '<li><a href="productCatalog.php?categoria=' . urlencode($categoria['codcategoria']) . '">' . ucfirst($categoria['nomecategoria']) . '</a></li>';
                 }
@@ -114,7 +114,6 @@
             $stmt->execute();
             $produtos = $stmt->fetchAll(PDO::FETCH_ASSOC);
             
-
             foreach ($produtos as $produto) {
                 echo "<div class='produto'>";
                 if (!empty($produto['img'])) {
@@ -145,7 +144,7 @@
         }
         ?>
     </div>
-
+    </div>
     <script src="../templates/JS/main.js"></script>
 </body>
 </html>
