@@ -37,9 +37,7 @@
                 }
             } catch (PDOException $e) {
                 echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
-            }
-
-            
+            }            
         }
         ?>
         
@@ -68,18 +66,16 @@
                 echo 'Nenhuma categoria encontrada';
             }
         ?>
-
-
         </div>
+        </div>
+        <div class="icon">
+        <a href="#" id="searchIcon"><i class="fas fa-magnifying-glass"></i></a><id="searchBar">
+        <input type="text" id="searchBoxInput" placeholder="Digite sua pesquisa">
         <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
-        <a href="#" id="searchIcon"><i class="fas fa-magnifying-glass"></i></a>
-        <div id="searchBar">
-            <input type="text" id="searchBoxInput" placeholder="Digite sua pesquisa">
-        </div>
-        <a href="../View/productCatalog.php"><i class="fa-solid fa-box-open"></i></a>
         <?php logoutUser('logout') ?>
     </header>
+        </div>
     <h1>Produtos Disponíveis</h1>
     <div class="produtos">
         <?php
