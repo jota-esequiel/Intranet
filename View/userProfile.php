@@ -1,3 +1,14 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet "type="text/css" href="../templates/CSS/userProfile.css">
+    <title>Perfil do Usuário</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
 <?php 
 session_start();
 include_once '../bdConnection.php';
@@ -100,3 +111,6 @@ if ($_SESSION['usuario']['codcliente']) {
     echo "<script>alert('Não foi possível encontrar o usuário logado!')</script>";
 }}
 ?>
+ </div>
+</body>
+</html>

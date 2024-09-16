@@ -20,14 +20,14 @@ $total = 0;
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet "type="text/css" href="../templates/CSS/shoppingCart.css">
+    <link rel="stylesheet" type="text/css" href="../templates/CSS/shoppingCart.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrinho de Compras</title>
     <link href="../fontawesome/css/all.css" rel="stylesheet">
-    <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 <body>
-
+    <div class="container">
+        <h1>Carrinho de Compras</h1>
     <?php
     include '../Controller/standardFunctionsController.php';
     $nomeCliente = $_SESSION['usuario']['nome']; ?>
@@ -69,5 +69,6 @@ $total = 0;
     </table>
     <br>
     <a href="../Controller/checkOutController.php">Finalizar Compra</a>
+    </div>
 </body>
 </html>
