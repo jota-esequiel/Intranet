@@ -48,6 +48,7 @@
         <a href="consultCategory.php"> Editar Categorias</a>
         <a href="../View/productRegistration.php">Adicionar Produtos</a>
         <a href="../View/consultUser.php">Rotinas Usuários</a>
+        <a href="../View/consultProduct.php">Consultar Produtos</a>
         </div>
     </body>
 </body>

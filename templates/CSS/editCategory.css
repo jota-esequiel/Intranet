@@ -1,0 +1,86 @@
+/* editCategory.css */
+
+/* Geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Cor de fundo clara */
+    color: #333; /* Texto escuro para contraste */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Ocupa toda a altura da janela */
+}
+
+/* Formulário */
+form {
+    background-color: #fff; /* Fundo branco para o formulário */
+    padding: 20px;
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra suave ao redor do formulário */
+    width: 100%;
+    max-width: 400px; /* Largura máxima para o formulário */
+    box-sizing: border-box; /* Inclui o padding e border no tamanho total do elemento */
+}
+
+/* Cabeçalhos e Títulos */
+h1 {
+    color: #3b5e40; /* Verde escuro */
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 1.5em;
+}
+
+/* Labels e Inputs */
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #3b5e40; /* Verde escuro para labels */
+}
+
+input[type="text"] {
+    width: calc(100% - 22px); /* Largura total menos o padding */
+    padding: 10px;
+    border: 1px solid #ddd; /* Borda sutil */
+    border-radius: 4px; /* Bordas arredondadas */
+    margin-bottom: 20px;
+    font-size: 16px;
+    box-sizing: border-box; /* Inclui o padding e border no tamanho total do elemento */
+}
+
+/* Botões */
+button {
+    background-color: #3b5e40; /* Verde escuro */
+    color: #fff; /* Texto branco */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box; /* Inclui o padding e border no tamanho total do elemento */
+}
+
+button:hover {
+    background-color: #2a3f29; /* Verde escuro mais intenso ao passar o mouse */
+}
+
+/* Alertas */
+.alert {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    text-align: center;
+    color: #fff;
+}
+
+.alert-success {
+    background-color: #28a745; /* Verde para sucesso */
+}
+
+.alert-error {
+    background-color: #dc3545; /* Vermelho para erro */
+}
