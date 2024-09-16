@@ -60,7 +60,6 @@ if (!empty($searchTerm)) {
     <header>
         <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
-        <a href="../View/productCatalog.php"><i class="fa-solid fa-box-open"></i></a>
         <a href="../View/homeClient.php"><i class="fa-solid fa-house"></i></a>
     </header>
     <h1>Resultados da Pesquisa para "<?php echo htmlspecialchars($searchTerm, ENT_QUOTES, 'UTF-8'); ?>"</h1>
