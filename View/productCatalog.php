@@ -32,11 +32,6 @@
                 $stmt->execute();
                 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
-                if ($usuario) {
-                    echo saudar() . ucfirst($usuario['nome']) . "!";
-                } else {
-                    echo "<p>Olá, usuário!</p>";
-                }
             } catch (PDOException $e) {
                 echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
             }

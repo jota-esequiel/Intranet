@@ -233,33 +233,6 @@ function logoutUser($iconKey) {
 }
 
 /**
- * Retorna uma saudação adequada com base na hora atual do servidor.
- * A saudação varia conforme o horário do dia:
- * - "Bom dia, " para horários entre 00:00 e 11:59.
- * - "Boa tarde, " para horários entre 12:00 e 17:59.
- * - "Boa noite, " para horários entre 18:00 e 23:59.
- * 
- * A função considera o fuso horário de São Paulo (America/Sao_Paulo).
- * 
- * @return string A saudação apropriada com base na hora atual do servidor.
- * @author Gabrielli
- */
-function saudar() {
-    date_default_timezone_set('America/Sao_Paulo');
-
-    $horaAtual = (int)date('H');
-
-    if ($horaAtual >= 0 && $horaAtual < 12) {
-        return "Bom dia, ";
-    } elseif ($horaAtual >= 12 && $horaAtual < 18) {
-        return "Boa tarde, ";
-    } else {
-        return "Boa noite, ";
-    }
-}
-
-
-/**
  * Retorna um link HTML ou um script com base na chave fornecida.
  *
  * Esta função busca um array de links e scripts pré-definidos e retorna o valor correspondente

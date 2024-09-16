@@ -30,8 +30,7 @@ $total = 0;
 
     <?php
     include '../Controller/standardFunctionsController.php';
-    $nomeCliente = $_SESSION['usuario']['nome']; 
-    echo saudar() . $nomeCliente . '!'; ?>
+    $nomeCliente = $_SESSION['usuario']['nome']; ?>
     <table border="1">
         <thead>
             <tr>
