@@ -45,10 +45,9 @@
     </header>
         <body>
         <div class="organizacao">
-        <a href="consultCategory.php"> Editar Categorias</a>
-        <a href="../View/productRegistration.php">Adicionar Produtos</a>
+        <a href="consultCategory.php"> Rotinas Categorias</a>
         <a href="../View/consultUser.php">Rotinas Usuários</a>
-        <a href="../View/consultProduct.php">Consultar Produtos</a>
+        <a href="../View/consultProduct.php">Rotinas Produtos</a>
         </div>
     </body>
 </body>

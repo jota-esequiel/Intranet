@@ -10,7 +10,7 @@ body {
 
 /* Estilos para o header */
 header {
-  background-color: #2c3e50; /* Verde escuro para o cabeçalho */
+  background-color: #41634b; /* Verde escuro para o cabeçalho */
   padding: 15px 30px;
   display: flex;
   justify-content: flex-end; /* Alinha os elementos para a direita */
@@ -74,7 +74,7 @@ header a:hover {
   display: block;
   text-align: center;
   padding: 15px 30px;
-  background-color: #2c3e50; /* Verde escuro para os botões */
+  background-color: #41634b; /* Verde escuro para os botões */
   color: #fff;
   border-radius: 5px;
   margin-bottom: 10px;
@@ -85,7 +85,7 @@ header a:hover {
 }
 
 .organizacao a:hover {
-  background-color: #34495e; /* Verde escuro mais intenso ao passar o mouse */
+  background-color: #41634b; /* Verde escuro mais intenso ao passar o mouse */
   transform: scale(1.03); /* Leve aumento ao passar o mouse */
 }
 
