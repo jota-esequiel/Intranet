@@ -418,4 +418,65 @@ function redirect($url) {
           </script>';
     exit();
 }
+
+
+
+/**
+ *
+ * Esta função retorna o caminho para uma imagem específica do sistema com as dimensões ajustadas. Suporta imagens da logo ou do diretório 'Produtos'.
+ *
+ * @param string $type Tipo de imagem
+ * @param int $width Largura da imagem 
+ * @param int $height Altura da imagem 
+ * @param string|null $filename Nome do arquivo da imagem
+ * 
+ * @author Gabrielli
+ */
+
+function getImgPath($type, $width = 100, $height = 100, $filename = null) {
+    $basePath = "C:/xampp/htdocs/Intranet/imagens";
+    $urlBasePath = "http://localhost/Intranet/imagens";
+    
+    switch($type) {
+        case 'logo':
+            $filePath = $basePath . "/Logo/logo.png";
+            $urlFilePath = $urlBasePath . "/Logo/logo.png";
+            break;
+        
+        case 'produtos':
+            if ($filename === null) {
+                $productFiles = glob($basePath . "/Produtos/*.{jpg,jpeg,png,gif}", GLOB_BRACE);
+                
+                if (empty($productFiles)) {
+                    return "Nenhuma imagem disponível no diretório de produtos!";
+                }
+                
+                $filePath = $productFiles[0];
+                $urlFilePath = $urlBasePath . "/Produtos/" . basename($filePath);
+            } else {
+                $productFiles = glob($basePath . "/Produtos/{$filename}.{jpg,jpeg,png,gif}", GLOB_BRACE);
+                
+                if (empty($productFiles)) {
+                    return "Imagem '{$filename}' não encontrada!";
+                }
+
+                $filePath = $productFiles[0];
+                $urlFilePath = $urlBasePath . "/Produtos/" . basename($filePath);
+            }
+            break;
+        
+        default:
+            return $arrayAlert = [
+                "Tipo de imagem não suportado! Verifique a extensão da imagem!",
+                "Suportamos apenas .jpg .jpeg .png .gif"
+        ];
+    }
+
+    if (file_exists($filePath)) {
+        return "<img src='{$urlFilePath}' width='{$width}' height='{$height}' />";
+    } else {
+        return "Imagem indisponível!";
+    }
+}
+
 ?>

@@ -25,6 +25,9 @@
         include_once '../bdConnection.php';
         include '../Controller/standardFunctionsController.php';
 
+        echo getImgPath('logo', 300, 150, null);
+
+
         if (isset($_SESSION['usuario'])) {
             try {
                 $pdo = conectar();
