@@ -1,0 +1,141 @@
+/* Estilização Geral */
+body {
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    background-color: #f4f7f9;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 800px;
+    margin: 40px auto;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Barra de Destaque no Topo do Container */
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 8px;
+    background: linear-gradient(to right, #0056b3, #007bff);
+}
+
+/* Estilo do Título */
+h1 {
+    font-size: 26px;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #007bff;
+    padding-bottom: 10px;
+    text-align: center;
+}
+
+/* Estilo do Formulário */
+form {
+    display: grid;
+    gap: 20px;
+}
+
+label {
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"] {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 16px;
+    width: 100%;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input[type="text"]:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 6px rgba(0, 123, 255, 0.2);
+    outline: none;
+}
+
+input[disabled] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+/* Estilo do Botão de Envio */
+button[type="submit"] {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+button[type="submit"]:hover {
+    background-color: #0056b3;
+    transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+    background-color: #004494;
+    transform: translateY(0);
+}
+
+button[type="submit"] i {
+    margin-left: 8px;
+}
+
+/* Estilo para Links */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}
+
+/* Estilo para Alertas */
+.alerta {
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: #f8d7da;
+    color: #721c24;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+}
+
+/* Layout Responsivo */
+@media (max-width: 768px) {
+    .container {
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 24px;
+    }
+
+    button[type="submit"] {
+        padding: 10px 15px;
+        font-size: 14px;
+    }
+}

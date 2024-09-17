@@ -54,13 +54,15 @@ h1{
 
 .icon {
   font-size: 1.5rem;
-  display: flex; /* Transforma o container em um flex container */ 
-  align-items: center; /* Centraliza os itens verticalmente (opcional) */
+  align-items: flex-start; /* Alinha os itens no início do eixo principal */
+  display: grid;
+  min-height: auto; /* Remove a altura mínima */
 }
 
-@media (max-width: 758px) {
-  .icon {
-    font-size: 1rem;
+@media (max-width: 768px) {
+  .icon{
+    margin-bottom: 10px; /* Ajusta a margem para telas menores */
+    min-height: auto; /* Remove a altura mínima */
   }
 }
 

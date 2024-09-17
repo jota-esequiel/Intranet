@@ -20,11 +20,12 @@ if (checkUserType('A')) {
     </head>
     <body>
         <form method="post" action="../Controller/categoryRegistrationController.php">
-            <h1>CADASTRE-SE</h1>
+        <link rel="stylesheet "type="text/css" href="../templates/CSS/categoryRegistration.css">
+            <h1>CADASTRE UMA NOVA CATEGORIA</h1>
             <label>Nome</label>
             <input type="text" name="nomecategoria" placeholder="Informe o nome da categoria..." required>
             <br><br>
-            <button type="submit" name="btnEnviar">CADASTRE-SE</button>
+            <button type="submit" name="btnEnviar">CADASTRE</button>
         </form>
     </body>
     </html>

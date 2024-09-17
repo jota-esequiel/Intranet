@@ -23,6 +23,7 @@ if(isset($_GET['codcategoria'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet "type="text/css" href="../templates/CSS/editCategory.css">
     <link href="../fontawesome/css/all.css" rel="stylesheet">
     <title>Document</title>
 </head>

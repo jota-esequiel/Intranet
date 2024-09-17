@@ -1,16 +1,137 @@
-.product {
-    border: 1px solid #ccc;
+/* consultProduct.css */
+
+/* Geral */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4; /* Cor de fundo clara */
+    color: #333; /* Texto escuro para contraste */
+    margin: 0;
+    padding: 0;
+}
+
+/* Cabeçalhos e Títulos */
+h1 {
+    color: #3b5e40; /* Verde escuro */
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    font-size: 2em;
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
     padding: 10px;
-    margin-bottom: 20px;
+    text-align: left;
+    border: 1px solid #ddd; /* Borda sutil para as células da tabela */
 }
 
-.product img {
+th {
+    background-color: #a4a0c4; /* Lilás claro */
+    color: #fff; /* Texto branco para contraste */
+}
+
+tr:nth-child(even) {
+    background-color: #e6e6e6; /* Cor de fundo alternada para as linhas da tabela */
+}
+
+tr:hover {
+    background-color: #d0c8e2; /* Cor de fundo ao passar o mouse */
+}
+
+/* Imagens dos Produtos */
+img {
     max-width: 100px;
-    max-height: 100px;
-    margin-right: 10px;
-    cursor: pointer; 
+    height: auto;
+    border-radius: 5px; /* Bordas arredondadas para uma aparência mais suave */
+    margin: 0 5px;
 }
 
-.hidden {
-    display: none; 
+/* Botões e Links */
+.nav-bar-item {
+    background-color: #3b5e40; /* Verde escuro */
+    color: #fff; /* Texto branco */
+    border: none;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    border-radius: 5px;
+    text-align: center;
+    display: inline-block;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.nav-bar-item:hover {
+    background-color: #2a3f29; /* Verde escuro mais intenso ao passar o mouse */
+}
+
+/* Ações da Tabela */
+a {
+    color: #3b5e40; /* Verde escuro para links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline; /* Sublinhado para links ao passar o mouse */
+}
+
+i {
+    margin: 0 5px;
+}
+
+/* Status Ativo/Inativo */
+span {
+    font-weight: bold;
+}
+
+span[style*="color: green;"] {
+    color: #3b5e40; /* Verde escuro para status ativo */
+}
+
+span[style*="color: red;"] {
+    color: #d9534f; /* Vermelho para status inativo */
+}
+
+/* Mensagens e alertas */
+p {
+    text-align: center;
+    font-size: 1.2em;
+    color: #3b5e40;
+}
+
+/* Formulário de Filtros */
+.filter-form {
+    margin: 20px;
+    padding: 20px;
+    background-color: #a4a0c4; /* Lilás claro */
+    border-radius: 5px;
+}
+
+.filter-form input[type="text"],
+.filter-form select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.filter-form button {
+    background-color: #3b5e40; /* Verde escuro */
+    color: #fff; /* Texto branco */
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.filter-form button:hover {
+    background-color: #2a3f29; /* Verde escuro mais intenso ao passar o mouse */
 }

@@ -1,0 +1,145 @@
+/* categoryStyles.css */
+
+/* Corpo da Página */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f4f9; /* Cor de fundo suave */
+    color: #333; /* Texto escuro para contraste */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Contêiner Principal */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    background-color: #3b5e40; /* Fundo branco para o contêiner */
+    border-radius: 8px; /* Bordas arredondadas */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
+    padding: 20px;
+    margin-top: 20px;
+}
+
+/* Título */
+h1 {
+    color: #2c3e50; /* Cor do título em um tom de azul escuro */
+    border-bottom: 2px solid #3b5e40; /* Linha abaixo do título */
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+/* Submenu */
+.nav-bar-item {
+    margin-bottom: 20px;
+    text-align: left;
+    
+}
+
+button {
+    background-color: #3b5e40; /* Verde escuro */
+    color: #fff; /* Texto branco */
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+    background-color: #2a3f29; /* Verde escuro mais intenso ao passar o mouse */
+    transform: scale(1.02); /* Leve aumento ao passar o mouse */
+}
+
+/* Formulário */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Campos de Entrada */
+input[type="text"] {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    font-size: 16px;
+    width: 100%;
+    box-sizing: border-box; /* Inclui o padding e a borda no tamanho total */
+}
+
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Remove espaçamento entre bordas */
+    margin-top: 20px;
+}
+
+table th, table td {
+    padding: 12px;
+    text-align: left;
+    border: 1px solid #ddd; /* Borda sutil */
+}
+
+table th {
+    background-color: #3b5e40; /* Verde escuro para cabeçalhos */
+    color: #fff; /* Texto branco */
+}
+
+table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Cor de fundo alternada para linhas pares */
+}
+
+table tr:hover {
+    background-color: #f1f1f1; /* Cor de fundo ao passar o mouse sobre a linha */
+}
+
+/* Ações e Links */
+a {
+    color: #3b5e40; /* Verde escuro para links */
+    text-decoration: none;
+    font-size: 18px;
+    margin: 0 5px;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: #2a3f29; /* Verde escuro mais intenso ao passar o mouse */
+}
+
+/* Indicadores de Status */
+.status-active {
+    color: #2ecc71; /* Verde para ativo */
+    font-weight: bold;
+}
+
+.status-inactive {
+    color: #e74c3c; /* Vermelho para inativo */
+    font-weight: bold;
+}
+
+/* Ícones de Ação */
+a i {
+    margin-right: 5px;
+}
+
+/* Botão Filtros */
+button.toggle-filter {
+    background-color: #3b5e40; /* Verde escuro */
+    color: #3b5e40; /* Texto branco */
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 20px; /* Espaço abaixo do botão */
+}
+
+button.toggle-filter:hover {
+    background-color: #2a3f29; /* Verde escuro mais intenso ao passar o mouse */
+    transform: scale(1.02); /* Leve aumento ao passar o mouse */
+}
