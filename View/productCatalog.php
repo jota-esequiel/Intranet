@@ -67,8 +67,8 @@
         ?>
         </div>
          <div class="icon">
-         <a href="../View/serchProduct.php" id="searchIcon"></a><id="searchBar">
-        <form action="searchProduct.php" method="get">
+         <a href="../Controller/searchProduct.php" id="searchIcon"></a><id="searchBar">
+        <form action="../Controller/searchProduct.php" method="get">
         <input type="text" name="search" id="searchBoxInput" placeholder="Digite sua pesquisa" value="<?php echo htmlspecialchars(isset($_GET['search']) ? $_GET['search'] : '', ENT_QUOTES, 'UTF-8'); ?>">
         <button type="submit" id="searchIcon"><i class="fas fa-magnifying-glass"></i></button></form>
         <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
@@ -117,7 +117,7 @@
             if ($produtos) {
                 foreach ($produtos as $produto) {
                     echo "<div class='produto'>";
-                    if (!empty($produto['img'])) {
+                    if (!empty($produto)) {
                         $imgPath = "../imagens/Produtos/" . htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8');
                         echo "<img src='{$imgPath}' alt='Imagem do Produto'>";
                     } else {
