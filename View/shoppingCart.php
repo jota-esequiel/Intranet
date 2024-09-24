@@ -1,13 +1,14 @@
 <?php
 session_start();
+
 include '../bdConnection.php';
 
-if (!isset($_SESSION['usuario'])) {
+if (empty($_SESSION['usuario'])) {
     header("Location: ../View/loginUser.php");
     exit();
 }
 
-if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) {
+if (empty($_SESSION['carrinho'])) {
     echo "Seu carrinho de compras está vazio.";
     exit();
 }
@@ -39,47 +40,62 @@ $total = 0;
     
     <div class="container">
         <h1>Carrinho de Compras</h1>
-    <?php
-    include '../Controller/standardFunctionsController.php';
-    $nomeCliente = $_SESSION['usuario']['nome']; ?>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Preço</th>
-                <th>Quantidade</th>
-                <th>Total</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($carrinho as $codProduto => $produto): 
-                $subtotal = $produto['precoproduto'] * $produto['quantidade'];
-                $total += $subtotal;
-            ?>
+        <?php
+        include '../Controller/standardFunctionsController.php';
+
+        $nomeCliente = $_SESSION['usuario']['nome'];
+        echo "<p>Este é seu carrinho de compras, " . htmlspecialchars($nomeCliente, ENT_QUOTES, 'UTF-8') . "!</p>";
+        ?>
+        
+        <table border="1">
+            <thead>
                 <tr>
-                    <td><?php echo htmlspecialchars($produto['nomeproduto']); ?></td>
-                    <td><?php echo formatarPrice($produto['precoproduto'], 2, ',', '.'); ?></td>
-                    <td><?php echo $produto['quantidade']; ?></td>
-                    <td><?php echo formatarPrice($subtotal, 2, ',', '.'); ?></td>
-                    <td>
-                        <a href="../Controller/updateCartController.php?action=add&codproduto=<?php echo $codProduto; ?>"><i class="fas fa-plus"></i></a>
-                        <a href="../Controller/updateCartController.php?action=remove&codproduto=<?php echo $codProduto; ?>"><i class="fas fa-minus"></i></a>
-                        <a href="../Controller/updateCartController.php?action=delete&codproduto=<?php echo $codProduto; ?>"><i class="fas fa-trash"></i></a>
-                    </td>
+                    <th></th>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                    <th>Ações</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-        <tfoot>
-            <tr>
-                <td colspan="3">Total</td>
-                <td><?php echo number_format($total, 2, ',', '.'); ?></td>
-                <td></td>
-            </tr>
-        </tfoot>
-    </table>
-    <br>
-    <a href="../Controller/checkOutController.php">Finalizar Compra</a>
+            </thead>
+            <tbody>
+                <?php foreach ($carrinho as $codProduto => $produto): 
+                    $subtotal = $produto['precoproduto'] * $produto['quantidade'];
+                    $total += $subtotal;
+                ?>
+                    <tr>
+                        <td>
+                            <?php 
+                            if (!empty($produto['img'])) {
+                                $imgPath = "../imagens/Produtos/" . htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8');
+                                echo "<img src='{$imgPath}' alt='Imagem do Produto' width='100' height='100'>";
+                            } else {
+                                echo "<div class='circle'></div><div class='circle'></div>";
+                            }
+                            ?>
+                        </td>
+                        <td><?php echo htmlspecialchars($produto['nomeproduto']); ?></td>
+                        <td><?php echo formatarPrice($produto['precoproduto'], 2, ',', '.'); ?></td>
+                        <td><?php echo $produto['quantidade']; ?></td>
+                        <td><?php echo formatarPrice($subtotal, 2, ',', '.'); ?></td>
+                        <td>
+                            <a href="../Controller/updateCartController.php?action=add&codproduto=<?php echo $codProduto; ?>"><i class="fas fa-plus"></i></a>
+                            <a href="../Controller/updateCartController.php?action=remove&codproduto=<?php echo $codProduto; ?>"><i class="fas fa-minus"></i></a>
+                            <a href="../Controller/updateCartController.php?action=delete&codproduto=<?php echo $codProduto; ?>"><i class="fas fa-trash"></i></a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+            <tfoot>
+                <tr>
+                    <td colspan="3">Total</td>
+                    <td><?php echo number_format($total, 2, ',', '.'); ?></td>
+                    <td></td>
+                </tr>
+            </tfoot>
+        </table>
+        <br>
+        <a href="../Controller/checkOutController.php">Finalizar Compra</a>
     </div>
 </body>
 </html>
