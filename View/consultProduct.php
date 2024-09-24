@@ -146,9 +146,7 @@ if (checkUserType('A')) {
             <tr>
                 <td>
                     <?php if(!empty($product['images'])): ?>
-                        <?php foreach($product['images'] as $image): ?>
-                            <img src="../imagens/Produtos/<?php echo htmlspecialchars(basename($image), ENT_QUOTES, 'UTF-8'); ?>" alt="Imagem do Produto" style="width: 100px; height: auto;">
-                        <?php endforeach; ?>
+                        <a href="../imagens/Produtos/<?php echo htmlspecialchars(basename($product['images'][0]), ENT_QUOTES, 'UTF-8'); ?>" target="_blank">Imagem</a>
                     <?php else: ?>
                         <em>Nenhuma imagem disponível</em>
                     <?php endif; ?>

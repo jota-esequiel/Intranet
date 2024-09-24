@@ -42,7 +42,7 @@
         ?>
 
   <div class="categorias">
-        <?php 
+        <?php  
             include_once '../bdConnection.php';
             $pdo = conectar();
 
@@ -129,9 +129,9 @@
                 echo "<p>Tamanho: " . htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8') . "</p>";
 
                 if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == true) {
-                    echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
+                    echo "<form action='../Controller/addToShoppingCartController.php' method='POST'>";
                     echo "<input type='hidden' name='codproduto' value='" . htmlspecialchars($produto['codproduto'], ENT_QUOTES, 'UTF-8') . "'>";
-                    echo "<button type='submit'>Adicionar ao Carrinho</button>";
+                    echo "<button type='submit'><i class='fa-solid fa-cart-shopping'>Adicionar ao carrinho</i></button>";
                     echo "</form>";
                 }
                 echo "</div>";

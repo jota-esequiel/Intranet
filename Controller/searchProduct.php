@@ -69,7 +69,8 @@ if (!empty($searchTerm)) {
             foreach ($produtos as $produto) {
                 echo "<div class='produto'>";
                 if (!empty($produto['img'])) {
-                    echo "<img src='data:image/jpeg;base64," . base64_encode($produto['img']) . "' alt='Imagem do Produto'>";
+                    $imgPath = "../imagens/Produtos/" . htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8');
+                    echo "<img src='{$imgPath}' alt='Imagem do Produto' width='100' height='100'>";
                 } else {
                     echo "<div class='circle'></div>";
                     echo "<div class='circle'></div>";
