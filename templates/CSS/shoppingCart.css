@@ -1,174 +1,105 @@
-/* Estilo Geral */
+/* Estilo geral do corpo */
 body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #e9ecef, #f4f4f9); /* Gradiente de fundo para a tela */
+  font-family: 'Lato', sans-serif;
+  background-color: #f9f9fb; /* fundo claro */
+  color: #333;
   margin: 0;
-  padding: 0;
-  color: #333;
-}
-
-.container {
-  width: 90%;
-  max-width: 1200px;
-  margin: 20px auto;
   padding: 20px;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  position: relative;
 }
 
-/* Barra de Destaque no Topo do Container */
-.container::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 8px;
-  background: linear-gradient(to right, #0056b3, #007bff);
-  border-radius: 12px 12px 0 0;
+/* Container do carrinho */
+.container {
+  max-width: 900px;
+  margin: auto;
+  background-color: #ffffff; /* fundo branco */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Estilo do Título */
+/* Título */
 h1 {
-  font-size: 32px;
-  margin-bottom: 20px;
-  color: #333;
-  border-bottom: 3px solid #007bff;
-  padding-bottom: 10px;
   text-align: center;
+  color: #2a7a54; /* verde escuro */
+  margin-bottom: 20px;
+  font-size: 28px;
 }
 
-/* Estilo da Tabela */
+/* Estilo da tabela */
 table {
   width: 100%;
   border-collapse: collapse;
   margin-bottom: 20px;
 }
 
-table thead {
-  background-color: #007bff;
-  color: #fff;
-}
-
-table th, table td {
+th, td {
   padding: 15px;
   text-align: left;
-  border-bottom: 1px solid #ddd;
+  border-bottom: 1px solid #e3d7f2; /* borda lilás clara */
 }
 
-table th {
-  font-weight: 600;
-  font-size: 18px;
+th {
+  background-color: #e3d7f2; /* cabeçalho lilás claro */
+  color: #2a7a54; /* verde escuro */
+  font-weight: bold;
 }
 
-table tbody tr {
-  transition: background-color 0.3s;
+tr:hover {
+  background-color: #f0f8ff; /* leve fundo azul claro ao passar o mouse */
 }
 
-table tbody tr:hover {
-  background-color: #f8f9fa;
+/* Estilo para a coluna de ações */
+td:last-child {
+  display: flex;
+  justify-content: space-around; /* Espaçamento igual entre os ícones */
 }
 
-table tfoot {
-  font-weight: 600;
-  font-size: 18px;
-}
-
-table tfoot td {
-  border-top: 2px solid #ddd;
-}
-
-/* Estilo das Imagens dos Produtos */
-.product-image {
-  width: 80px;
-  height: 80px;
-  object-fit: cover;
-  border-radius: 8px;
-  margin-right: 15px;
-  border: 1px solid #ddd;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-/* Estilo dos Ícones */
+/* Ações dos produtos */
 td a {
-  text-decoration: none;
-  color: #007bff;
-  margin: 0 5px;
+  color: #2a7a54; /* verde escuro */
+  font-size: 18px; /* tamanho dos ícones */
+  transition: color 0.3s, transform 0.3s;
 }
 
 td a:hover {
-  color: #0056b3;
+  color: #1e5b41; /* tom mais escuro ao passar o mouse */
+  transform: scale(1.1); /* leve aumento ao passar o mouse */
 }
 
-td i {
-  font-size: 22px;
-  vertical-align: middle;
+/* Total do carrinho */
+tfoot {
+  background-color: #e3d7f2; /* lilás claro */
+  font-weight: bold;
 }
 
-/* Botão Finalizar Compra */
-a[href="../Controller/checkOutController.php"] {
-  display: inline-block;
-  padding: 12px 20px;
+tfoot td {
   font-size: 18px;
-  font-weight: 600;
-  color: #ffffff;
-  background-color: #007bff;
-  border-radius: 8px;
+}
+
+/* Link de finalizar compra */
+.finalize-link {
+  display: inline-block;
+  margin: 20px auto;
+  background-color: #2a7a54; /* verde escuro */
+  color: white;
+  padding: 12px 24px;
+  border-radius: 5px;
   text-decoration: none;
-  transition: background-color 0.3s, box-shadow 0.3s, transform 0.3s;
-  margin-top: 20px;
-  display: block;
   text-align: center;
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.3s;
 }
 
-a[href="../Controller/checkOutController.php"]:hover {
-  background-color: #0056b3;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
-  transform: translateY(-2px);
+.finalize-link:hover {
+  background-color: #1e5b41; /* cor mais escura ao passar o mouse */
+  transform: translateY(-2px); /* leve movimento ao passar o mouse */
 }
 
-/* Responsividade */
-@media (max-width: 768px) {
-  .container {
-      padding: 15px;
-  }
-
-  h1 {
-      font-size: 28px;
-  }
-
-  table th, table td {
-      padding: 10px;
-  }
-
-  table {
-      font-size: 16px;
-  }
-
-  a[href="../Controller/checkOutController.php"] {
-      font-size: 16px;
-      padding: 10px 18px;
-  }
-}
-
-@media (max-width: 480px) {
-  .product-image {
-      width: 60px;
-      height: 60px;
-  }
-
-  table th, table td {
-      padding: 8px;
-  }
-
-  h1 {
-      font-size: 24px;
-  }
-
-  a[href="../Controller/checkOutController.php"] {
-      font-size: 14px;
-      padding: 8px 16px;
-  }
+/* Mensagem quando o carrinho está vazio */
+.empty-cart {
+  text-align: center;
+  color: #666;
+  font-size: 18px;
+  margin-top: 20px;
 }

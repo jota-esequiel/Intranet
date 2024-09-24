@@ -1,212 +1,160 @@
-header {
-  background-color: #41634b;
-  padding: 10px; /* Reduza o padding para torná-lo mais fino */
-  display: flex;
-  justify-content: space-between; /* Distribui os elementos uniformemente */
-  align-items: center;
-  font-family: "Bebas Neue", sans-serif;
-  width: 100%; /* Faz o header ocupar 100% da largura */
-  height: 60px; /* Define a altura do header */
-  position: fixed; /* Fixar o header no topo */
-  top: 0;
-  font-size: 18px; /* Diminui o tamanho da fonte */
-  left: 0;
-  right: 0;
-  z-index: 999;
-  content: none;
-}
-
-header a {
-  color: #c3b2e2;
-  text-decoration: none;
-  margin-left: 15px;
-  font-size: 30px;
-  font-family: "Bebas Neue", sans-serif;
-
-}
-
-header a:hover {
-  opacity: 0.7;
-}
-
+/* Estilo geral do corpo */
 body {
-  margin-top: 0,1px; /* Ajuste o valor de acordo com a altura do header */
-  font-family: "Bebas Neue", sans-serif;
+  font-family: 'Lato', sans-serif;
+  background-color: #f9f9fb; /* fundo claro */
+  color: #333;
   margin: 0;
-  padding: 0;
-  font-size: 25px;
-  background-color: #ccc; /* Cor de fundo das categorias */
 }
 
-h1{
-  font-family: "Playfair Display", serif;
-  margin-top: 60px; /* Ajuste o valor de acordo com a altura do header */
+/* Estilos do cabeçalho */
+header {
+  background-color: #e3d7f2; /* lilás claro */
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
-.produtos {
-  padding: 20px;
-  font-family: "Lato", sans-serif;
-  display: inline-block;
-  justify-content: space-between;
-  margin-top: 10px; /* Espaço abaixo do header */
+/* Logo */
+header .logo {
+  flex: 1; /* Permite que a logo ocupe espaço flexível */
 }
 
-.icon {
-  font-size: 1.5rem;
-  align-items: flex-start; /* Alinha os itens no início do eixo principal */
-  display: grid;
-  min-height: auto; /* Remove a altura mínima */
-}
-
-@media (max-width: 768px) {
-  .icon{
-    margin-bottom: 10px; /* Ajusta a margem para telas menores */
-    min-height: auto; /* Remove a altura mínima */
-  }
-}
-
+/* Estilos para as categorias */
 .categorias {
-  justify-content: left;
-  align-items: center; /* Centraliza os itens verticalmente (opcional) */
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.categorias nav ul {
   list-style: none;
   padding: 0;
-  margin: 0;
-  margin-top: 0,1px; /* Ajuste o valor de acordo com a altura do header */
-  content: none;
-  list-style: none;
+  display: flex;
+  justify-content: center; /* Centraliza as categorias */
 }
 
-.categorias li {
-  display: inline-block;
-  padding: 1rem 1rem; /* Padding interno para cada categoria */
-  background-color: #ccc; /* Cor de fundo das categorias */
-  border-radius: 5px; /* Bordas arredondadas */
-  list-style-type: none;
-  content: none;
-  list-style: none;
+.categorias nav ul li {
+  margin: 0 15px;
 }
 
-.categorias a {
+.categorias nav ul li a {
   text-decoration: none;
-  color: #333;
-  font-weight: bold;
-  list-style: none;
-  align-items: center; 
+  color: #2a7a54; /* verde escuro */
+  font-weight: 600;
+  padding: 10px 15px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.3s, color 0.3s;
 }
 
-form{
-  margin: 0 0px;
-display: inline-block;
-
+.categorias nav ul li a:hover {
+  color: white; /* Cor do texto ao passar o mouse */
+  background-color: #2a7a54; /* fundo verde escuro ao passar o mouse */
 }
 
-.icon li {
- display: inline;
+/* Estilos para a seção de ícones */
+.icon {
+  display: flex;
+  align-items: center;
 }
 
-@media (max-width: 768px) {
-  .icon {
-    font-size: 1rem;
-  }
-}
-
-.produto:hover {
-  transform: translateY(-10px) scale(1.05);
-}
-
-.produto img {
-    width: 100%;
-    height: auto;
-    max-height: 200px;
-    object-fit: cover;
-}
-
-.produto .info {
-    padding: 10px;
-    text-align: center;
-}
-
-.produto h2 {
-    margin-top: 0;
-    font-size: 18px;
-}
-
-.produto p {
-    margin: 5px 0;
-    font-size: 14px;
-}
-
-@media (min-width: 768px) {
-    .produtos {
-        justify-content: flex-start;
-        display: inline-flex;
-    }
-
-    .produto {
-      border-radius: 10px;
-       width: 200px;
-       height: 450px;
-       border: 2px solid #ccc; /* Adiciona uma borda ao redor do produto */
-       padding: 20px; /* Adiciona um espaço interno */
-       margin: 10px; /* Adiciona um espaço externo */
-       text-align: center; /* Centraliza o conteúdo dentro do contêiner */
-       background-color: #fff; /* Define a cor de fundo */
-       box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra leve */
-       align-self: auto;
-    }
-
-    .produto h2 {
-        font-size: 20px;
-    }
-
-    .produto p {
-        font-size: 16px;
-    }
-}
-
-#searchBar {
-  display: none;
-  position: absolute;
-  top: 60px;
-  right: 20px;
-  background-color: #ffffff;
-  border: 1px solid #ddd;
-  padding: 10px;
-  border-radius: 5px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  z-index: 1000;
+.icon form {
+  display: flex;
+  align-items: center;
 }
 
 #searchBoxInput {
-  width: 200px;
-  padding: 8px;
+  padding: 10px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
+  border-radius: 5px;
+  margin-right: 10px;
+  transition: border-color 0.3s;
 }
 
-.bebas-neue-regular {
-  font-family: "Bebas Neue", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+#searchBoxInput:focus {
+  border-color: #2a7a54; /* verde escuro */
+  outline: none;
+}
+
+.icon button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2a7a54;
+  font-size: 24px; /* tamanho dos ícones */
+}
+
+.icon a {
+  margin-left: 20px;
+  color: #2a7a54;
+  font-size: 24px; /* tamanho dos ícones */
+}
+
+.icon a:hover, .icon button:hover {
+  color: #1e5b41; /* tom mais escuro ao passar o mouse */
+}
+
+/* Estilo do título */
+h1 {
+  text-align: center;
+  color: #2a7a54;
+  margin: 30px 0;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+/* Estilo dos produtos */
+.produtos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
+}
+
+.produto {
+  background-color: #ffffff; /* fundo branco para os produtos */
+  border: 1px solid #e3d7f2;
+  border-radius: 10px;
+  margin: 15px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.produto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.produto img {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.info {
+  text-align: center;
+}
+
+.info h2 {
+  color: #2a7a54; /* verde escuro */
   font-size: 20px;
-}
-.playfair-display-uniquifier {
-  font-family: "Playfair Display", serif;
-  font-optical-sizing: auto;
-  font-weight: bold 800;
-  font-style: italic;
+  margin: 10px 0;
 }
 
-.lato-thin {
-  font-family: "Lato", sans-serif;
-  font-weight: 100;
-  font-style: normal;
+.info p {
+  margin: 5px 0;
 }
 
-.lato-light {
-  font-family: "Lato", sans-serif;
-  font-weight: 300;
-  font-style: normal;
+/* Responsividade */
+@media (max-width: 768px) {
+  .produto {
+      width: calc(45% - 20px); /* Ajusta a largura em telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  .produto {
+      width: calc(100% - 20px); /* Full width em telas muito pequenas */
+  }
 }

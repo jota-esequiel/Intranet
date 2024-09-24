@@ -14,17 +14,28 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
 
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+
     <title>Home | Cliente</title>
     <link href="../fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>
-    <header>
-
-   
+   <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+   <header class="d-flex justify-content-between align-items-center">
+    
         <?php
         session_start();
         include_once '../bdConnection.php';
         include '../Controller/standardFunctionsController.php';
+
+        echo getImgPath('logo', 90, 80, null);
+
 
         if (isset($_SESSION['usuario'])) {
             try {
@@ -67,16 +78,17 @@
         ?>
         </div>
          <div class="icon">
-         <a href="../Controller/searchProduct.php" id="searchIcon"></a><id="searchBar">
-        <form action="../Controller/searchProduct.php" method="get">
-        <input type="text" name="search" id="searchBoxInput" placeholder="Digite sua pesquisa" value="<?php echo htmlspecialchars(isset($_GET['search']) ? $_GET['search'] : '', ENT_QUOTES, 'UTF-8'); ?>">
-        <button type="submit" id="searchIcon"><i class="fas fa-magnifying-glass"></i></button></form>
-        <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
-        <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
-        <?php logoutUser('logout') ?>
+         <form action="../Controller/searchProduct.php" method="GET" class="d-flex align-items-center">
+            <input type="text" name="search" id="searchBoxInput" class="form-control" placeholder="Digite sua pesquisa" value="<?php echo htmlspecialchars(isset($_GET['search']) ? $_GET['search'] : '', ENT_QUOTES, 'UTF-8'); ?>">
+            <button type="submit" class="btn btn-link" id="searchIcon"><i class="fas fa-magnifying-glass"></i></button>
+        </form>
+        <a href="../View/userProfile.php" class="ml-3"><i class="fas fa-circle-user"></i></a>
+        <a href="../View/shoppingCart.php" class="ml-3"><i class="fas fa-cart-shopping"></i></a>
+        <?php logoutUser('logout'); ?>
     </div>
     </header>
     <h1>Produtos Disponíveis</h1>
+
     <div class="produtos">
         <?php
         try {
@@ -130,16 +142,19 @@
                     echo "<p>Categoria: " . htmlspecialchars($produto['nomecategoria'], ENT_QUOTES, 'UTF-8') . "</p>";
                     echo "<p>Cor: " . htmlspecialchars($produto['corProd'], ENT_QUOTES, 'UTF-8') . "</p>";
                     echo "<p>Tamanho: " . htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8') . "</p>";
-                    echo "</div>";
-
+                    
+                    echo "<div class='add-to-cart-button'>";
+                
                     if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == true) {
                         echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
                         echo "<input type='hidden' name='codproduto' value='" . htmlspecialchars($produto['codproduto'], ENT_QUOTES, 'UTF-8') . "'>";
                         echo "<button type='submit'>Adicionar ao Carrinho</button>";
                         echo "</form>";
+                    
                     }
-                    echo "</div>";
-            
+                echo "</div>";
+                echo "</div>";
+                echo "</div>";
                     
                 }
             } else {
