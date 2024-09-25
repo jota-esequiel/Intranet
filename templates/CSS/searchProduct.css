@@ -1,164 +1,161 @@
 /* Estilo geral do corpo */
 body {
     font-family: 'Lato', sans-serif;
-    background-color: #f9f9fb; /* Fundo claro */
+    background-color: #f9f9fb; /* fundo claro */
     color: #333;
     margin: 0;
-}
-
-/* Estilos do cabeçalho */
-header {
-    background-color: #e3d7f2; /* Lilás claro */
+  }
+  
+  /* Estilos do cabeçalho */
+  header {
+    background-color: #e3d7f2; /* lilás claro */
     padding: 15px 20px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-/* Logo */
-header .logo {
+  }
+  
+  /* Logo */
+  header .logo {
     flex: 1; /* Permite que a logo ocupe espaço flexível */
-}
-
-/* Estilos para as categorias */
-.categorias {
+  }
+  
+  /* Estilos para as categorias */
+  .categorias {
     margin: 10px 0;
     padding: 10px 0;
-}
-
-.categorias nav ul {
+  }
+  
+  .categorias nav ul {
     list-style: none;
     padding: 0;
     display: flex;
     justify-content: center; /* Centraliza as categorias */
-}
-
-.categorias nav ul li {
+  }
+  
+  .categorias nav ul li {
     margin: 0 15px;
-}
-
-.categorias nav ul li a {
+  }
+  
+  .categorias nav ul li a {
     text-decoration: none;
-    color: #2a7a54; /* Verde escuro */
+    color: #2a7a54; /* verde escuro */
     font-weight: 600;
     padding: 10px 15px; /* Espaçamento interno */
     border-radius: 5px; /* Bordas arredondadas */
     transition: background-color 0.3s, color 0.3s;
-}
-
-.categorias nav ul li a:hover {
+  }
+  
+  .categorias nav ul li a:hover {
     color: white; /* Cor do texto ao passar o mouse */
-    background-color: #2a7a54; /* Fundo verde escuro ao passar o mouse */
-}
-
-/* Estilos para a seção de ícones */
-.icon {
+    background-color: #2a7a54; /* fundo verde escuro ao passar o mouse */
+  }
+  
+  /* Estilos para a seção de ícones */
+  .icon {
     display: flex;
     align-items: center;
-}
-
-.icon form {
+  }
+  
+  .icon form {
     display: flex;
     align-items: center;
-}
-
-#searchBoxInput {
+  }
+  
+  #searchBoxInput {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin-right: 10px;
     transition: border-color 0.3s;
-}
-
-#searchBoxInput:focus {
-    border-color: #2a7a54; /* Verde escuro */
+  }
+  
+  #searchBoxInput:focus {
+    border-color: #2a7a54; /* verde escuro */
     outline: none;
-}
-
-.icon button {
+  }
+  
+  .icon button {
     background: none;
     border: none;
     cursor: pointer;
     color: #2a7a54;
-    font-size: 24px; /* Tamanho dos ícones */
-}
-
-.icon a {
+    font-size: 24px; /* tamanho dos ícones */
+  }
+  
+  .icon a {
     margin-left: 20px;
     color: #2a7a54;
-    font-size: 24px; /* Tamanho dos ícones */
-}
-
-.icon a:hover, .icon button:hover {
-    color: #1e5b41; /* Tom mais escuro ao passar o mouse */
-}
-
-/* Estilo do título */
-h1 {
+    font-size: 24px; /* tamanho dos ícones */
+  }
+  
+  .icon a:hover, .icon button:hover {
+    color: #1e5b41; /* tom mais escuro ao passar o mouse */
+  }
+  
+  /* Estilo do título */
+  h1 {
     text-align: center;
     color: #2a7a54;
     margin: 30px 0;
     font-size: 28px;
     font-weight: bold;
-}
-
-/* Estilo dos produtos */
-.produtos {
+  }
+  
+  /* Estilo dos produtos */
+  .produtos {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding: 20px;
-}
-
-.produto {
-    background-color: #ffffff; /* Fundo branco para os produtos */
+  }
+  
+  .produto {
+    background-color: #ffffff; /* fundo branco para os produtos */
     border: 1px solid #e3d7f2;
     border-radius: 10px;
     margin: 15px;
     padding: 20px;
-    width: 280px; /* Largura fixa para produtos */
+    width: 280px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
-}
-
-.produto:hover {
+  }
+  
+  .produto:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-.produto img {
+  }
+  
+  .produto img {
     max-width: 100%;
     border-radius: 5px;
-}
-
-.info {
+  }
+  
+  .info {
     text-align: center;
-}
-
-.info h2 {
-    color: #2a7a54; /* Verde escuro */
+  }
+  
+  .info h2 {
+    color: #2a7a54; /* verde escuro */
     font-size: 20px;
     margin: 10px 0;
-}
-
-.info p {
+  }
+  
+  .info p {
     margin: 5px 0;
-}
-
-/* Responsividade */
-@media (max-width: 768px) {
+  }
+  
+  /* Responsividade */
+  @media (max-width: 768px) {
     .produto {
         width: calc(45% - 20px); /* Ajusta a largura em telas menores */
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
     .produto {
         width: calc(100% - 20px); /* Full width em telas muito pequenas */
     }
-
-    h1 {
-        font-size: 24px; /* Tamanho do título em telas menores */
-    }
-}
+  }
+  

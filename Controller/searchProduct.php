@@ -66,14 +66,18 @@ if (!empty($searchTerm)) {
     
     <!-- Bootstrap CSS -->
  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
+ <link href="../fontawesome/css/all.css" rel="stylesheet">
 </head>
-<body>
+<body> 
+    <!-- Optional JavaScript -->
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
    
-    <header>
+     <header class="d-flex justify-content-between align-items-center">
 
     <?php  
-
 include_once '../bdConnection.php';
     if (isset($_SESSION['usuario'])) {
             try {
@@ -115,11 +119,10 @@ include_once '../bdConnection.php';
                 echo 'Nenhuma categoria encontrada';
             }
         ?>
-        </div>
-       
-        <div class="icon">
 
-        <form action="../Controller/searchProduct.php" method="GET" class="d-flex align-items-center">
+        </div>
+       <div class="icon">
+       <form action="../Controller/searchProduct.php" method="GET" class="d-flex align-items-center">
             <input type="text" name="search" id="searchBoxInput" class="form-control" placeholder="Digite sua pesquisa" value="<?php echo htmlspecialchars(isset($_GET['search']) ? $_GET['search'] : '', ENT_QUOTES, 'UTF-8'); ?>">
             <button type="submit" class="btn btn-link" id="searchIcon"><i class="fas fa-magnifying-glass"></i></button>
         </form>
@@ -127,10 +130,12 @@ include_once '../bdConnection.php';
         <a href="../View/userProfile.php" class="ml-3"><i class="fas fa-circle-user"></i></a>
         <a href="../View/shoppingCart.php" class="ml-3"><i class="fas fa-cart-shopping"></i></a>
         <?php logoutUser('logout'); ?>
+
+    </div>
     </header>
-        </div>
+        
     <h1>Resultados da Pesquisa para "<?php echo htmlspecialchars($searchTerm, ENT_QUOTES, 'UTF-8'); ?>"</h1>
-    
+
     <div class="produtos">
         <?php
         if (!empty($produtos)) {
@@ -149,6 +154,7 @@ include_once '../bdConnection.php';
                 echo "<p>Categoria: " . htmlspecialchars($produto['nomecategoria'], ENT_QUOTES, 'UTF-8') . "</p>";
                 echo "<p>Cor: " . htmlspecialchars($produto['corProd'], ENT_QUOTES, 'UTF-8') . "</p>";
                 echo "<p>Tamanho: " . htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8') . "</p>";
+                echo "<div class='add-to-cart-button'>";
 
                 if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == true) {
                     echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
@@ -156,13 +162,16 @@ include_once '../bdConnection.php';
                     echo "<button type='submit'>Adicionar ao Carrinho</button>";
                     echo "</form>";
                 }
-                echo "</div>";
-                echo "</div>";
+            echo "</div>";
+            echo "</div>";
+            echo "</div>";
             }
         } else {
             echo "<p>Nenhum produto encontrado para o termo de pesquisa.</p>";
         }
         ?>
     </div>
+    </div>
+    <script src="../templates/JS/main.js"></script>
 </body>
 </html>
