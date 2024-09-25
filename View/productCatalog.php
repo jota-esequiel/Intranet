@@ -82,6 +82,7 @@
             <input type="text" name="search" id="searchBoxInput" class="form-control" placeholder="Digite sua pesquisa" value="<?php echo htmlspecialchars(isset($_GET['search']) ? $_GET['search'] : '', ENT_QUOTES, 'UTF-8'); ?>">
             <button type="submit" class="btn btn-link" id="searchIcon"><i class="fas fa-magnifying-glass"></i></button>
         </form>
+        <a href="../View/homeClient.php"><i class="fa-solid fa-house"></i></a>
         <a href="../View/userProfile.php" class="ml-3"><i class="fas fa-circle-user"></i></a>
         <a href="../View/shoppingCart.php" class="ml-3"><i class="fas fa-cart-shopping"></i></a>
         <?php logoutUser('logout'); ?>

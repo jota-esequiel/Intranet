@@ -50,19 +50,87 @@ if (!empty($searchTerm)) {
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../templates/CSS/homeClient.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resultados da Pesquisa</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link href="../fontawesome/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" href="../templates/CSS/productCatalog.css">
+    <link rel="stylesheet" href="../templates/CSS/searchProduct.css">
+    <title>Resultados da Pesquisa</title>
+    
+    <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 </head>
 <body>
+   
     <header>
-        <a href="../View/userProfile.php"><i class="fas fa-circle-user"></i></a> 
-        <a href="../View/shoppingCart.php"><i class="fas fa-cart-shopping"></i></a> 
+
+    <?php  
+
+include_once '../bdConnection.php';
+    if (isset($_SESSION['usuario'])) {
+            try {
+                $pdo = conectar();
+                $stmt = $pdo->prepare("SELECT nome FROM tb_clientes WHERE codcliente = :codcliente");
+                $stmt->bindParam(':codcliente', $_SESSION['usuario']['codcliente']);
+                $stmt->execute();
+                $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+            } catch (PDOException $e) {
+                echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
+            }            
+        }
+        ?>
+    
+    <div class="categorias">
+        <?php  
+         include_once '../bdConnection.php';
+            $pdo = conectar();
+
+            echo getImgPath('logo', 90, 80, null);
+
+            $sql = 'SELECT codcategoria, nomecategoria FROM tb_categorias';
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute();
+
+            $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+            if ($categorias) {
+                echo '<nav>';  
+                echo '<ul>';
+            
+                foreach ($categorias as $categoria) {
+                    echo '<li><a href="productCatalog.php?categoria=' . urlencode($categoria['codcategoria']) . '">' . ucfirst($categoria['nomecategoria']) . '</a></li>';
+                }
+
+                echo '</ul>';
+                echo '</nav>';
+            } else {
+                echo 'Nenhuma categoria encontrada';
+            }
+        ?>
+        </div>
+       
+        <div class="icon">
+
+        <form action="../Controller/searchProduct.php" method="GET" class="d-flex align-items-center">
+            <input type="text" name="search" id="searchBoxInput" class="form-control" placeholder="Digite sua pesquisa" value="<?php echo htmlspecialchars(isset($_GET['search']) ? $_GET['search'] : '', ENT_QUOTES, 'UTF-8'); ?>">
+            <button type="submit" class="btn btn-link" id="searchIcon"><i class="fas fa-magnifying-glass"></i></button>
+        </form>
         <a href="../View/homeClient.php"><i class="fa-solid fa-house"></i></a>
+        <a href="../View/userProfile.php" class="ml-3"><i class="fas fa-circle-user"></i></a>
+        <a href="../View/shoppingCart.php" class="ml-3"><i class="fas fa-cart-shopping"></i></a>
+        <?php logoutUser('logout'); ?>
     </header>
+        </div>
     <h1>Resultados da Pesquisa para "<?php echo htmlspecialchars($searchTerm, ENT_QUOTES, 'UTF-8'); ?>"</h1>
+    
     <div class="produtos">
         <?php
         if (!empty($produtos)) {
