@@ -114,7 +114,7 @@ echo getImgPath('logo', 90, 80, null);
                 echo '<ul>';
             
                 foreach ($categorias as $categoria) {
-                    echo '<li><a href="productCatalog.php?categoria=' . urlencode($categoria['codcategoria']) . '">' . ucfirst($categoria['nomecategoria']) . '</a></li>';
+                    echo '<li><a href="../View/productCatalog.php?categoria=' . urlencode($categoria['codcategoria']) . '">' . ucfirst($categoria['nomecategoria']) . '</a></li>';
                 }
 
                 echo '</ul>';
