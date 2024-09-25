@@ -62,11 +62,13 @@ if (!empty($searchTerm)) {
     <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
     <link href="../fontawesome/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="../templates/CSS/searchProduct.css">
+
+     <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+ 
     <title>Resultados da Pesquisa</title>
     
-    <!-- Bootstrap CSS -->
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
- <link href="../fontawesome/css/all.css" rel="stylesheet">
+   <link href="../fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body> 
     <!-- Optional JavaScript -->
@@ -79,6 +81,9 @@ if (!empty($searchTerm)) {
 
     <?php  
 include_once '../bdConnection.php';
+
+echo getImgPath('logo', 90, 80, null);
+
     if (isset($_SESSION['usuario'])) {
             try {
                 $pdo = conectar();
@@ -97,8 +102,7 @@ include_once '../bdConnection.php';
          include_once '../bdConnection.php';
             $pdo = conectar();
 
-            echo getImgPath('logo', 90, 80, null);
-
+            
             $sql = 'SELECT codcategoria, nomecategoria FROM tb_categorias';
             $stmt = $pdo->prepare($sql);
             $stmt->execute();
