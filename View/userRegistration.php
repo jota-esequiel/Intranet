@@ -12,6 +12,7 @@
     <title>Cadastro de Clientes</title>
 </head>
 <body>
+
  <div class="bebas-neue-regular">
  <div class="container">
     <div class="cadatrese">
@@ -26,39 +27,38 @@
 </div>
 
 <div class="input">
-        <label class="form-label"></label>
+<label class="form-label">Nome:</label>
         <input type="text" name="nome" placeholder="Informe o seu nome..." required>
         <br><br>
-        <label class="form-label" for="email"></label>
+        <label class="form-label" for="email">E-mail:</label>
         <input id="email" type="email" name="email" placeholder="Informe o seu e-mail..." required>
         <br><br>
-        <label class="form-label" for="dtnasc"></label>
+        <label class="form-label" for="dtnasc">Data de nascimento:</label>
         <input id="dtnasc" class="date" type="text" name="dtnasc" placeholder="Informe a sua data de nascimento..." required oninput="mascaraData(this)">
         <br><br>
-        <label class="form-label" for="fone"></label>
+        <label class="form-label" for="fone">Contato:</label>
         <input id="fone" class="phone_with_ddd" type="text" name="fone" placeholder="Informe o seu número de telefone..." required oninput="mascaraTelefone(this)"> 
         <br><br>
-        <label class="form-label" for="cpf"></label>
+        <label class="form-label" for="cpf">CPF:</label>
         <input id="cpf" class="cpf" type="text" name="cpf" placeholder="Informe o seu CPF" required oninput="mascaraCPF(this)">
         <br><br>
-        <label class="form-label" for="senha"></label>
+        <label class="form-label" for="senha">Senha:</label>
         <input id="senha" type="password" name="senha" placeholder="Informe a sua senha..." maxlength="32" required>
         <br><br>
-        <label class="form-label" for="rua"></label>
+        <label class="form-label" for="rua">Rua:</label>
         <input id="rua" type="text" name="rua" placeholder="Informe o nome da sua rua...">
         <br><br>
-        <label class="form-label" for="complemento"></label>
+        <label class="form-label" for="complemento">Complemento:</label>
         <input id="complemento" type="text" name="complemento" placeholder="Informe o complemento...">
         <br><br>
-        <label class="form-label" for="ncasa"></label>
+        <label class="form-label" for="ncasa">Número da Casa:</label>
         <input id="ncasa" type="text" name="ncasa" placeholder="Informe o número da casa..." required>
         <br><br>
-        <label class="form-label" for="cep"></label>
+        <label class="form-label" for="cep">CEP:</label>
         <input id="cep" type="text" name="cep" placeholder="Informe o CEP..." required oninput="mascaraCEP(this)">
         <br><br>
-        <label class="form-label" for="cidade">Cidade</label>
+        <label for="cidade">Cidade</label>
         <select id="cidade" name="codcid" required>
-        <div class="option">
         <option value="">Selecione a cidade</option>
 
 </div>
@@ -88,7 +88,7 @@
         </form>
     <script src = "../templates/JS/mask.js"></script>
 
-       
+
         </div>
 </body>
 </html>

@@ -4,102 +4,195 @@ body {
   background-color: #f9f9fb; /* fundo claro */
   color: #333;
   margin: 0;
-  padding: 20px;
 }
 
-/* Container do carrinho */
-.container {
-  max-width: 900px;
-  margin: auto;
-  background-color: #ffffff; /* fundo branco */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+/* Estilos do cabeçalho */
+header {
+  background-color: #e3d7f2; /* lilás claro */
+  padding: 15px 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-/* Título */
+/* Logo */
+header .logo {
+  flex: 1; /* Permite que a logo ocupe espaço flexível */
+}
+
+/* Estilos para as categorias */
+.categorias {
+  margin: 10px 0;
+  padding: 10px 0;
+}
+
+.categorias nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center; /* Centraliza as categorias */
+}
+
+.categorias nav ul li {
+  margin: 0 15px;
+}
+
+.categorias nav ul li a {
+  text-decoration: none;
+  color: #2a7a54; /* verde escuro */
+  font-weight: 600;
+  padding: 10px 15px; /* Espaçamento interno */
+  border-radius: 5px; /* Bordas arredondadas */
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.categorias nav ul li a:hover {
+  color: white; /* Cor do texto ao passar o mouse */
+  background-color: #2a7a54; /* fundo verde escuro ao passar o mouse */
+}
+
+/* Estilos para a seção de ícones */
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon form {
+  display: flex;
+  align-items: center;
+}
+
+#searchBoxInput {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  margin-right: 10px;
+  transition: border-color 0.3s;
+}
+
+#searchBoxInput:focus {
+  border-color: #2a7a54; /* verde escuro */
+  outline: none;
+}
+
+.icon button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2a7a54;
+  font-size: 24px; /* tamanho dos ícones */
+}
+
+.icon a {
+  margin-left: 20px;
+  color: #2a7a54;
+  font-size: 24px; /* tamanho dos ícones */
+}
+
+.icon a:hover, .icon button:hover {
+  color: #1e5b41; /* tom mais escuro ao passar o mouse */
+}
+
+/* Estilo do título */
 h1 {
   text-align: center;
-  color: #2a7a54; /* verde escuro */
-  margin-bottom: 20px;
+  color: #2a7a54;
+  margin: 30px 0;
   font-size: 28px;
-}
-
-/* Estilo da tabela */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 20px;
-}
-
-th, td {
-  padding: 15px;
-  text-align: left;
-  border-bottom: 1px solid #e3d7f2; /* borda lilás clara */
-}
-
-th {
-  background-color: #e3d7f2; /* cabeçalho lilás claro */
-  color: #2a7a54; /* verde escuro */
   font-weight: bold;
 }
 
-tr:hover {
-  background-color: #f0f8ff; /* leve fundo azul claro ao passar o mouse */
-}
-
-/* Estilo para a coluna de ações */
-td:last-child {
+/* Estilo dos produtos */
+.produtos {
   display: flex;
-  justify-content: space-around; /* Espaçamento igual entre os ícones */
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 20px;
 }
 
-/* Ações dos produtos */
-td a {
-  color: #2a7a54; /* verde escuro */
-  font-size: 18px; /* tamanho dos ícones */
-  transition: color 0.3s, transform 0.3s;
+.produto {
+  background-color: #ffffff; /* fundo branco para os produtos */
+  border: 1px solid #e3d7f2;
+  border-radius: 10px;
+  margin: 15px;
+  padding: 20px;
+  width: 280px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
-td a:hover {
-  color: #1e5b41; /* tom mais escuro ao passar o mouse */
-  transform: scale(1.1); /* leve aumento ao passar o mouse */
+.produto:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* Total do carrinho */
-tfoot {
-  background-color: #e3d7f2; /* lilás claro */
-  font-weight: bold;
-}
-
-tfoot td {
-  font-size: 18px;
-}
-
-/* Link de finalizar compra */
-.finalize-link {
-  display: inline-block;
-  margin: 20px auto;
-  background-color: #2a7a54; /* verde escuro */
-  color: white;
-  padding: 12px 24px;
+.produto img {
+  max-width: 100%;
   border-radius: 5px;
-  text-decoration: none;
-  text-align: center;
-  font-size: 18px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.3s;
 }
 
-.finalize-link:hover {
-  background-color: #1e5b41; /* cor mais escura ao passar o mouse */
-  transform: translateY(-2px); /* leve movimento ao passar o mouse */
+.info {
+  text-align: center;
 }
 
-/* Mensagem quando o carrinho está vazio */
-.empty-cart {
-  text-align: center;
-  color: #666;
-  font-size: 18px;
-  margin-top: 20px;
+.info h2 {
+  color: #2a7a54; /* verde escuro */
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.info p {
+  margin: 5px 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .produto {
+      width: calc(45% - 20px); /* Ajusta a largura em telas menores */
+  }
+}
+
+@media (max-width: 480px) {
+  .produto {
+      width: calc(100% - 20px); /* Full width em telas muito pequenas */
+  }
+}
+
+/* Estilização da tabela */
+.table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse; /* Remove espaços entre as células */
+}
+
+.table th,
+.table td {
+  text-align: center; /* Centraliza o texto */
+  padding: 10px; /* Espaçamento interno */
+}
+
+.table th {
+  background-color: #1e5b41; /* Cor de fundo escura para o cabeçalho */
+  color: #1e5b41; /* Cor do texto do cabeçalho */
+}
+
+.table tbody tr:hover {
+  background-color: #f8f9fa; /* Cor de fundo ao passar o mouse */
+}
+
+.table img {
+  max-width: 100px; /* Limita a largura da imagem */
+  max-height: 100px; /* Limita a altura da imagem */
+  object-fit: cover; /* Mantém a proporção da imagem */
+}
+
+.table .btn {
+  margin: 0 5px; /* Espaçamento entre os botões */
+}
+
+/* Estilo para a linha total */
+tfoot tr {
+  font-weight: bold; /* Destaque para o total */
+  background-color: #e9ecef; /* Cor de fundo para a linha total */
 }

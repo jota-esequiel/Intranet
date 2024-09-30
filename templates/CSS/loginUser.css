@@ -1,90 +1,85 @@
-body {
-    background-color: #89bb89;
-  }
-  .container {
-    width: 500px; /* Largura do container */
-    margin: 20px auto; /* Adicionar margem superior e inferior e centralizar horizontalmente */
-    background-color: #c3b2e2;
-    border-radius: 15px; /* Cor de fundo */
-    padding: 10px;
-    color: #4a7256;
-    box-shadow: 15px 10px #9c8fb6;
-    font-family: "Bebas Neue", sans-serif;
-    text-align: center;
-    align-content: center;
-  }
-  h2 {
-    font-size: 60px;
-    margin: 0;
-    padding: 0;
-    color: #4a7256;
-  }
 
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 300px;
-    margin: 0 auto;
-    padding: 20px;
-    font-size: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: normal;
-  }
-  
-  input[type="email"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 10px;
-    margin-bottom: 10px;
-  }
-  
-  input[type="submit"] {
-    background-color: #5c8167;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-family: "Playfair Display", serif;
-    text-align: center;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  input[type="submit"]:hover {
-    background-color: #7dac88;
-  }
-  
-  p {
-    text-align: center;
-    margin-top: 10px;
-    font-size: 150%;
-  }
-  
-  a {
-    color: #5c8167;
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  a:hover {
-    color: #7dac88;
-  }
-  .bebas-neue-regular {
-    font-family: "Bebas Neue", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    font-size: 20px;
-  }
-  .playfair-display-uniquifier {
-    font-family: "Playfair Display", serif;
-    font-optical-sizing: auto;
-    font-weight: bold 800;
-    font-style: italic;
-  }
+body {
+  background-color: #89bb89; /* Background color */
+  font-family: 'Arial', sans-serif; /* Fallback font */
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh; /* Full height to center content */
+  padding: 15px; /* Padding for smaller screens */
+  width: 500px; /* Maximum width of the form */
+}
+
+.container {
+  background-color: #c3b2e2; /* Form background color */
+  border-radius: 15px; /* Rounded corners */
+  padding: 10px; /* Inner spacing */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Soft shadow */
+  transition: transform 0.3s ease; /* Subtle hover effect */
+}
+
+.container:hover {
+  transform: translateY(-2px); /* Lift effect on hover */
+}
+
+h2 {
+  text-align: center; /* Center heading */
+  margin-bottom: 25px; /* Space below heading */
+  color: #4a7256; /* Heading color */
+  font-family: 'Bebas Neue', sans-serif; /* Font for heading */
+  font-size: 28px; /* Font size for heading */
+}
+
+label {
+  font-weight: bold; /* Bold labels */
+  margin-bottom: 5px; /* Space below labels */
+  color: #4a7256; /* Label color */
+}
+
+input[type="email"],
+input[type="password"],
+input[type="submit"] {
+  width: 100%; /* Full width for inputs */
+  padding: 12px; /* Inner spacing */
+  margin-bottom: 20px; /* Space between inputs */
+  border: 2px solid #4a7256; /* Border color */
+  border-radius: 10px; /* Rounded corners */
+  font-size: 16px; /* Font size for inputs */
+  transition: border-color 0.3s ease; /* Transition effect */
+}
+
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: #7dac88; /* Border color on focus */
+  outline: none; /* Remove default outline */
+}
+
+input[type="submit"] {
+  background-color: #4a7256; /* Button background color */
+  color: #ffffff; /* Button text color */
+  cursor: pointer; /* Pointer on hover */
+  font-size: 16px; /* Font size for button */
+  font-weight: bold; /* Bold button text */
+  transition: background-color 0.3s ease, transform 0.2s ease; /* Transition effects */
+}
+
+input[type="submit"]:hover {
+  background-color: #7dac88; /* Button hover color */
+  transform: translateY(-1px); /* Lift effect on hover */
+}
+
+p {
+  text-align: center; /* Center text */
+  margin-top: 10px; /* Space above paragraphs */
+  color: #4a7256; /* Text color for links */
+}
+
+a {
+  color: #4a7256; /* Link color */
+  text-decoration: underline; /* Underline links */
+  transition: color 0.3s ease; /* Transition effect */
+}
+
+a:hover {
+  color: #7dac88; /* Link hover color */
+}
