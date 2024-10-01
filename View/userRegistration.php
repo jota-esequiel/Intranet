@@ -87,7 +87,7 @@
         </form>
     <script src = "../templates/JS/mask.js"></script>
         </div>
-        <div class="img"> 
+<div class="img"> 
         <?php
 echo getImgPath('mais', 2000, 1900, null);
          ?>

@@ -14,11 +14,15 @@
     <link href="../fontawesome/css/all.css" rel="stylesheet">
 </head>
 <body>
-    <header>
+<header class="d-flex justify-content-between align-items-center">
         <?php
         session_start();
         include_once '../bdConnection.php';
         include_once '../Controller/standardFunctionsController.php';
+        
+        echo "<div class='img'>";
+        echo getImgPath('logo', 90, 80, null);
+        echo "</div>";
 
         if(isset($_SESSION['usuario'])) {
 
@@ -34,9 +38,8 @@
             }
         }
         ?>
-        <div class="cabecalho">
+        <div class="icon">
         <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a> 
-        </div>
         <a href="userProfile.php"><i class="fas fa-circle-user"></i></a> 
     
         <?php logoutUser('logout') ?>

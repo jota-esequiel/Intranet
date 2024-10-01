@@ -46,9 +46,19 @@ if (isset($_GET['codproduto'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet "type="text/css" href="../templates/CSS/editUser.css">
+    <script src="../templates/JS/mask.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    
     <title>Edição de Produtos | TCC</title>
 </head>
 <body>
+<div class="container">
     <form method="POST" enctype="multipart/form-data">
         <label for="">EDIÇÃO DE PRODUTOS</label>
         <br><br>
@@ -93,8 +103,9 @@ if (isset($_GET['codproduto'])) {
         <label for="">Substituir Imagem</label>
         <input type="file" name="imagem">
         <br><br>
-        <button type="submit" name="btnAlterar">ALTERAR E SALVAR</button>
+        <button type="submit" name="btnAlterar">ALTERAR E SALVAR</button>   
     </form>
+    </div>
 
 <?php 
 if (isset($_POST['btnAlterar'])) {

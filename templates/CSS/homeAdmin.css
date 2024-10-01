@@ -10,12 +10,12 @@ body {
 
 /* Estilos para o header */
 header {
-  background-color: #41634b; /* Verde escuro para o cabeçalho */
+  background-color: #e3d7f2; /* Verde escuro para o cabeçalho */
   padding: 15px 30px;
   display: flex;
   justify-content: flex-end; /* Alinha os elementos para a direita */
   align-items: center;
-  color: #fff; /* Cor do texto do cabeçalho */
+  color: #2a7a54;
 }
 
 /* Estilos para o formulário de pesquisa no cabeçalho */
@@ -89,6 +89,34 @@ header a:hover {
   transform: scale(1.03); /* Leve aumento ao passar o mouse */
 }
 
+.icon button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #2a7a54;
+  font-size: 24px; /* tamanho dos ícones */
+}
+
+.icon a {
+  margin-left: 20px;
+  color: #2a7a54;
+  font-size: 24px; /* tamanho dos ícones */
+}
+
+.icon a:hover, .icon button:hover {
+  color: #1e5b41; /* tom mais escuro ao passar o mouse */
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+}
+
+.icon form {
+  display: flex;
+  align-items: center;
+}
+
 /* Tipografia */
 .bebas-neue-regular {
   font-family: 'Bebas Neue', sans-serif;
@@ -99,4 +127,9 @@ header a:hover {
 .playfair-display-uniquifier {
   font-family: 'Playfair Display', serif;
   font-weight: 700; /* Negrito */
+}
+
+.img{
+align-items: flex;
+
 }

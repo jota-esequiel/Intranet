@@ -16,6 +16,16 @@ header {
   align-items: center;
 }
 
+.fas.fa-trash,
+.fas.fa-plus,
+.fas.fa-minus{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color:#333;
+  display: inline-flex;
+}
+
 /* Logo */
 header .logo {
   flex: 1; /* Permite que a logo ocupe espaço flexível */
@@ -91,7 +101,7 @@ header .logo {
 }
 
 .icon a:hover, .icon button:hover {
-  color: #1e5b41; /* tom mais escuro ao passar o mouse */
+  color: #1c523a; /* tom mais escuro ao passar o mouse */
 }
 
 /* Estilo do título */
@@ -174,7 +184,7 @@ h1 {
 
 .table th {
   background-color: #1e5b41; /* Cor de fundo escura para o cabeçalho */
-  color: #1e5b41; /* Cor do texto do cabeçalho */
+  color: #e3e9e6; /* Cor do texto do cabeçalho */
 }
 
 .table tbody tr:hover {

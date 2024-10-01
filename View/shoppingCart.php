@@ -93,7 +93,6 @@ echo getImgPath('logo', 90, 80, null);
         ?>
         
         <table class="table table-bordered">
-        <thead class="thead-dark">
             <tr>
                 <th scope="col"></th>
                 <th scope="col">Produto</th>
