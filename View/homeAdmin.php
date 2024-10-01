@@ -12,17 +12,18 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
     <title>Home | Administrador</title>
     <link href="../fontawesome/css/all.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+ <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
 </head>
 <body>
+
 <header class="d-flex justify-content-between align-items-center">
         <?php
         session_start();
         include_once '../bdConnection.php';
         include_once '../Controller/standardFunctionsController.php';
-        
-        echo "<div class='img'>";
-        echo getImgPath('logo', 90, 80, null);
-        echo "</div>";
 
         if(isset($_SESSION['usuario'])) {
 
@@ -37,21 +38,33 @@
                 echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
             }
         }
+
+        
         ?>
+
+<div class="img">
+        <?php
+        echo getImgPath('logo', 90, 80, null);
+
+?>
+</div>
+
+
         <div class="icon">
-        <a href="productSearch.php"><i class="fas fa-magnifying-glass"></i></a> 
+        
         <a href="userProfile.php"><i class="fas fa-circle-user"></i></a> 
-    
         <?php logoutUser('logout') ?>
     </div>
         
     </header>
+
         <body>
         <div class="organizacao">
-        <a href="consultCategory.php"> Rotinas Categorias</a>
-        <a href="../View/consultUser.php">Rotinas Usuários</a>
-        <a href="../View/consultProduct.php">Rotinas Produtos</a>
+        <a href="../View/consultUser.php">ADICIONAR ADMINISTRADOR, CONSULTAR, EXLUIR, INATIVAR E EDITAR USUARIOS</a>
+        <a href="consultCategory.php">ADICIONAR, CONSULTAR, EXLUIR, INATIVAR E EDITAR CATEGORIAS</a>
+        <a href="../View/consultProduct.php">ADICIONAR, CONSULTAR, EXLUIR, INATIVAR E EDITAR PRODUTOS</a>
         </div>
-    </body>
+        
+        </body>
 </body>
 </html>

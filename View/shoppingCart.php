@@ -10,11 +10,6 @@ if (empty($_SESSION['usuario'])) {
     exit();
 }
 
-if (empty($_SESSION['carrinho'])) {
-    echo "Seu carrinho de compras está vazio.";
-    exit();
-}
-
 $carrinho = $_SESSION['carrinho'];
 $total = 0;
 ?>
