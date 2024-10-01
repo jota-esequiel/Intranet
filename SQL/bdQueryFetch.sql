@@ -13,9 +13,7 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE IF NOT EXISTS tb_cidades (
     codcid INT PRIMARY KEY AUTO_INCREMENT,
     nomecidade VARCHAR(50) NOT NULL,
-    uf CHAR(2) NOT NULL,
-    CHECK (nomecidade = 'Cascavel'),
-    CHECK (uf = 'PR')
+    uf CHAR(2) NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS tb_clientes (
@@ -89,23 +87,47 @@ CREATE TABLE IF NOT EXISTS tb_compras_itens (
     FOREIGN KEY (codproduto) REFERENCES tb_produtos(codproduto) ON DELETE CASCADE
 );	
 
-
-
-
 INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Cascavel', 'PR');
+INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Foz do Iguaçu', 'PR');
+INSERT INTO tb_cidades (nomecidade, uf) VALUES ('Toledo', 'PR');
 
-INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, ativo, codcid)
-VALUES ('Fulano de Tal', 12345678901, 44999998888, 'fulano@email.com', MD5('123'), '1990-01-01', 'Rua das Flores', 'Apto 101', 123, 85850000, 'C', 'S', 1);
+INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
+VALUES ('João Silva', 12345678901, 11987654321, 'joao@example.com', MD5('senha123'), '1985-01-01', 'Rua A', 'Apto 1', 100, '12345-678', 'A', 1);
 
-INSERT INTO tb_categorias (nomecategoria, ativo) VALUES ('Eletrônicos', 'S');
+INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
+VALUES ('Maria Oliveira', 10987654321, 21987654321, 'maria@example.com', MD5('senha456'), '1990-02-02', 'Rua B', 'Casa', 200, '98765-432', 'A', 2);
+
+INSERT INTO tb_clientes (nome, cpf, fone, email, senha, dtnasc, rua, complemento, ncasa, cep, tipo, codcid)
+VALUES ('José Junior', 11111111111, 22222222222, 'josé@example.com', MD5('senha678'), '1990-03-03', 'Rua C', 'Casa', 300, '12345-678', 'C', 3);
+
+INSERT INTO tb_categorias (nomecategoria, ativo) VALUES ('Flores', 'S');
+INSERT INTO tb_categorias (nomecategoria, ativo) VALUES ('Árvores', 'S');
+INSERT INTO tb_categorias (nomecategoria, ativo) VALUES ('Ferramentas', 'S');
 
 INSERT INTO tb_imagens (img) VALUES ('caminho/para/imagem1.jpg');
+INSERT INTO tb_imagens (img) VALUES ('caminho/para/imagem2.jpg');
+INSERT INTO tb_imagens (img) VALUES ('caminho/para/imagem3.jpg');
 
 INSERT INTO tb_produtos (nomeproduto, precoproduto, ativo, cor, tamanho, codimg, codcategoria)
-VALUES ('Smartphone', 1500.00, 'S', 1, 'P', 1, 1);
+VALUES ('Rosa', 150.00, 'S', 1, 'P', 1, 1);
+INSERT INTO tb_produtos (nomeproduto, precoproduto, ativo, cor, tamanho, codimg, codcategoria)
+VALUES ('Pinheiro', 150.00, 'S', 1, 'P', 1, 2);
+INSERT INTO tb_produtos (nomeproduto, precoproduto, ativo, cor, tamanho, codimg, codcategoria)
+VALUES ('Pá', 150.00, 'S', 1, 'P', 1, 3);
 
 INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
 VALUES ('REC123456789', 1, '2024-07-19', 'P', 'S', 10.00);
+INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
+VALUES ('REC123457779', 2, '2024-07-20', 'P', 'S', 10.00);
+INSERT INTO tb_compras (codrecibo, codcliente, ddcompra, pagamento, entrega, taxaentrega)
+VALUES ('REC123458879', 2, '2024-07-15', 'P', 'S', 10.00);
 
 INSERT INTO tb_compras_itens (codcompra, codproduto, qtd, valor)
-VALUES (1, 1, 2, 3000.00);
+VALUES (1, 1, 2, 21.00);
+INSERT INTO tb_compras_itens (codcompra, codproduto, qtd, valor)
+VALUES (2, 2, 1, 150.00);
+INSERT INTO tb_compras_itens (codcompra, codproduto, qtd, valor)
+VALUES (3, 3, 2, 21.00);
+
+
+

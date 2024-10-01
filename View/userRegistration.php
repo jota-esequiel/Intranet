@@ -66,7 +66,6 @@
             <?php
             include_once("../bdConnection.php");
             include '../Controller/standardFunctionsController.php';
-
             try {
                 $pdo = conectar();
                 $strQuery = "SELECT * FROM tb_cidades"; 
@@ -87,8 +86,11 @@
         <button type="submit" class="buttoncad" name="btnSalvar">CADASTRE-SE</button>
         </form>
     <script src = "../templates/JS/mask.js"></script>
-
-
         </div>
+        <div class="img"> 
+        <?php
+echo getImgPath('mais', 2000, 1900, null);
+         ?>
+</div>
 </body>
 </html>

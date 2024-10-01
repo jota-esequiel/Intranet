@@ -147,7 +147,7 @@ echo getImgPath('logo', 90, 80, null);
                 echo "<div class='produto'>";
                 if (!empty($produto['img'])) {
                     $imgPath = "../imagens/Produtos/" . htmlspecialchars(basename($produto['img']), ENT_QUOTES, 'UTF-8');
-                    echo "<img src='{$imgPath}' alt='Imagem do Produto' width='100' height='100'>";
+                    echo "<img src='{$imgPath}' alt='Imagem do Produto' width='240' height='240'>";
                 } else {
                     echo "<div class='circle'></div>";
                     echo "<div class='circle'></div>";
@@ -158,15 +158,14 @@ echo getImgPath('logo', 90, 80, null);
                 echo "<p>Categoria: " . htmlspecialchars($produto['nomecategoria'], ENT_QUOTES, 'UTF-8') . "</p>";
                 echo "<p>Cor: " . htmlspecialchars($produto['corProd'], ENT_QUOTES, 'UTF-8') . "</p>";
                 echo "<p>Tamanho: " . htmlspecialchars($produto['tamanhoProd'], ENT_QUOTES, 'UTF-8') . "</p>";
-                echo "<div class='add-to-cart-button'>";
 
                 if (isset($_SESSION['usuario']) && $_SESSION['usuario'] == true) {
-                    echo "<form action='../Controller/addToShoppingCartController.php' method='post'>";
+                    echo "<form action='../Controller/addToShoppingCartController.php' method='POST'>";
                     echo "<input type='hidden' name='codproduto' value='" . htmlspecialchars($produto['codproduto'], ENT_QUOTES, 'UTF-8') . "'>";
-                    echo "<button type='submit'>Adicionar ao Carrinho</button>";
+                    echo "<button type='submit'><i class='fa-solid fa-cart-shopping'>Adicionar ao carrinho</i></button>";
                     echo "</form>";
+                
                 }
-            echo "</div>";
             echo "</div>";
             echo "</div>";
             }

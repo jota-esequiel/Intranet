@@ -1,5 +1,5 @@
-body{
-  background-color: #89bb89;
+body {
+  background-color: #f9f9fb;
 }
 .cadatrese h1 {
   font-size: 40px;
@@ -14,14 +14,24 @@ body{
   padding: 0;
   color: #4a7256;
 }
+
+label {
+  display: flex;
+  margin-bottom: 5px;
+  font-size: 20px;
+  align-items: center;
+}
+
 .container {
   width: 500px; /* Largura do container */
-  margin: 20px auto; /* Adicionar margem superior e inferior e centralizar horizontalmente */
-  background-color: #c3b2e2;
+  margin: 50px auto; /* Adicionar margem superior e inferior e centralizar horizontalmente */
+  background-color: #e3d7f2;
   border-radius: 15px; /* Cor de fundo */
   padding: 10px;
-  color: #4a7256;
-  box-shadow: 15px 10px #9c8fb6;
+  color: #1e5b41;
+  font-family: "Bebas Neue", sans-serif;
+  box-shadow: 15px 10px #afaabb;
+  align-items: center;
 }
 input{
   border: 1px;
@@ -30,7 +40,7 @@ input{
   border-radius: 10px; /* Cor de fundo */ 
   flex-direction: column; /* Organiza os elementos em coluna */
   display: inline-block;
-  width: 70%;
+  width: 98%;
 }
 button[type="submit"] {
   font-family: "Playfair Display", serif;
@@ -80,4 +90,17 @@ a:hover {
   font-optical-sizing: auto;
   font-weight: bold 800;
   font-style: italic;
+}
+
+.img {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Garante que fique atrás de todos os elementos */
+  background-size: cover; /* Faz a imagem cobrir toda a área */
+  background-repeat: no-repeat; /* Impede que a imagem se repita */
+  background-position: center center; /* Centraliza a imagem */
+  opacity: 0.5; /* Define a opacidade (ajuste conforme necessário) */
 }

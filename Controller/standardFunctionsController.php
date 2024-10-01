@@ -442,6 +442,12 @@ function getImgPath($type, $width = 100, $height = 100, $filename = null) {
             $filePath = $basePath . "/Logo/logo.png";
             $urlFilePath = $urlBasePath . "/Logo/logo.png";
             break;
+
+            case 'mais':   
+            $filePath = $basePath . "/Mais/FundoLogin.jpeg";
+            $urlFilePath = $urlBasePath . "/Mais/FundoLogin.jpeg";
+            break;
+
         
         case 'produtos':
             if ($filename === null) {

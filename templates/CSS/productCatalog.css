@@ -102,6 +102,7 @@ h1 {
   margin: 30px 0;
   font-size: 28px;
   font-weight: bold;
+  font-family: 'Bebas Neue', sans-serif;
 }
 
 /* Estilo dos produtos */
@@ -158,4 +159,33 @@ h1 {
   .produto {
       width: calc(100% - 20px); /* Full width em telas muito pequenas */
   }
+}
+
+.fa-solid.fa-cart-shopping{
+  background-color: #2a7a54; /* Blue color */
+  color: #fff; /* White text */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background-color 0.2s ease-in-out;
+}
+
+ .fa-solid.fa-cart-shopping:hover {
+  background-color: #34996a;; /* Darker blue on hover */
+}
+
+
+/* Tipografia */
+.bebas-neue-regular {
+  font-family: 'Bebas Neue', sans-serif;
+  font-weight: 400;
+  font-size: 18px; /* Ajuste de tamanho para melhor consistência */
+}
+
+.playfair-display-uniquifier {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700; /* Negrito */
 }
