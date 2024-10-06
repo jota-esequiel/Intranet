@@ -14,7 +14,6 @@ $carrinho = $_SESSION['carrinho'];
 $total = 0;
 ?>
 
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <header class="d-flex justify-content-between align-items-center">
