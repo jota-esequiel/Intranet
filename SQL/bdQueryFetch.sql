@@ -13,7 +13,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE IF NOT EXISTS tb_cidades (
     codcid INT PRIMARY KEY AUTO_INCREMENT,
     nomecidade VARCHAR(50) NOT NULL,
-    uf CHAR(2) NOT NULL
+    uf CHAR(2) NOT NULL,
+    ativo CHAR(1) DEFAULT 'S' NOT NULL, 
+    CHECK (ativo IN ('S', 'N')) -- Verificação para apenas inserir se for S ou N
 );
 
 CREATE TABLE IF NOT EXISTS tb_clientes (

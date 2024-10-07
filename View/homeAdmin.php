@@ -63,6 +63,7 @@
         <a href="../View/consultUser.php">ADICIONAR ADMINISTRADOR, CONSULTAR, EXLUIR, INATIVAR E EDITAR USUARIOS</a>
         <a href="consultCategory.php">ADICIONAR, CONSULTAR, EXLUIR, INATIVAR E EDITAR CATEGORIAS</a>
         <a href="../View/consultProduct.php">ADICIONAR, CONSULTAR, EXLUIR, INATIVAR E EDITAR PRODUTOS</a>
+        <a href="../View/consultCity.php">ADICIONAR, CONSULTAR, EXLUIR, INATIVAR E EDITAR CIDADES</a>
         </div>
         
         </body>
