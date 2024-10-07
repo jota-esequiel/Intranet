@@ -51,7 +51,7 @@
 
 
         <div class="icon">
-        
+        <a href="../View/homeAdmin.php"><i class="fa-solid fa-house"></i></a>
         <a href="userProfile.php"><i class="fas fa-circle-user"></i></a> 
         <?php logoutUser('logout') ?>
     </div>
