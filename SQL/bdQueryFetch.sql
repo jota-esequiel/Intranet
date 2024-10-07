@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS tb_compras (
     pagamento CHAR(1) DEFAULT 'P' NOT NULL,
     entrega CHAR(1) DEFAULT 'S' NOT NULL,
     taxaentrega DECIMAL(5, 2) NOT NULL,
+    token VARCHAR(255),
     FOREIGN KEY (codcliente) REFERENCES tb_clientes(codcliente) ON DELETE CASCADE,
     CHECK (pagamento = 'P'), -- Verificação para apenas inserir se for P
     CHECK (entrega IN ('S', 'E')) -- Verificação para apenas inserir se for S ou E
