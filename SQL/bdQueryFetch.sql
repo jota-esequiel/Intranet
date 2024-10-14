@@ -33,6 +33,8 @@ CREATE TABLE IF NOT EXISTS tb_clientes (
     tipo CHAR(1) DEFAULT 'C' NOT NULL, 
     ativo CHAR(1) DEFAULT 'S' NOT NULL, 
     codcid INT,
+    token_cli VARCHAR(255),
+    token_validade DATETIME,
     FOREIGN KEY (codcid) REFERENCES tb_cidades(codcid) ON DELETE CASCADE,
     CHECK (tipo IN ('C', 'A')), -- Verificação para apenas inserir se for A ou C
     CHECK (ativo IN ('S', 'N')) -- Verificação para apenas inserir se for S ou N
