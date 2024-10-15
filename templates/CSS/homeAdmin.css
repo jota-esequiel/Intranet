@@ -12,15 +12,16 @@ body {
 header {
   background-color: #e3d7f2; /* Verde escuro para o cabeçalho */
   padding: 15px 30px;
-  display: flex;
-  justify-content: flex-end; /* Alinha os elementos para a direita */
-  align-items: center;
   color: #2a7a54;
+}
+.header-container {
+  display: inline-block;
+  justify-content: space-between; /* Espaça a imagem e os ícones */
+  align-items: center; /* Alinha verticalmente no centro */
 }
 
 /* Estilos para o formulário de pesquisa no cabeçalho */
 header form {
-  display: flex;
   align-items: center;
   margin-right: 20px; /* Espaçamento à direita */
 }
@@ -85,8 +86,10 @@ header a:hover {
 }
 
 .organizacao a:hover {
+  text-decoration: none;
   background-color: #41634b; /* Verde escuro mais intenso ao passar o mouse */
   transform: scale(1.03); /* Leve aumento ao passar o mouse */
+  color: white;
 }
 
 .icon button {
@@ -107,13 +110,14 @@ header a:hover {
   color: #1e5b41; /* tom mais escuro ao passar o mouse */
 }
 
+/* Ajuste na classe .icon para alinhamento dos ícones */
 .icon {
-  display: flex;
-  align-items: center;
+  display: flex; /* Usando flexbox para alinhar os ícones */
+  justify-content: flex-end; /* Alinha os ícones à direita */
+  align-items: center; /* Alinha verticalmente os ícones */
 }
 
 .icon form {
-  display: flex;
   align-items: center;
 }
 
@@ -129,7 +133,9 @@ header a:hover {
   font-weight: 700; /* Negrito */
 }
 
-.img{
-align-items: flex;
 
+/* Ajuste na classe .img para garantir que a imagem fique no canto esquerdo */
+.img {
+  display: inline-block;
 }
+

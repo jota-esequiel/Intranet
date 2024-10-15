@@ -13,7 +13,9 @@ SET FOREIGN_KEY_CHECKS = 1;
 CREATE TABLE IF NOT EXISTS tb_cidades (
     codcid INT PRIMARY KEY AUTO_INCREMENT,
     nomecidade VARCHAR(50) NOT NULL,
-    uf CHAR(2) NOT NULL
+    uf CHAR(2) NOT NULL,
+    ativo CHAR(1) DEFAULT 'S' NOT NULL, 
+    CHECK (ativo IN ('S', 'N')) -- Verificação para apenas inserir se for S ou N
 );
 
 CREATE TABLE IF NOT EXISTS tb_clientes (
@@ -31,6 +33,8 @@ CREATE TABLE IF NOT EXISTS tb_clientes (
     tipo CHAR(1) DEFAULT 'C' NOT NULL, 
     ativo CHAR(1) DEFAULT 'S' NOT NULL, 
     codcid INT,
+    token_cli VARCHAR(255),
+    token_validade DATETIME,
     FOREIGN KEY (codcid) REFERENCES tb_cidades(codcid) ON DELETE CASCADE,
     CHECK (tipo IN ('C', 'A')), -- Verificação para apenas inserir se for A ou C
     CHECK (ativo IN ('S', 'N')) -- Verificação para apenas inserir se for S ou N
@@ -72,6 +76,7 @@ CREATE TABLE IF NOT EXISTS tb_compras (
     pagamento CHAR(1) DEFAULT 'P' NOT NULL,
     entrega CHAR(1) DEFAULT 'S' NOT NULL,
     taxaentrega DECIMAL(5, 2) NOT NULL,
+    token VARCHAR(255),
     FOREIGN KEY (codcliente) REFERENCES tb_clientes(codcliente) ON DELETE CASCADE,
     CHECK (pagamento = 'P'), -- Verificação para apenas inserir se for P
     CHECK (entrega IN ('S', 'E')) -- Verificação para apenas inserir se for S ou E
