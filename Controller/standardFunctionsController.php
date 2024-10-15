@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Confirma uma ação exibindo uma mensagem JavaScript de confirmação.
  *
@@ -482,6 +483,20 @@ function getImgPath($type, $width = 100, $height = 100, $filename = null) {
         return "<img src='{$urlFilePath}' width='{$width}' height='{$height}' />";
     } else {
         return "Imagem indisponível!";
+    }
+}
+
+function saudacao() {
+    $date = (int)date('H');
+
+    date_default_timezone_set('America/Sao_Paulo');
+
+    if($date  >= 0 && $date < 12) {
+        return 'Bom dia';
+    } elseif ($date  >= 12 && $date < 18) {
+        return 'Boa tarde';
+    } else {
+        return 'Boa noite';
     }
 }
 
