@@ -26,7 +26,7 @@
     <input type="submit" value="Login">
   </form>
   <div class="senha">
-  <p><a href="">(Esqueci minha senha)</a></p>
+  <p><a href="../View/EsqueciSenha.php">(Esqueci minha senha)</a></p>
 </div>
   <p>Não tem uma conta? <a href="../View/userRegistration.php">Crie uma aqui</a>.</p>
 </div>
