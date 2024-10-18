@@ -12,12 +12,13 @@
     <title>Esqueci a Senha</title>
 </head>
 <body>
+<div class="container">
 <?php
 include_once '../bdConnection.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-require 'src/Exception.php';
-require 'src/PHPMailer.php';
+require '../View/src/Exception.php';
+require '../View/src/PHPMailer.php';
 require 'src/SMTP.php';
 
 $pdo = conectar();
@@ -71,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->execute([$token_cli, $email]);
 
 // Gera o link de redefinição de senha
-        $link = "http://localhost/Intranet%20View/RedefinirSenha.php?token_cli=$token_cli";
+        $link = "http://localhost/Intranet/View/RedefinirSenha.php?token_cli=$token_cli";
         $assunto = "Redefinir sua senha";
         $mensagemHTML = "Clique no link para redefinir sua senha: <a href='$link'>$link</a>";
         $mensagemTexto = "Clique no link para redefinir sua senha: $link";
@@ -95,5 +96,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <button type="submit">Recuperar Senha</button>
 </form>
 <a href="loginUser.php" class="button">Voltar</a>
+</div>
 </body>
 </html>

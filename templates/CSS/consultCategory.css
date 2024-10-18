@@ -17,7 +17,7 @@ body {
 .container {
     width: 90%;
     max-width: 1200px;
-    background-color: #3b5e40; /* Fundo branco para o contêiner */
+    background-color: #ffffff; /* Fundo branco para o contêiner */
     border-radius: 8px; /* Bordas arredondadas */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave */
     padding: 20px;
@@ -26,17 +26,37 @@ body {
 
 /* Título */
 h1 {
-    color: #2c3e50; /* Cor do título em um tom de azul escuro */
-    border-bottom: 2px solid #3b5e40; /* Linha abaixo do título */
-    padding-bottom: 10px;
-    margin-bottom: 20px;
+    color: #3b5e40; /* Verde escuro */
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    font-size: 2em;
 }
 
-/* Submenu */
-.nav-bar-item {
-    margin-bottom: 20px;
+/* Tabela */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+th, td {
+    padding: 10px;
     text-align: left;
-    
+    border: 1px solid #ddd; /* Borda sutil para as células da tabela */
+}
+
+th {
+    background-color: #a4a0c4; /* Lilás claro */
+    color: #fff; /* Texto branco para contraste */
+}
+
+tr:nth-child(even) {
+    background-color: #e6e6e6; /* Cor de fundo alternada para as linhas da tabela */
+}
+
+tr:hover {
+    background-color: #d0c8e2; /* Cor de fundo ao passar o mouse */
 }
 
 button {
@@ -85,7 +105,7 @@ table th, table td {
 }
 
 table th {
-    background-color: #3b5e40; /* Verde escuro para cabeçalhos */
+    background-color: #a4a0c4; /* Lilás claro */
     color: #fff; /* Texto branco */
 }
 

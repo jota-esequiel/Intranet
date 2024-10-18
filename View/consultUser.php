@@ -143,19 +143,19 @@ if (checkUserType('A')) {
 
     <table border="1px">
     <tr>
-        <td>Nome</td>
-        <td>E-mail</td>
-        <td>Data de nascimento</td>
-        <td>Contato</td>
-        <td>CPF</td>
-        <td>Rua</td>
-        <td>Complemento</td>
-        <td>Nº Casa</td>
-        <td>CEP</td>
-        <td>Tipo</td>
-        <td>Status</td>
-        <td>Cidade</td>
-        <td>Ações</td>
+        <th>Nome</th>
+        <th>E-mail</th>
+        <th>Data de nascimento</th>
+        <th>Contato</th>
+        <th>CPF</th>
+        <th>Rua</th>
+        <th>Complemento</th>
+        <th>Nº Casa</th>
+        <th>CEP</th>
+        <th>Tipo</th>
+        <th>Status</th>
+        <th>Cidade</th>
+        <th>Ações</th>
     </tr>
 
     <?php foreach ($result as $r) { ?>

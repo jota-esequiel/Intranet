@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <link rel="stylesheet "type="text/css" href="../templates/CSS/loginUser.css">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnecbt" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
     <link rel="preconnect" href="https://fonts.googleapis.com">

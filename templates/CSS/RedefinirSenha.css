@@ -1,4 +1,4 @@
-/* EsqueciSenha.css */
+/* RedefinirSenha.css */
 body {
     font-family: 'Playfair Display', serif; /* Fonte principal */
     background-color: #f4f4f4; /* Cor de fundo suave */
@@ -26,7 +26,7 @@ h1 {
     margin-bottom: 20px; /* Espaçamento inferior */
 }
 
-input[type="email"] {
+input[type="password"] {
     width: 90%;
     padding: 15px;
     margin: 10px 0;
@@ -37,21 +37,20 @@ input[type="email"] {
     transition: border-color 0.3s;
 }
 
-input[type="email"]:focus {
+input[type="password"]:focus {
     border-color: #27ae60; /* Borda verde escuro ao focar */
     outline: none; /* Remove a borda padrão do navegador */
 }
 
 button {
-    width: 100%;
+    width: 90%;
     padding: 15px;
     background-color: #27ae60; /* Verde escuro */
     color: white; /* Cor do texto */
     border: none;
     border-radius: 5px;
-    font-size: 16px;
+    font-size: 25px;
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 30px;
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s;
 }
@@ -69,7 +68,6 @@ a.button {
     text-decoration: none;
     font-weight: bold;
     font-family: 'Bebas Neue', cursive; /* Fonte do link */
-    font-size: 25px;
 }
 
 a.button:hover {

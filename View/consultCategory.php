@@ -61,9 +61,9 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <table border = "1px">
         <tr>
-            <td>CATEGORIA</td>
-            <td>STATUS</td>
-            <td>AÇÕES</td>
+            <th>CATEGORIA</th>
+            <th>STATUS</th>
+            <th>AÇÕES</th>
         </tr>
         <?php foreach ($result as $r) { ?>
             <tr>

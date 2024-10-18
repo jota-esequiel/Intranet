@@ -1,9 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+    <link rel="stylesheet "type="text/css" href="../templates/CSS/RedefinirSenha.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
+    <title>Esqueci a Senha</title>
+</head>
+<body>
+<div class="container">
 <?php
 include_once '../bdConnection.php';
 $pdo = conectar();
 
-if (isset($_GET['token_cli'])) { // Verifica se o token foi fornecido
-    $token = $_GET['token_cli']; // Corrigido para usar 'token_cli'
+if (isset($_GET['token_cli'])) {
+    $token_cli = $_GET['token_cli'];
+    error_log("Token recebido: " . $token_cli); // Corrigido para usar 'token_cli'
 
     // Verificar se o token é válido e ainda não expirou
     $query = "SELECT * FROM tb_clientes WHERE token_cli = ? AND token_validade > NOW()";
@@ -20,7 +36,7 @@ if (isset($_GET['token_cli'])) { // Verifica se o token foi fornecido
 
             if ($nova_senha === $confirmar_senha) {
                 // Criptografa a nova senha
-                $senha_criptografada = password_hash($nova_senha, PASSWORD_DEFAULT);
+                $senha_criptografada = md5($nova_senha);
 
                 // Atualiza a senha no banco de dados e remove o token
                 $query = "UPDATE tb_clientes SET senha = :senha, token_cli = NULL, token_validade = NULL WHERE codcliente = :codcliente";
@@ -50,3 +66,7 @@ if (isset($_GET['token_cli'])) { // Verifica se o token foi fornecido
     <input type="password" name="confirmar_senha" placeholder="Confirmar nova senha" required>
     <button type="submit">Redefinir Senha</button>
 </form>
+
+</div>
+</body>
+</html>

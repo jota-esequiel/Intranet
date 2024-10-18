@@ -25,7 +25,8 @@ if (checkUserType('A')) {
     $stmt = $pdo->prepare($sql);
     $stmt->execute($params); 
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
+    
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -40,9 +41,9 @@ if (checkUserType('A')) {
     <a href="../View/cityRegistration.php">Adicione uma nova Cidade</a>
     <table border="1">
         <tr>
-            <td>CIDADE</td>
-            <td>UF</td>
-            <td>AÇÕES</td>
+            <th>CIDADE</th>
+            <th>UF</th>
+            <th>AÇÕES</th>
         </tr>
         <?php foreach ($result as $r) { ?>
             <tr>
