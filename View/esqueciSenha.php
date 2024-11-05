@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header("Location: Confirmacao.php"); 
             //echo "<script>location.href='RedefinirSenha.php?token$token';</script>";
         } else {
-            echo "Erro ao enviar o e-mail. Tente novamente.";
+            echo "Erro ao enviar o e-mail. Tente novamente mais tarde.";
         }
     } else {
         echo "E-mail não encontrado!";
