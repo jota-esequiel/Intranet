@@ -13,6 +13,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Jacquarda+Bastarda+9&display=swap" rel="stylesheet">
+
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -45,7 +49,11 @@
                 $stmt->bindParam(':codcliente', $_SESSION['usuario']['codcliente']);
                 $stmt->execute();
                 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-
+                if ($usuario) {
+                    echo saudar() . ucfirst($usuario['nome']) . "!";
+                } else {
+                    echo "<p>Olá, usuário!</p>";
+                }
             } catch (PDOException $e) {
                 echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
             }

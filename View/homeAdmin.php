@@ -20,6 +20,8 @@
 <body>
 
 <header class="d-flex justify-content-between align-items-center">
+
+
         <?php
         session_start();
         include_once '../bdConnection.php';
@@ -27,6 +29,9 @@
 
         if(isset($_SESSION['usuario'])) {
 
+             echo "<div class='img'>";
+            echo getImgPath('logo', 90, 80, null);
+            echo "</div>";
             try {
                 $pdo = conectar();
 
@@ -34,19 +39,17 @@
                 $stmt->bindParam(':codcliente', $_SESSION['usuario']['codcliente']);
                 $stmt->execute();
                 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+                if($usuario) { 
+                    echo saudar() . ucfirst($usuario['nome']) . "!";
+                } else {
+                    echo saudar() . "<p>usuário!</p>";
+                }
             } catch (PDOException $e) {
                 echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
             }
         }
-
         
         ?>
-
-<div class="img">
-        <?php
-        echo getImgPath('logo', 90, 80, null);
-
-?>
 </div>
 
 
@@ -60,10 +63,10 @@
 
         <body>
         <div class="organizacao">
-        <a href="../View/consultUser.php">ADICIONAR ADMINISTRADOR, CONSULTAR, EXCLUIR, INATIVAR E EDITAR USUARIOS</a>
+        <a href="../View/consultUser.php">ADICIONAR ADMINISTRADOR, CONSULTAR, EXCLUIR, INATIVAR E EDITAR USUÁRIOS</a>
         <a href="consultCategory.php">ADICIONAR, CONSULTAR, EXCLUIR, INATIVAR E EDITAR CATEGORIAS</a>
         <a href="../View/consultProduct.php">ADICIONAR, CONSULTAR, EXCLUIR, INATIVAR E EDITAR PRODUTOS</a>
-        <a href="../View/consultCity.php">ADICIONAR, CONSULTAR, EXCLUIR, INATIVAR E EDITAR CIDADES</a>
+        <a href="../View/consultCity.php">ADICIONAR, CONSULTAR, EXCLUIR E EDITAR CIDADES</a>
         </div>
         
         </body>

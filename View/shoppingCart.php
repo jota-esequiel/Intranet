@@ -4,18 +4,22 @@ session_start();
 include '../bdConnection.php';
 include '../Controller/standardFunctionsController.php';
 
+// Verifica se o usuário está logado
 if (empty($_SESSION['usuario'])) {
     header("Location: ../View/loginUser.php");
     exit();
 }
 
 $carrinho = $_SESSION['carrinho'] ?? []; // Certifique-se de que o carrinho está definido
+
+// Obtém o nome do usuário da sessão
+$nomeCliente = $_SESSION['usuario']['nome'] ?? 'Cliente'; 
+
 ?>
 
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<header class="d-flex justify-content-between align-items-center">
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="../templates/CSS/shoppingCart.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,35 +28,38 @@ $carrinho = $_SESSION['carrinho'] ?? []; // Certifique-se de que o carrinho est�
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+
+
+<header class="d-flex justify-content-between align-items-center">
 <?php
+// Chama a função que retorna o caminho da imagem do logo
 echo getImgPath('logo', 90, 80, null);
 ?>
 
     <div class="categorias">
         <?php  
-            include_once '../bdConnection.php';
-            
-            $pdo = conectar();
+        include_once '../bdConnection.php';
+        $pdo = conectar();
 
-            $sql = 'SELECT codcategoria, nomecategoria FROM tb_categorias';
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute();
+        $sql = 'SELECT codcategoria, nomecategoria FROM tb_categorias';
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute();
 
-            $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            if ($categorias) {
-                echo '<nav>';  
-                echo '<ul>';
-            
-                foreach ($categorias as $categoria) {
-                    echo '<li><a href="productCatalog.php?categoria=' . urlencode($categoria['codcategoria']) . '">' . ucfirst($categoria['nomecategoria']) . '</a></li>';
-                }
+        if ($categorias) {
+            echo '<nav>';
+            echo '<ul>';
 
-                echo '</ul>';
-                echo '</nav>';
-            } else {
-                echo 'Nenhuma categoria encontrada';
+            foreach ($categorias as $categoria) {
+                echo '<li><a href="productCatalog.php?categoria=' . urlencode($categoria['codcategoria']) . '">' . ucfirst($categoria['nomecategoria']) . '</a></li>';
             }
+
+            echo '</ul>';
+            echo '</nav>';
+        } else {
+            echo 'Nenhuma categoria encontrada';
+        }
         ?>
     </div>
         
@@ -67,12 +74,12 @@ echo getImgPath('logo', 90, 80, null);
         <?php logoutUser('logout'); ?>
     </div>
 </header>
-<body>
 
+<body>
 <div class="container">
     <h1>Carrinho de Compras</h1>
     <?php
-    $nomeCliente = $_SESSION['usuario']['nome'];
+    // Exibe a saudação para o cliente
     echo "<p>Este é seu carrinho de compras, " . htmlspecialchars($nomeCliente, ENT_QUOTES, 'UTF-8') . "!</p>";
 
     if (empty($carrinho)) {

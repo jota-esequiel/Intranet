@@ -84,17 +84,22 @@ include_once '../bdConnection.php';
 
 echo getImgPath('logo', 90, 80, null);
 
-    if (isset($_SESSION['usuario'])) {
-            try {
-                $pdo = conectar();
-                $stmt = $pdo->prepare("SELECT nome FROM tb_clientes WHERE codcliente = :codcliente");
-                $stmt->bindParam(':codcliente', $_SESSION['usuario']['codcliente']);
-                $stmt->execute();
-                $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
-            } catch (PDOException $e) {
-                echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
-            }            
+if (isset($_SESSION['usuario'])) {
+    try {
+        $pdo = conectar();
+        $stmt = $pdo->prepare("SELECT nome FROM tb_clientes WHERE codcliente = :codcliente");
+        $stmt->bindParam(':codcliente', $_SESSION['usuario']['codcliente']);
+        $stmt->execute();
+        $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
+        if ($usuario) {
+            echo saudar() . ucfirst($usuario['nome']) . "!";
+        } else {
+            echo "<p>Olá, usuário!</p>";
         }
+    } catch (PDOException $e) {
+        echo 'Erro ao recuperar o nome de usuário: ' . $e->getMessage();
+    }            
+}
         ?>
     
     <div class="categorias">

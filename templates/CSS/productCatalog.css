@@ -13,7 +13,9 @@ header {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
+  font-family: 'Lato', sans-serif;
   align-items: center;
+  color: #2a7a54;
 }
 
 /* Logo */
@@ -21,19 +23,18 @@ header .logo {
   flex: 1; /* Permite que a logo ocupe espaço flexível */
 }
 
-/* Estilos para as categorias */
-.categorias {
-  margin: 10px 0;
-  padding: 10px 0;
-}
-
-.categorias nav ul {
-  list-style: none;
-  padding: 0;
-  display: flex;
-  justify-content: center; /* Centraliza as categorias */
+  /* Estilos para as categorias */
+  .categorias {
+    margin: 10px 0;
+    padding: 10px 0;
+  }
   
-}
+  .categorias nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centraliza as categorias */
+  }
 
 .categorias nav ul li {
   margin: 0 15px;
@@ -102,7 +103,7 @@ h1 {
   margin: 30px 0;
   font-size: 28px;
   font-weight: bold;
-  font-family: 'Bebas Neue', sans-serif;
+  background-color: #ccc;
 }
 
 /* Estilo dos produtos */
